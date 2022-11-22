@@ -1,0 +1,70 @@
+.LeaderBoard {
+  background-color: #f5f5f585;
+  padding: 40px 200px 80px 200px;
+  position: relative;
+  z-index: 1;
+}
+
+.LeaderBoardDropdowns {
+  font-size: 14px;
+  line-height: 17px;
+  margin: 0px 15px;
+}
+
+.filter-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 108px;
+  height: 40px;
+  padding-right: 0px;
+  color: #080808;
+  margin-left: 35px;
+}
+
+.more-btn {
+  display: block;
+  margin: 0 auto;
+  width: 77px;
+  height: 40px;
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  color: #080808;
+}
+
+.more-btn-hidden {
+  visibility: hidden;
+}
+
+select {
+  height: 40px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  border: 1px solid #f1f1f1;
+}
+
+select:hover {
+  border: 1px solid #cfcccc;
+}
+
+input[type="search"] {
+  height: 40px;
+  width: 440px;
+  color: #81858c;
+  border: 1px solid #dde0e5;
+  border-radius: 8px;
+  padding-left: 35px;
+}
+
+input[type="search"]:hover {
+  border: 1px solid #cfcccc;
+}
+
+.searchIcon {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: -29px;
+  left: 10px;
+}

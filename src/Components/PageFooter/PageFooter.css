@@ -1,0 +1,68 @@
+.PageFooter {
+  margin-top: 80px;
+}
+
+.footer-nav {
+  margin-left: 200px;
+  margin-right: 60px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin-right: 85px;
+  padding: 0px;
+}
+
+.footer-nav ul a {
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 16px;
+  color: #81858c;
+  white-space: nowrap;
+}
+
+.footer-nav ul li {
+  margin-bottom: 16px;
+}
+
+.footer-nav .list-header {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
+  margin-bottom: 20px;
+}
+
+.fitt-info-container {
+  margin-right: 200px;
+  margin-bottom: 80px;
+}
+
+.fitt-info-container .fitt-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.fitt-info-container .binance-powered {
+  font-size: 16px;
+  line-height: 32px;
+  color: #000000;
+  margin-bottom: 8px;
+}
+
+.fitt-info-container .fitt-definition {
+  font-size: 14px;
+  line-height: 20px;
+  color: #000000;
+  font-weight: 300;
+  margin-top: 22px;
+  text-align: justify;
+  margin-bottom: 0px;
+}
+
+.copyright {
+  text-align: center;
+  margin: 20px 0px;
+  font-size: 12px;
+  color: #81858c;
+}

@@ -1,0 +1,50 @@
+.leader-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.leader-name {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.leader-type {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+td .follow-btn {
+  width: 77px;
+  height: 40px;
+  margin-left: 0;
+}
+
+th {
+  font-size: 14px;
+  color: #81858c;
+  font-weight: 400;
+}
+
+th,
+td {
+  padding: 15px 40px;
+}
+
+.LeaderBoardListItem th:first-child {
+  padding-right: 190px;
+}
+
+.LeaderBoardListItem tr {
+  border-bottom: 2px solid black;
+}
+
+tr .roi {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+tr .pnl {
+  color: #10b866;
+  font-size: 16px;
+  font-weight: 500;
+}

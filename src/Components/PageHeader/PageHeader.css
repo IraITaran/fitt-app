@@ -1,0 +1,120 @@
+.header-left {
+  margin-left: 24px;
+  margin-top: 20px;
+  margin-right: auto;
+}
+
+.PageHeader .fitt-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 4px;
+}
+
+.PageHeader ul {
+  list-style: none;
+}
+
+.header-left ul {
+  margin-top: 18px;
+}
+
+.header-left ul li {
+  margin-right: 30px;
+}
+
+.header-left ul a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #262626;
+}
+
+.PageHeader ul li:last-child {
+  margin-right: 0px;
+}
+
+.gift-icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 7px;
+}
+
+.language-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.header-right {
+  margin-top: 32px;
+  margin-right: 24px;
+}
+
+.header-right ul a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #080808;
+}
+
+.header-right li {
+  padding: 9px 13px;
+  font-size: 14px;
+}
+
+.header-right .highlight {
+  background-color: #feeb61;
+  border-radius: 4px;
+}
+
+.header-right ul li {
+  margin-right: 32px;
+}
+
+.PageHeader .main-container {
+  margin: 60px 150px 80px 150px;
+}
+
+.PageHeader .main-left {
+  margin-top: 100px;
+  margin-right: 115px;
+  margin-bottom: 175px;
+}
+
+.PageHeader .main-right img {
+  width: 464px;
+  height: 440px;
+}
+
+.PageHeader .main-left p {
+  font-size: 72px;
+  line-height: 85px;
+  font-weight: 300px;
+  color: #262626;
+  margin-bottom: 30px;
+}
+
+.main-left span {
+  white-space: nowrap;
+}
+
+.main-left .binance-powered {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 32px;
+  color: #262626;
+}
+
+.main-left .binance-logo {
+  margin-left: 16px;
+}
+
+.main-container .bg-binance {
+  background-image: url("../../images/bg-binance-bottom.svg");
+  width: 240px;
+  height: 240px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 579px;
+  left: 463px;
+  z-index: -1;
+  opacity: 0.99;
+}

@@ -1,0 +1,104 @@
+.LeaderBoardCardItem {
+  min-width: 288px;
+  height: 252px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.leaderboard-container {
+  margin: 16px;
+}
+
+.header-board .leader-icon {
+  float: left;
+  margin-right: 13px;
+  width: 56px;
+  height: 56px;
+  border-radius: 80px;
+}
+
+.header-board .leader-name {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.header-board .leader-type {
+  font-size: 12px;
+  font-weight: 300;
+  color: #81858c;
+  margin: 0px;
+}
+
+.main-board {
+  margin-top: 35px;
+  display: flex;
+}
+
+.roi {
+  margin-right: 35px;
+}
+
+.roi p:first-child {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 4px;
+}
+
+.roi p:last-child {
+  font-size: 12px;
+  font-weight: 300;
+  color: #81858c;
+  margin: 0;
+}
+
+.pnl p:first-child {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  color: #10b866;
+}
+
+.pnl p:last-child {
+  font-size: 12px;
+  font-weight: 300;
+  color: #81858c;
+  margin: 0;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #d5d7dc;
+  border-radius: 50%;
+}
+
+.star {
+  cursor: pointer;
+  position: relative;
+  top: 7px;
+  left: 11px;
+  color: #81858c;
+  width: 16px;
+  height: 16px;
+}
+
+.footer-board {
+  display: flex;
+  margin-top: 35px;
+}
+
+.follow-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 208px;
+  height: 40px;
+  margin-left: 8px;
+  color: #080808;
+}
+
+span.highlight {
+  background-color: orange;
+}
