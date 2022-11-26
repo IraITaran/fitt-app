@@ -4,7 +4,7 @@ import "./LeaderBoard.css";
 import LeaderBoardCard from "../LeaderBoardCard/LeaderBoardCard";
 import LeaderBoardList from "../LeaderBoardList/LeaderBoardList";
 
-import SearchIcon from "../../images/search.png";
+import SearchIcon from "../../images/search-icon.svg";
 import BackgroundImages from "../BackgroundImages/BackgroundImages";
 import ListOrTableDisplay from "../ListOrTableDisplay/ListOrTableDisplay";
 
@@ -119,7 +119,13 @@ export default function LeaderBoard() {
       <ListOrTableDisplay isList={isList} setIsList={setIsList} />
 
       <br />
-      {isList && <LeaderBoardList data={results} keyword={keyword} />}
+      {isList && (
+        <LeaderBoardList
+          data={results}
+          keyword={keyword}
+          choice={periodChoice}
+        />
+      )}
       {!isList && <LeaderBoardCard data={results} keyword={keyword} />}
       <br />
       <button

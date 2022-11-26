@@ -50,11 +50,12 @@ export default function LeaderBoardCardItem(props) {
         </div>
         <div className="main-board">
           <div className="roi">
-            <p>{(props.data.roi * 100).toFixed(2)}%</p>
+            <p>+{(props.data.roi * 100).toFixed(2)}%</p>
             <p>ROI за 30 дней</p>
           </div>
           <div className="pnl">
             <p>
+              +
               {props.data.pnl.toLocaleString(undefined, {
                 maximumFractionDigits: 0,
               })}

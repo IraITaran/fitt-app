@@ -1,9 +1,9 @@
 import React from "react";
 import "./PageFooter.css";
-import TwitterIcon from "../../images/twitter-icon.png";
-import FacebookIcon from "../../images/facebook-icon.png";
-import TelegramIcon from "../../images/telegram-icon.png";
-import RedditIcon from "../../images/reddit-icon.png";
+import TwitterIcon from "../../images/twitter-icon.svg";
+import FacebookIcon from "../../images/facebook-icon.svg";
+import TelegramIcon from "../../images/telegram-icon.svg";
+import RedditIcon from "../../images/reddit-icon.svg";
 import FittLogoFooter from "../../images/fitt-logo-footer.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
 

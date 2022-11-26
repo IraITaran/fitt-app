@@ -17,11 +17,6 @@
   padding-left: 59px;
 }
 
-.LeaderAllData table td:last-child,
-.LeaderAllData table td:nth-child(2) {
-  color: #10b866;
-}
-
 .negative-value {
   color: #ff0000;
 }

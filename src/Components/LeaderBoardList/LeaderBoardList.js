@@ -8,7 +8,7 @@ export default function LeaderBoardList(props) {
       <thead>
         <tr className="border-bottom">
           <th>Общая информация</th>
-          <th>ROI за 30 дн.</th>
+          <th>ROI</th>
           <th>Общий PnL</th>
           <th></th>
           <th>Действие</th>

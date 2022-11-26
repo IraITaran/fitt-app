@@ -127,8 +127,9 @@ export default function LeaderBoardListItem(props) {
           </div>
         </td>
 
-        <td className="roi">{(props.data.roi * 100).toFixed(2)}%</td>
+        <td className="roi">+{(props.data.roi * 100).toFixed(2)}%</td>
         <td className="pnl">
+          +
           {props.data.pnl.toLocaleString(undefined, {
             maximumFractionDigits: 0,
           })}

@@ -1,8 +1,8 @@
 import React from "react";
-import ListIcon from "../../images/list-icon.png";
-import ListIconUnActive from "../../images/list-icon-unactive.png";
-import TableIcon from "../../images/table-icon.png";
-import TableIconUnactive from "../../images/table-icon-unactive.png";
+import ListIcon from "../../images/list-icon.svg";
+import ListIconUnActive from "../../images/list-icon-unactive.svg";
+import TableIcon from "../../images/table-icon.svg";
+import TableIconUnactive from "../../images/table-icon-unactive.svg";
 
 export default function ListOrTableDisplay(props) {
   function displayList() {

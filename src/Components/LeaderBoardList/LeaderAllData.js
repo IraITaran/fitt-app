@@ -47,8 +47,22 @@ export default function LeaderAllData(props) {
           <tbody>
             <tr className="border-bottom">
               <td>Ежедневно</td>
-              <td>{Number(props.allData.dailyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.dailyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.dailyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.dailyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.dailyPnl).toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
@@ -57,8 +71,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Последние 7 дней</td>
-              <td>{Number(props.allData.exactWeeklyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.exactWeeklyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.exactWeeklyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.exactWeeklyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.exactWeeklyPnl).toLocaleString(
                   undefined,
                   {
@@ -70,8 +98,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Последние 30 дней</td>
-              <td>{Number(props.allData.exactMonthlyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.exactMonthlyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.exactMonthlyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.exactMonthlyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.exactMonthlyPnl).toLocaleString(
                   undefined,
                   {
@@ -83,8 +125,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Последние 12 мес.</td>
-              <td>{Number(props.allData.exactYearlyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.exactYearlyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.exactYearlyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.exactYearlyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.exactYearlyPnl).toLocaleString(
                   undefined,
                   {
@@ -96,8 +152,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Еженедельно</td>
-              <td>{Number(props.allData.weeklyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.weeklyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.weeklyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.weeklyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.weeklyPnl).toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
@@ -106,8 +176,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Ежемесячно</td>
-              <td>{Number(props.allData.monthlyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.monthlyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.monthlyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.monthlyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.monthlyPnl).toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
@@ -116,8 +200,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Годовой</td>
-              <td>{Number(props.allData.yearlyRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.yearlyRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.yearlyRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.yearlyPnl) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.yearlyPnl).toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
@@ -126,8 +224,22 @@ export default function LeaderAllData(props) {
             </tr>
             <tr className="border-bottom">
               <td>Все</td>
-              <td>{Number(props.allData.allRoi).toFixed(2)}%</td>
-              <td>
+              <td
+                className={
+                  Number(props.allData.allRoi) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
+                {Number(props.allData.allRoi * 100).toFixed(2)}%
+              </td>
+              <td
+                className={
+                  Number(props.allData.allPnlx) < 0
+                    ? "negative-value"
+                    : "positive-value"
+                }
+              >
                 {Number(props.allData.allPnl).toLocaleString(undefined, {
                   maximumFractionDigits: 0,
                 })}
