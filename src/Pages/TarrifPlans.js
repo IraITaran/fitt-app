@@ -31,7 +31,7 @@ export default function TarrifPlans() {
           </label>
         </form>
       </div>
-      <div className="tarrifs-option-container mb-5 d-flex align-items-center">
+      <div className="tarrifs-option-container mb-5 d-flex align-items-center justify-content-center">
         <div className="option-card">
           <p className="option-name">Для начинающих</p>
           <p className="option-price">
