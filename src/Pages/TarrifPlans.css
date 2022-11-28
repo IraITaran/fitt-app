@@ -1,0 +1,181 @@
+.TarrifPlans {
+  color: #262626;
+  padding: 0 115px;
+  background-color: #f5f5f585;
+  position: relative;
+  padding-top: 25px;
+}
+
+.TarrifPlans .bg-image-rhombus {
+  background-image: url("../images/bg-leaderboard-left.png");
+  width: 200px;
+  height: 200px;
+  color: #f3f3f3;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 58px;
+  left: 177px;
+  opacity: 0.99;
+}
+
+.TarrifPlans .bg-image-3d-rhombus {
+  background-image: url("../images/bg-leaderboard-bottom.png");
+  width: 291px;
+  height: 291px;
+  color: #f3f3f3;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 3px;
+  right: 73px;
+  opacity: 0.99;
+}
+
+.TarrifPlans h1 {
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 85px;
+  margin-bottom: 25px;
+}
+
+.TarrifPlans .choice {
+  margin-bottom: 32px;
+  font-size: 16px;
+  line-height: 32px;
+  font-weight: 400;
+}
+
+.duration-inputs {
+  margin-bottom: 32px;
+}
+
+label {
+  font-size: 18px;
+}
+
+input {
+  margin-right: 5px;
+}
+
+.option-card {
+  width: 384px;
+  height: 377px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: white;
+  background-image: url("../images/card-bg-image.svg");
+  background-repeat: no-repeat;
+  background-position: 90%;
+  padding: 32px 24px;
+}
+
+.option-card .option-name {
+  font-size: 20px;
+  font-weight: 400px;
+  line-height: 23px;
+  margin-bottom: 12px;
+}
+
+.option-card .option-price {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.option-card .option-price span {
+  font-size: 32px;
+}
+
+.option-card ul {
+  margin-top: 32px;
+  list-style: none;
+  padding: 0px;
+}
+
+.option-card ul li {
+  font-size: 16px;
+  line-height: 25px;
+}
+.option-card ul li:first-child,
+.option-card ul li:nth-child(2) {
+  margin-bottom: 18px;
+}
+
+.option-card ul img {
+  margin-right: 12px;
+}
+
+.option-card .tarrif-btn {
+  margin-top: 32px;
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.option-dark-card {
+  width: 440px;
+  height: 458px;
+  border: 1px solid #32312f;
+  border-radius: 4px;
+  background-color: #32312f;
+  background-image: url("../images/card-bgdark-image.svg");
+  background-repeat: no-repeat;
+  background-position: 90%;
+  padding: 32px 24px;
+  color: #ffffff;
+}
+
+.option-dark-card .option-name {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 33px;
+}
+
+.option-dark-card .popular {
+  color: #080808;
+  background: #feeb61;
+  border-radius: 80px;
+  padding: 4px 12px;
+}
+
+.option-dark-card .option-price {
+  font-size: 18px;
+}
+
+.option-dark-card .option-price span {
+  font-size: 48px;
+}
+
+.option-dark-card ul {
+  margin-top: 32px;
+  list-style: none;
+  padding: 0px;
+}
+
+.option-dark-card ul li {
+  font-size: 20px;
+  line-height: 32px;
+}
+.option-dark-card ul li:first-child,
+.option-dark-card ul li:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+.option-dark-card ul img {
+  margin-right: 16px;
+}
+
+.option-dark-card .tarrif-btn {
+  margin-top: 32px;
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 100%;
+  padding: 17px 0px;
+  font-size: 18px;
+  font-weight: 400;
+}

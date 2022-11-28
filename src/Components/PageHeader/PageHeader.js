@@ -1,10 +1,9 @@
 import React from "react";
-import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import "./PageHeader.css";
+import { Link } from "react-router-dom";
 import GiftIcon from "../../images/gift-icon.svg";
 import LanguageIcon from "../../images/language-icon.svg";
-import BinanceLogoHeader from "../../images/binance-logo-header.svg";
-import HeaderMainLogo from "../../images/header-main-logo.svg";
+import FittLogoHeader from "../../images/fitt-logo-header.svg";
 
 export default function PageHeader() {
   return (
@@ -15,16 +14,16 @@ export default function PageHeader() {
           <nav>
             <ul className="d-flex">
               <li>
-                <a href="/">Список портфелей</a>
+                <Link to="/">Список портфелей</Link>
               </li>
               <li>
                 <a href="/">Торговля</a>
               </li>
               <li>
-                <a href="/">Информация</a>
+                <Link to="about">Информация</Link>
               </li>
               <li>
-                <a href="/">Бонус</a>
+                <Link to="tarrifs">Бонус</Link>
               </li>
             </ul>
           </nav>
@@ -49,23 +48,6 @@ export default function PageHeader() {
             </li>
           </ul>
         </div>
-      </div>
-      <div className="main-container d-flex">
-        <div className="main-left">
-          <p>
-            <span>Копируйте сделки</span> в один клик с FITT
-          </p>
-          <span className="binance-powered">Powered by</span>
-          <img
-            src={BinanceLogoHeader}
-            alt="binance-logo"
-            className="binance-logo"
-          ></img>
-        </div>
-        <div className="main-right">
-          <img src={HeaderMainLogo} alt="main-logo"></img>
-        </div>
-        <div className="bg-binance"></div>
       </div>
     </div>
   );

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import LeaderBoardCardItem from "./LeaderBoardCardItem";
 import "./LeaderBoardCard.css";
 import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
 import UnknownIcon from "../../images/unknown-icon.png";
 import axios from "axios";
 
@@ -117,6 +118,8 @@ export default function LeaderBoardTable(props) {
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className="d-flex card-all-data">
+            <Form.Label>Range</Form.Label>
+            <Form.Range />
             <div className="d-flex">
               <img
                 src={

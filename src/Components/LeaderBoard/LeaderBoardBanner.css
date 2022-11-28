@@ -1,0 +1,48 @@
+.main-container {
+  margin: 25px 150px 0px 150px;
+}
+
+.main-container .main-left {
+  margin-top: 100px;
+  margin-right: 115px;
+}
+
+.main-container .main-right img {
+  width: 464px;
+  height: 440px;
+}
+
+.main-container .main-left p {
+  font-size: 72px;
+  line-height: 85px;
+  font-weight: 300px;
+  color: #262626;
+  margin-bottom: 30px;
+}
+
+.main-left span {
+  white-space: nowrap;
+}
+
+.main-left .binance-powered {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 32px;
+  color: #262626;
+}
+
+.main-left .binance-logo {
+  margin-left: 16px;
+}
+
+.main-container .bg-binance {
+  background-image: url("../../images/bg-binance-bottom.svg");
+  width: 240px;
+  height: 240px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 384px;
+  left: 508px;
+  z-index: -1;
+  opacity: 0.99;
+}

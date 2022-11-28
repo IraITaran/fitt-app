@@ -3,10 +3,10 @@ import axios from "axios";
 import "./LeaderBoard.css";
 import LeaderBoardCard from "../LeaderBoardCard/LeaderBoardCard";
 import LeaderBoardList from "../LeaderBoardList/LeaderBoardList";
-
 import SearchIcon from "../../images/search-icon.svg";
 import BackgroundImages from "../BackgroundImages/BackgroundImages";
 import ListOrTableDisplay from "../ListOrTableDisplay/ListOrTableDisplay";
+import LeaderBoardBanner from "./LeaderBoardBanner";
 
 export default function LeaderBoard() {
   let [results, setResults] = useState([]);
@@ -75,69 +75,74 @@ export default function LeaderBoard() {
 
   return (
     <div className="LeaderBoard">
-      <div className="LeaderBoardDropdowns row">
-        <div className="types col">
-          <select
-            className="w-100 "
-            value={sortChoice}
-            onChange={(e) => {
-              handleChange();
-              setSortChoice(e.target.value);
-            }}
-          >
-            <option value="ROI">ROI</option>
-            <option value="PNL">PNL</option>
-          </select>
-        </div>
+      <LeaderBoardBanner />
+      <div className="leaderboard-container">
+        <div className="LeaderBoardDropdowns row">
+          <div className="types col">
+            <select
+              className="w-100 "
+              value={sortChoice}
+              onChange={(e) => {
+                handleChange();
+                setSortChoice(e.target.value);
+              }}
+            >
+              <option value="ROI">ROI</option>
+              <option value="PNL">PNL</option>
+            </select>
+          </div>
 
-        <div className="roiValue col">
-          <select
-            className="w-100"
-            value={periodChoice}
-            onChange={(e) => {
-              handleChange();
-              setPeriodChoice(e.target.value);
-            }}
-          >
-            <option value="DAILY">День</option>
-            <option value="WEEKLY">Неделя</option>
-            <option value="MONTHLY">Месяц</option>
-            <option value="ALL">За все время</option>
-          </select>
-        </div>
-        <div className="col">
-          <input
-            type="search"
-            placeholder="Поиск портфеля/лид трейдера"
-            onChange={(e) => setKeyword(e.target.value)}
-          ></input>
+          <div className="roiValue col">
+            <select
+              className="w-100"
+              value={periodChoice}
+              onChange={(e) => {
+                handleChange();
+                setPeriodChoice(e.target.value);
+              }}
+            >
+              <option value="DAILY">День</option>
+              <option value="WEEKLY">Неделя</option>
+              <option value="MONTHLY">Месяц</option>
+              <option value="ALL">За все время</option>
+            </select>
+          </div>
+          <div className="col">
+            <input
+              type="search"
+              placeholder="Поиск портфеля/лид трейдера"
+              onChange={(e) => setKeyword(e.target.value)}
+            ></input>
 
-          <img src={SearchIcon} className="searchIcon" alt="search"></img>
+            <img src={SearchIcon} className="searchIcon" alt="search"></img>
+          </div>
         </div>
+        <hr />
+        <ListOrTableDisplay isList={isList} setIsList={setIsList} />
+
+        <br />
+        {isList && (
+          <LeaderBoardList
+            data={results}
+            keyword={keyword}
+            choice={periodChoice}
+          />
+        )}
+        {!isList && <LeaderBoardCard data={results} keyword={keyword} />}
+        <br />
+        <button
+          type="button"
+          className={
+            results.length === allResults.length
+              ? "more-btn-hidden"
+              : "more-btn"
+          }
+          onClick={moreClick}
+        >
+          More
+        </button>
+        <BackgroundImages />
       </div>
-      <hr />
-      <ListOrTableDisplay isList={isList} setIsList={setIsList} />
-
-      <br />
-      {isList && (
-        <LeaderBoardList
-          data={results}
-          keyword={keyword}
-          choice={periodChoice}
-        />
-      )}
-      {!isList && <LeaderBoardCard data={results} keyword={keyword} />}
-      <br />
-      <button
-        type="button"
-        className={
-          results.length === allResults.length ? "more-btn-hidden" : "more-btn"
-        }
-        onClick={moreClick}
-      >
-        More
-      </button>
-      <BackgroundImages />
     </div>
   );
 }
