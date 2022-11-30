@@ -1,7 +1,8 @@
 import React from "react";
 import "./TarrifPlans.css";
-import OptionListIcon from "../images/option-list-icon.svg";
-import OptionListLightIcon from "../images/list-light-icon.svg";
+import OptionListIcon from "../../images/option-list-icon.svg";
+import OptionListLightIcon from "../../images/list-light-icon.svg";
+import FrequentQuestions from "./FrequentQuestions";
 
 export default function TarrifPlans() {
   return (
@@ -31,7 +32,8 @@ export default function TarrifPlans() {
           </label>
         </form>
       </div>
-      <div className="tarrifs-option-container mb-5 d-flex align-items-center justify-content-center">
+
+      <div className="tarrifs-option-container d-flex align-items-center justify-content-center">
         <div className="option-card">
           <p className="option-name">Для начинающих</p>
           <p className="option-price">
@@ -108,6 +110,7 @@ export default function TarrifPlans() {
           </ul>
         </div>
       </div>
+      <FrequentQuestions />
     </div>
   );
 }

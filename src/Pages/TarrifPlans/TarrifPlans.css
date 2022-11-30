@@ -8,7 +8,7 @@
 }
 
 .TarrifPlans .bg-image-rhombus {
-  background-image: url("../images/bg-leaderboard-left.png");
+  background-image: url("../../images/bg-leaderboard-left.png");
   width: 200px;
   height: 200px;
   color: #f3f3f3;
@@ -22,7 +22,7 @@
 }
 
 .TarrifPlans .bg-image-3d-rhombus {
-  background-image: url("../images/bg-leaderboard-bottom.png");
+  background-image: url("../../images/bg-leaderboard-bottom.png");
   width: 291px;
   height: 291px;
   color: #f3f3f3;
@@ -67,7 +67,7 @@ input {
   border: 1px solid white;
   border-radius: 4px;
   background-color: white;
-  background-image: url("../images/card-bg-image.svg");
+  background-image: url("../../images/card-bg-image.svg");
   background-repeat: no-repeat;
   background-position: 90%;
   padding: 32px 24px;
@@ -125,7 +125,7 @@ input {
   border: 1px solid #32312f;
   border-radius: 4px;
   background-color: #32312f;
-  background-image: url("../images/card-bgdark-image.svg");
+  background-image: url("../../images/card-bgdark-image.svg");
   background-repeat: no-repeat;
   background-position: 90%;
   padding: 32px 24px;
@@ -143,6 +143,7 @@ input {
   background: #feeb61;
   border-radius: 80px;
   padding: 4px 12px;
+  height: 32px;
 }
 
 .option-dark-card .option-price {

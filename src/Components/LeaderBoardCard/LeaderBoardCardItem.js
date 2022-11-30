@@ -29,7 +29,7 @@ export default function LeaderBoardCardItem(props) {
 
   return (
     <div className="LeaderBoardCardItem">
-      <div className="leaderboard-container">
+      <div className="leaderboard-container-item">
         <div className="header-board">
           <img
             src={

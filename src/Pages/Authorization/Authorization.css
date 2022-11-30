@@ -1,0 +1,51 @@
+.Authorization {
+  color: #262626;
+  margin-top: 80px;
+  margin-bottom: 200px;
+}
+
+.Authorization .content-container {
+  border: 1px solid #dde0e5;
+  border-radius: 4px;
+  padding: 30px 25px;
+}
+
+.Authorization h4 {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+.Authorization .login-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  padding: 11px 0px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group .form-input {
+  border: 1px solid #dde0e5;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #81858c;
+}
+
+.form-bottom {
+  margin-top: 13px;
+  font-size: 12px;
+  color: #000000;
+}
+
+.form-bottom a {
+  color: #000000;
+}

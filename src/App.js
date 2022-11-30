@@ -3,8 +3,10 @@ import LeaderBoard from "./Components/LeaderBoard/LeaderBoard";
 import PageHeader from "./Components/PageHeader/PageHeader";
 import PageFooter from "./Components/PageFooter/PageFooter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TarrifPlans from "./Pages/TarrifPlans";
+import TarrifPlans from "./Pages/TarrifPlans/TarrifPlans";
 import About from "./Pages/About";
+import Authorization from "./Pages/Authorization/Authorization";
+import Registration from "./Pages/Registration/Registration";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<LeaderBoard />} />
             <Route path="/about" element={<About />} />
             <Route path="/tarrifs" element={<TarrifPlans />} />
+            <Route path="/authorization" element={<Authorization />} />
+            <Route path="/registration" element={<Registration />} />
           </Routes>
           <PageFooter />
         </div>

@@ -31,11 +31,11 @@ export default function PageHeader() {
         <div className="header-right d-flex">
           <ul className="d-flex">
             <li>
-              <a href="/">Вход</a>
+              <Link to="authorization">Вход</Link>
             </li>
             <li className="d-flex align-items-baseline highlight">
               <img src={GiftIcon} alt="gift-icon" className="gift-icon"></img>
-              <a href="/">Регистрация</a>
+              <Link to="registration">Регистрация</Link>
             </li>
             <li className="d-flex ">
               {" "}
