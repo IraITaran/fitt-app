@@ -1,16 +1,31 @@
 import React, { useState } from "react";
-import axios from "axios";
-import "./Authorization.css";
+import "./Login.css";
 import { Link } from "react-router-dom";
+import AuthService from "../../Services/auth.service";
+import UserService from "../../Services/user.service";
+import { useNavigate } from "react-router-dom";
 
-export default function Authorization() {
+export default function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
+  let navigate = useNavigate();
 
-  function handleResponse(response) {
-    console.log(response);
+  function test() {
+    UserService.getPublicContent().then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        this.setState({
+          content:
+            (error.response && error.response.data) ||
+            error.message ||
+            error.toString(),
+        });
+      }
+    );
   }
 
   const handleValidation = (event) => {
@@ -25,10 +40,10 @@ export default function Authorization() {
       formIsValid = true;
     }
 
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
+    if (!password.match(/^[a-zA-Z0-9]{6,22}$/)) {
       formIsValid = false;
       setpasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
+        "Only Letters and length must be min 8 Chracters and Max 22 Chracters"
       );
       return false;
     } else {
@@ -41,14 +56,23 @@ export default function Authorization() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    // if (handleValidation()) {
-    //   axios
-    //     .post("https://fitt.ink/api/user/signin")
-    //     .then(handleResponse)
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
+
+    if (handleValidation()) {
+      AuthService.login(email, password).then(
+        () => {
+          navigate("/");
+        },
+        (error) => {
+          const resMessage =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          console.log(resMessage);
+        }
+      );
+    }
   };
 
   return (
@@ -102,6 +126,7 @@ export default function Authorization() {
               Нет аккаунта? <Link to="/registration">Регистрация</Link>
             </p>
             <a href="/">Забыли пароль?</a>
+            <button onClick={test}>test</button>
           </div>
         </div>
       </div>

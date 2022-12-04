@@ -5,8 +5,8 @@ import PageFooter from "./Components/PageFooter/PageFooter";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TarrifPlans from "./Pages/TarrifPlans/TarrifPlans";
 import About from "./Pages/About";
-import Authorization from "./Pages/Authorization/Authorization";
-import Registration from "./Pages/Registration/Registration";
+import Login from "./Pages/Login/Login";
+import Signup from "./Pages/Signup/Signup";
 
 function App() {
   return (
@@ -18,8 +18,8 @@ function App() {
             <Route path="/" element={<LeaderBoard />} />
             <Route path="/about" element={<About />} />
             <Route path="/tarrifs" element={<TarrifPlans />} />
-            <Route path="/authorization" element={<Authorization />} />
-            <Route path="/registration" element={<Registration />} />
+            <Route path="/authorization" element={<Login />} />
+            <Route path="/registration" element={<Signup />} />
           </Routes>
           <PageFooter />
         </div>

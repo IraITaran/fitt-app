@@ -1,16 +1,12 @@
 import React, { useState } from "react";
-import "./Registration.css";
+import "./Signup.css";
 import { Link } from "react-router-dom";
 
-export default function Registration() {
+export default function Signup() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
-
-  function handleResponse(response) {
-    console.log(response);
-  }
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -40,14 +36,18 @@ export default function Registration() {
 
   const loginSubmit = (e) => {
     e.preventDefault();
-    // if (handleValidation()) {
-    //   axios
-    //     .post("https://fitt.ink/api/user/signin")
-    //     .then(handleResponse)
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-    // }
+    if (handleValidation()) {
+      //   axios
+      //     .post("https://fitt.ink/api/user/signin")
+      //     .then(handleResponse)
+      //     .catch(function (error) {
+      //       console.log(error);
+      //     });
+
+      return true;
+    }
+
+    return false;
   };
 
   return (
