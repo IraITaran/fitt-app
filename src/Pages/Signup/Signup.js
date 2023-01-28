@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import "./Signup.css";
 import { Link } from "react-router-dom";
+import AuthService from "../../Services/auth.service";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
+  const [serviceAgreement, setServiceAgreement] = useState(false);
   const [passwordError, setpasswordError] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
   const [emailError, setemailError] = useState("");
+  let navigate = useNavigate();
+
+  function handleCheckboxChange(e) {
+    setServiceAgreement(e.target.checked);
+  }
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -20,34 +30,36 @@ export default function Signup() {
       formIsValid = true;
     }
 
-    if (!password.match(/^[a-zA-Z]{8,22}$/)) {
+    if (!password.match(/^[a-zA-Z0-9]{8,22}$/)) {
       formIsValid = false;
       setpasswordError(
         "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
       );
+
+      return false;
+    } else if (passwordConfirm !== password) {
+      formIsValid = false;
+      setPasswordConfirmError("Passwords do not match");
+      return false;
+    } else if (!serviceAgreement) {
+      formIsValid = false;
       return false;
     } else {
       setpasswordError("");
+      setPasswordConfirmError("");
       formIsValid = true;
     }
 
     return formIsValid;
   };
 
-  const loginSubmit = (e) => {
+  const signupSubmit = (e) => {
     e.preventDefault();
     if (handleValidation()) {
-      //   axios
-      //     .post("https://fitt.ink/api/user/signin")
-      //     .then(handleResponse)
-      //     .catch(function (error) {
-      //       console.log(error);
-      //     });
-
-      return true;
+      AuthService.signup(email, password).then((response) => {
+        navigate("/confirm-email");
+      });
     }
-
-    return false;
   };
 
   return (
@@ -55,7 +67,7 @@ export default function Signup() {
       <div className="row d-flex justify-content-center">
         <div className="col-md-4 content-container">
           <h4 className="text-center">Создайте личный аккаунт</h4>
-          <form id="loginform" onSubmit={loginSubmit}>
+          <form id="signupform" onSubmit={signupSubmit}>
             <div className="form-group">
               <label>Email</label>
               <input
@@ -84,11 +96,28 @@ export default function Signup() {
                 {passwordError}
               </small>
             </div>
+            <div className="form-group">
+              <label>Подтверждение пароля</label>
+              <input
+                type="password"
+                className="form-control form-input"
+                id="exampleInputPassword"
+                placeholder="Password"
+                onChange={(event) => setPasswordConfirm(event.target.value)}
+              />
+              <small
+                id="passwordconfirmerror"
+                className="text-danger form-text"
+              >
+                {passwordConfirmError}
+              </small>
+            </div>
             <div className="form-group form-check">
               <input
                 type="checkbox"
                 className="form-check-input"
                 id="exampleCheck1"
+                onChange={handleCheckboxChange}
               />
               <label className="form-check-label conf-agreement">
                 Я прочитал(-а) и принимаю{" "}
@@ -97,7 +126,11 @@ export default function Signup() {
                 </a>
               </label>
             </div>
-            <button type="submit" className="btn login-btn w-100">
+            <button
+              type="submit"
+              className="btn login-btn w-100"
+              disabled={!serviceAgreement}
+            >
               Создать персональный аккаунт
             </button>
           </form>

@@ -1,0 +1,265 @@
+.ModalFollowInfo {
+  margin: 32px 48px;
+  padding: 0px;
+  color: #262626;
+}
+
+.ModalFollowInfo .section-header {
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  line-height: 23px;
+}
+
+.ModalFollowInfo .leadername-section {
+  margin-bottom: 32px;
+}
+
+.ModalFollowInfo .more-info-icon {
+  margin-left: 7px;
+  width: 16.67px;
+  height: 16.67px;
+}
+
+.ModalFollowInfo .mode-selection {
+  margin-bottom: 32px;
+}
+
+.ModalFollowInfo .radio {
+  width: 24px;
+  height: 24px;
+  accent-color: #262626;
+  margin-top: -1px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.mode-inputs label {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.mode-inputs label:last-child {
+  margin-bottom: 0px;
+}
+
+.account-state {
+  margin-bottom: px;
+}
+.account-state .account-indicator {
+  font-size: 16px;
+  font-weight: 500;
+  color: #81858c;
+}
+
+.account-indicator .indicator-icon {
+  width: 16.67px;
+  height: 16.67px;
+  margin-right: 7px;
+}
+
+.account-amounts {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.investment {
+  margin-bottom: 32px;
+}
+
+.investment .invest-sum-input {
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+
+.range-inputs {
+  margin-top: 7px;
+}
+
+.range-value {
+  border: 1px solid #10b866;
+  background-color: #10b866;
+  color: #ffffff;
+  padding: 4px 6px;
+}
+
+.risk {
+  margin-bottom: 32px;
+}
+
+.risk .risk-ratio {
+  margin-top: 38px;
+}
+
+.ModalFollowInfo .plus-minus-labels,
+.ModalFollowInfo .labels,
+.ModalFollowInfo .warn-labels {
+  color: #81858c;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.ModalFollowInfo .warn-labels {
+  color: red !important;
+}
+
+.ModalFollowInfo .labels {
+  color: #81858c;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 0px;
+}
+
+.transaction-control {
+  margin-bottom: 32px;
+}
+
+.slider {
+  background-color: #ebeae8 !important;
+  border-color: none;
+}
+
+input:checked + .slider {
+  background-color: #10b866 !important;
+}
+
+.slider:before {
+  background-color: gray !important;
+}
+
+input:checked + .slider:before {
+  background-color: white !important;
+}
+
+.transaction-control .max-deal {
+  margin-top: 28px;
+}
+
+.stop-profit {
+  margin-bottom: 32px;
+}
+
+.stop-profit .max-stop-profit {
+  margin-top: 28px;
+}
+
+.stop-loss .max-stop-loss {
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.range-slider.grad {
+  --progress-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2) inset;
+  --progress-flll-shadow: var(--progress-shadow);
+  --fill-color: linear-gradient(to right, LightCyan, var(--primary-color));
+  --thumb-shadow: 0 0 4px rgba(0, 0, 0, 0.3),
+    -3px 9px 9px rgba(255, 255, 255, 0.33) inset,
+    -1px 3px 2px rgba(255, 255, 255, 0.33) inset,
+    0 0 0 99px var(--primary-color) inset;
+  margin-top: 12px;
+}
+.range-slider.grad input:hover {
+  --thumb-transform: scale(1.2);
+}
+.range-slider.grad input:active {
+  --thumb-shadow: inherit;
+  --thumb-transform: scale(1);
+}
+
+.range-inputs {
+  width: 100%;
+}
+
+.input-group > .form-control {
+  width: 100px;
+}
+
+.input-group {
+  flex-wrap: nowrap;
+}
+
+.input-group
+  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+    .valid-feedback
+  ):not(.invalid-tooltip):not(.invalid-feedback) {
+  margin-left: 0px;
+  margin-right: 0px;
+  border-color: #f1f1f1;
+  text-align: center;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 600;
+  background-color: #f1f1f1;
+}
+
+.input-group .btn {
+  color: #81858c;
+  font-size: 24px;
+  border-color: #f1f1f1;
+  border-radius: 1px;
+  background-color: #f1f1f1;
+}

@@ -1,0 +1,31 @@
+.ConfirmEmail {
+  margin-top: 80px;
+  margin-bottom: 200px;
+}
+/* 
+.code-container {
+  text-align: center;
+}
+
+.code-input {
+  margin-right: 0px;
+  padding: 0px;
+  width: 160px;
+  height: 50px;
+  font-size: 25px;
+  text-align: center;
+} */
+
+.ReactInputVerificationCode__container {
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+.submit-code-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  padding: 10px 10px;
+  display: block;
+  margin: 35px auto;
+}

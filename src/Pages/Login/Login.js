@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import AuthService from "../../Services/auth.service";
-import UserService from "../../Services/user.service";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
@@ -11,22 +10,6 @@ export default function Login() {
   const [passwordError, setpasswordError] = useState("");
   const [emailError, setemailError] = useState("");
   let navigate = useNavigate();
-
-  function test() {
-    UserService.getPublicContent().then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        this.setState({
-          content:
-            (error.response && error.response.data) ||
-            error.message ||
-            error.toString(),
-        });
-      }
-    );
-  }
 
   const handleValidation = (event) => {
     let formIsValid = true;
@@ -58,20 +41,9 @@ export default function Login() {
     e.preventDefault();
 
     if (handleValidation()) {
-      AuthService.login(email, password).then(
-        () => {
-          navigate("/");
-        },
-        (error) => {
-          const resMessage =
-            (error.response &&
-              error.response.data &&
-              error.response.data.message) ||
-            error.message ||
-            error.toString();
-          console.log(resMessage);
-        }
-      );
+      AuthService.login(email, password).then(() => {
+        navigate("/");
+      });
     }
   };
 
@@ -126,7 +98,6 @@ export default function Login() {
               Нет аккаунта? <Link to="/registration">Регистрация</Link>
             </p>
             <a href="/">Забыли пароль?</a>
-            <button onClick={test}>test</button>
           </div>
         </div>
       </div>

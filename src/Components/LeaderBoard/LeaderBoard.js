@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./LeaderBoard.css";
 import LeaderBoardCard from "../LeaderBoardCard/LeaderBoardCard";
 import LeaderBoardList from "../LeaderBoardList/LeaderBoardList";
@@ -7,22 +6,26 @@ import SearchIcon from "../../images/search-icon.svg";
 import BackgroundImages from "../BackgroundImages/BackgroundImages";
 import ListOrTableDisplay from "../ListOrTableDisplay/ListOrTableDisplay";
 import LeaderBoardBanner from "./LeaderBoardBanner";
+import LeaderBoardService from "../../Services/leaderboard.service";
+import Modal from "react-bootstrap/Modal";
+import AuthService from "../../Services/auth.service";
+import UserService from "../../Services/user.service";
 
 export default function LeaderBoard() {
   let [results, setResults] = useState([]);
   let [allResults, setAllResults] = useState([]);
   let [loaded, setLoaded] = useState(false);
-  let [isList, setIsList] = useState(true);
+  let [isList, setIsList] = useState(false);
+  let [apiKeyModal, setApiKeyModal] = useState(false);
 
   let [viewCount, setViewCount] = useState(1);
 
   let [sortChoice, setSortChoice] = useState("ROI");
   let [periodChoice, setPeriodChoice] = useState("DAILY");
   let [keyword, setKeyword] = useState("");
-
-  function handleChange() {
-    searchApi();
-  }
+  let [exchangeChoice, setExchangeChoice] = useState("Binance");
+  let [apiKey, setApiKey] = useState("");
+  let [apiSecret, setApiSecret] = useState("");
 
   function handleResponse(response) {
     setViewCount(1);
@@ -30,12 +33,25 @@ export default function LeaderBoard() {
   }
 
   useEffect(() => {
-    showLeaderBoard();
+    searchApi();
+    setLoaded(true);
+
+    let user = AuthService.getCurrentUser();
+    if (user?.userDetails?.status < 2) {
+      setApiKeyModal(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [allResults, viewCount, keyword, periodChoice]);
+  }, []);
 
   useEffect(() => {
-    searchApi();
+    showLeaderBoard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [allResults, viewCount, keyword]);
+
+  useEffect(() => {
+    if (loaded) {
+      searchApi();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [sortChoice, periodChoice]);
 
@@ -54,23 +70,21 @@ export default function LeaderBoard() {
   }
 
   function searchApi() {
-    axios
-      .post("https://fitt.ink/api/leaderboard/getLeaderboardRank", {
-        tradeType: "PERPETUAL",
-        statisticsType: sortChoice,
-        periodType: periodChoice,
-        isShared: true,
-        isTrader: false,
-      })
+    LeaderBoardService.search(sortChoice, periodChoice)
       .then(handleResponse)
       .catch(function (error) {
         console.log(error);
       });
   }
 
-  if (!loaded) {
-    searchApi();
-    setLoaded(true);
+  function updateApiKey() {
+    UserService.updateApiKey(apiKey, apiSecret).then((response) => {
+      UserService.details().then((response) => {
+        AuthService.updateUserDetails(response.data);
+      });
+
+      setApiKeyModal(false);
+    });
   }
 
   return (
@@ -83,7 +97,6 @@ export default function LeaderBoard() {
               className="w-100 "
               value={sortChoice}
               onChange={(e) => {
-                handleChange();
                 setSortChoice(e.target.value);
               }}
             >
@@ -97,7 +110,6 @@ export default function LeaderBoard() {
               className="w-100"
               value={periodChoice}
               onChange={(e) => {
-                handleChange();
                 setPeriodChoice(e.target.value);
               }}
             >
@@ -143,6 +155,55 @@ export default function LeaderBoard() {
         </button>
         <BackgroundImages />
       </div>
+      <Modal show={apiKeyModal} onHide={() => setApiKeyModal(false)}>
+        <Modal.Body className="apikeyModal">
+          <h4 className="apikey-header">Добавить новый API-ключ</h4>
+          <div className="apikey-inputs-container">
+            <label className="w-100">
+              Биржа
+              <select
+                className="w-100 apikey-input"
+                value={exchangeChoice}
+                onChange={(e) => {
+                  setExchangeChoice(e.target.value);
+                }}
+              >
+                <option value="binance">Binance</option>
+              </select>
+            </label>
+            <label className="w-100">
+              API-ключ
+              <input
+                type="text"
+                className="w-100 apikey-input"
+                onChange={(e) => setApiKey(e.target.value)}
+              ></input>
+            </label>
+            <label className="w-100">
+              Секрет
+              <input
+                type="text"
+                className="w-100 apikey-input"
+                onChange={(e) => setApiSecret(e.target.value)}
+              ></input>
+            </label>
+          </div>
+          <p className="apikey-description">
+            После добавления API ключа на этой странице будет отображаться
+            список разрешенных IP-адресов. Добавьте его в настройки API ключа
+            Binance. <a href="/">Подробнее...</a>
+          </p>
+          <div className="text-center">
+            <button
+              type="button"
+              className="save-btn mt-4"
+              onClick={updateApiKey}
+            >
+              Сохранить новый ключ
+            </button>
+          </div>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

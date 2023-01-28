@@ -1,0 +1,77 @@
+.BotManagementCard {
+  min-width: 580px;
+  height: 262px;
+  padding: 25px 30px;
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+}
+
+.BotManagementCard .user-account-icon {
+  width: 54px;
+  height: 54px;
+  margin-right: 13px;
+}
+
+.bot-option {
+  font-size: 16px;
+  color: #000000;
+  margin-bottom: 11px;
+}
+
+.bot-option span {
+  color: #81858c;
+}
+
+.bot-button-container {
+  margin-top: 17px;
+}
+
+.bot-button-container div {
+  background-color: #feeb61;
+  border: 4px solid #f1df58;
+  border-radius: 50%;
+  margin-right: 15px;
+  padding: 8px 13px;
+}
+
+.bot-button-container div:hover {
+  background-color: #fef961;
+}
+
+.bot-button-container div:active {
+  background-color: #fafafa;
+  border: 4px solid #dedede;
+}
+
+.bot-button-container .play-icon {
+  width: 14px;
+  height: 20px;
+}
+
+.bot-button-container .stop-icon,
+.bot-button-container .edit-icon,
+.bot-button-container .delete-icon,
+.bot-button-container .statistic-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.start-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 150px;
+  height: 40px;
+  margin: 0 auto;
+  color: #080808;
+}
+
+.copy-header {
+  margin: 0;
+  color: #262626;
+  font-size: 20px;
+}
+
+.bot-modal {
+  top: 130px;
+}

@@ -1,0 +1,69 @@
+.leader-icon {
+  width: 56px;
+  height: 56px;
+}
+
+.leader-name {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.leader-type {
+  font-size: 12px;
+  font-weight: 300;
+}
+
+.LeaderPosition td .follow-btn {
+  width: 77px;
+  height: 40px;
+  margin-left: 10px;
+}
+
+.LeaderPosition th {
+  font-size: 14px;
+  color: #81858c;
+  font-weight: 400;
+}
+
+.LeaderPosition th,
+.LeaderPosition td {
+  padding: 15px 30px;
+}
+
+.LeaderPosition th:first-child {
+  padding-right: 100px;
+}
+
+.LeaderPosition tr {
+  border-bottom: 2px solid black;
+}
+
+tr .roi {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+tr .pnl {
+  color: #10b866;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+tr .direction {
+  color: #10b866;
+  font-size: 18px;
+  font-weight: 1000;
+}
+
+tr .red {
+  color: red;
+}
+
+tr .green {
+  color: #10b866;
+}
+
+.circle {
+  display: inline-block;
+  vertical-align: top;
+}

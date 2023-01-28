@@ -1,0 +1,136 @@
+.AccountSecurity {
+  border-left: 1px solid #dcdfe4;
+  width: 100%;
+}
+
+.AccountSecurity .user-info-container {
+  padding-bottom: 48px;
+}
+
+.AccountSecurity .user-account-icon {
+  margin-right: 42px;
+}
+
+.security-username p:first-child,
+.security-nickname p:first-child,
+.security-password p:first-child,
+.security-phone p:first-child,
+.security-email p:first-child {
+  font-size: 17px;
+  font-weight: 500;
+  color: #81858c;
+  margin-bottom: 6px;
+}
+
+.security-username p:last-child,
+.security-nickname p:last-child,
+.security-password p:last-child,
+.security-phone p:last-child,
+.security-email p:last-child {
+  font-size: 17px;
+  font-weight: 500;
+  color: #2e2e2e;
+}
+
+.security-username,
+.security-nickname,
+.security-password,
+.security-phone {
+  margin-right: 60px;
+}
+
+.security-buttons {
+  margin-top: 47px;
+  margin-bottom: 32px;
+}
+
+.security-footer h4 {
+  font-size: 25px;
+  color: #262626;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+.security-options-container img {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.security-options-container p {
+  color: #2e2e2e;
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 45px;
+  margin-bottom: 0px;
+}
+
+.security-main-container {
+  padding: 40px 51px 61px 44px;
+}
+
+.two-factor-auth h2,
+.devices-activity h2 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #262626;
+  margin-bottom: 7px;
+}
+
+.devices-activity h2 {
+  margin-top: 40px;
+}
+
+.security-subheader {
+  font-size: 20px;
+  color: #262626;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  margin-top: 30px;
+}
+
+.security-description {
+  font-size: 16px;
+  color: #81858c;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+
+.auth-validation {
+  font-size: 18px;
+  font-weight: 500;
+  color: #2e2e2e;
+  margin: 57px 0px 0px 110px;
+}
+
+.auth-validation img {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.security-main-container button {
+  padding: 14px 25px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #080808;
+  border: 1px solid #eaecef;
+  border-radius: 4px;
+  margin-top: 40px;
+}
+
+.security-main-container .manage-btn {
+  margin-left: -19px;
+  margin-top: 40px;
+}
+
+.security-section {
+  border-bottom: 1px solid #dcdfe4;
+}
+
+.turnoff-acc {
+  font-size: 16px;
+  color: #c49939;
+  font-weight: 500;
+  margin-left: 20px;
+}

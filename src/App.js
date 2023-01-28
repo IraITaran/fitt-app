@@ -7,6 +7,9 @@ import TarrifPlans from "./Pages/TarrifPlans/TarrifPlans";
 import About from "./Pages/About";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
+import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
+import Leader from "./Pages/Leader/Leader";
+import AccountRoutes from "./Pages/Account/AccountRoutes";
 
 function App() {
   return (
@@ -18,8 +21,11 @@ function App() {
             <Route path="/" element={<LeaderBoard />} />
             <Route path="/about" element={<About />} />
             <Route path="/tarrifs" element={<TarrifPlans />} />
-            <Route path="/authorization" element={<Login />} />
-            <Route path="/registration" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/confirm-email" element={<ConfirmEmail />} />
+            <Route path="/leader/:leaderId" element={<Leader />} />
+            <Route path="/account/*" element={<AccountRoutes />} />
           </Routes>
           <PageFooter />
         </div>

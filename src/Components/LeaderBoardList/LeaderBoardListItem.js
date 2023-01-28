@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./LeaderBoardListItem.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 import LeaderAllData from "./LeaderAllData";
+import AuthService from "../../Services/auth.service";
+import { useNavigate } from "react-router-dom";
+import LeaderBoardService from "../../Services/leaderboard.service";
 
 export default function LeaderBoardListItem(props) {
   let [name, setName] = useState("");
-  let [click, setClick] = useState(false);
+  let [expand, setExpand] = useState(false);
   let [allData, setAllData] = useState({});
+  let navigate = useNavigate();
 
   useEffect(() => {
     let changeName = function (name, keyword) {
@@ -32,82 +35,30 @@ export default function LeaderBoardListItem(props) {
     );
   }, [props.keyword, props.data.nickName]);
 
-  function StatisticClick() {
+  function showStatistic() {
     if (Object.keys(allData).length === 0) {
-      axios
-        .get(
-          "https://fitt.ink/api/leaderboard/getOtherPerformance/" +
-            props.data.encryptedUid
-        )
-        .then(handleResponse)
-        .catch(function (error) {
-          console.log(error);
-        });
+      LeaderBoardService.getOtherPerformance(props.data.encryptedUid).then(
+        setAllData
+      );
     }
 
-    setClick(true);
-  }
-
-  function handleResponse(response) {
-    setAllData({
-      dailyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "DAILY" && x.statisticsType === "ROI"
-      ).value,
-      dailyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "DAILY" && x.statisticsType === "PNL"
-      ).value,
-      exactWeeklyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_WEEKLY" && x.statisticsType === "ROI"
-      ).value,
-      exactWeeklyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_WEEKLY" && x.statisticsType === "PNL"
-      ).value,
-      exactMonthlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_MONTHLY" && x.statisticsType === "ROI"
-      ).value,
-      exactMonthlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_MONTHLY" && x.statisticsType === "PNL"
-      ).value,
-      exactYearlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_YEARLY" && x.statisticsType === "ROI"
-      ).value,
-      exactYearlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_YEARLY" && x.statisticsType === "PNL"
-      ).value,
-      weeklyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "WEEKLY" && x.statisticsType === "ROI"
-      ).value,
-      weeklyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "WEEKLY" && x.statisticsType === "PNL"
-      ).value,
-      monthlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "MONTHLY" && x.statisticsType === "ROI"
-      ).value,
-      monthlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "MONTHLY" && x.statisticsType === "PNL"
-      ).value,
-      yearlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "YEARLY" && x.statisticsType === "ROI"
-      ).value,
-      yearlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "YEARLY" && x.statisticsType === "PNL"
-      ).value,
-      allRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "ALL" && x.statisticsType === "ROI"
-      ).value,
-      allPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "ALL" && x.statisticsType === "PNL"
-      ).value,
-    });
+    setExpand(true);
   }
 
   function hideStatistic() {
-    setClick(false);
+    setExpand(false);
   }
 
-  if (!click) {
+  function follow(event) {
+    event.stopPropagation();
+    if (!AuthService.isAuthenticated()) {
+      navigate("/login");
+    }
+  }
+
+  if (!expand) {
     return (
-      <tr className="border-bottom" onClick={StatisticClick}>
+      <tr className="border-bottom" onClick={showStatistic}>
         <td className="d-flex">
           <img
             src={
@@ -135,15 +86,16 @@ export default function LeaderBoardListItem(props) {
           })}
           $
         </td>
+        <td></td>
         <td>
-          <div className="circle ">
-            <span className="star">&#9734;</span>
+          <div>
+            <div className="circle">
+              <span className="star">&#9734;</span>
+            </div>
+            <button className="follow-btn" onClick={follow}>
+              Следить
+            </button>
           </div>
-        </td>
-        <td>
-          <button type="button" className="follow-btn ">
-            Следить
-          </button>
         </td>
       </tr>
     );
@@ -153,7 +105,7 @@ export default function LeaderBoardListItem(props) {
         data={props.data}
         name={name}
         allData={allData}
-        clickFunction={hideStatistic}
+        expandFunction={hideStatistic}
       />
     );
   }

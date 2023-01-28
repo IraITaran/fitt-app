@@ -4,7 +4,7 @@ import "./LeaderAllData.css";
 
 export default function LeaderAllData(props) {
   return (
-    <tr className="LeaderAllData" onClick={props.clickFunction}>
+    <tr className="LeaderAllData" onClick={props.expandFunction}>
       <td colSpan="5">
         <div className="d-flex">
           <div className="d-flex">
@@ -235,7 +235,7 @@ export default function LeaderAllData(props) {
               </td>
               <td
                 className={
-                  Number(props.allData.allPnlx) < 0
+                  Number(props.allData.allPnl) < 0
                     ? "negative-value"
                     : "positive-value"
                 }

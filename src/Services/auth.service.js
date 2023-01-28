@@ -1,6 +1,5 @@
-import axios from "axios";
+import UserService from "./user.service";
 
-const API_URL = "https://fitt.ink/api/user/";
 const subscribers = [];
 
 class AuthService {
@@ -9,20 +8,21 @@ class AuthService {
   }
 
   login(email, password) {
-    return axios
-      .post(API_URL + "login", {
-        email,
-        password,
-      })
+    return UserService.login(email, password)
       .then((response) => {
         if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
+          let userData = response.data;
 
-          subscribers.forEach((callback) => {
-            callback(response.data);
+          localStorage.setItem("user", JSON.stringify(userData));
+
+          subscribers.forEach((item) => {
+            item(userData);
           });
         }
-        return response.data;
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
       });
   }
 
@@ -33,16 +33,36 @@ class AuthService {
     });
   }
 
-  register(username, email, password) {
-    return axios.post(API_URL + "signup", {
-      username,
-      email,
-      password,
-    });
+  signup(email, password) {
+    return UserService.signup(email, password)
+      .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem("user", JSON.stringify(response.data));
+
+          subscribers.forEach((callback) => {
+            callback(response.data);
+          });
+        }
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+      });
   }
 
   getCurrentUser() {
     return JSON.parse(localStorage.getItem("user"));
+  }
+
+  updateUserDetails(newUserDetails) {
+    var user = JSON.parse(localStorage.getItem("user"));
+    user.userDetails = newUserDetails;
+
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
+  isAuthenticated() {
+    return localStorage.getItem("user") !== null;
   }
 }
 

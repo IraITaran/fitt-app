@@ -2,21 +2,25 @@ import React, { useState, useEffect } from "react";
 import LeaderBoardCardItem from "./LeaderBoardCardItem";
 import "./LeaderBoardCard.css";
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
 import UnknownIcon from "../../images/unknown-icon.png";
-import axios from "axios";
+import ModalFollowInfo from "../ModalFollowInfo/ModalFollowInfo";
+import LeaderBoardService from "../../Services/leaderboard.service";
 
 export default function LeaderBoardTable(props) {
   let [allData, setAllData] = useState({});
   let [currentLeader, setCurrentLeader] = useState({});
-  let [show, setShow] = useState(false);
+  let [showStatisticModal, setShowStatisticModal] = useState(false);
+  let [showFollowModal, setShowFollowModal] = useState(false);
   let [cacheAllData, setCacheAllData] = useState([]);
+  let [leaderAVGBalance, setLeaderAVGBalance] = useState(0.0);
 
-  let handleClose = () => setShow(false);
-
-  let handleShow = (leader) => {
+  let onCardClick = (e, leader) => {
     setCurrentLeader(leader);
-    setShow(true);
+    if (e.target.localName === "button") {
+      setShowFollowModal(true);
+    } else {
+      setShowStatisticModal(true);
+    }
   };
 
   useEffect(() => {
@@ -24,102 +28,59 @@ export default function LeaderBoardTable(props) {
       return;
     } else {
       if (cacheAllData.some((x) => x.key === currentLeader.encryptedUid)) {
-        console.log("Use Cashe");
         let cachedItem = cacheAllData.find(
           (x) => x.key === currentLeader.encryptedUid
         );
 
+        setLeaderAVGBalance(cachedItem.data.avgPnl);
         setAllData(cachedItem.data);
       } else {
-        console.log("Use Request");
-        StatisticClick();
+        getLeaderStatistic();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLeader]);
 
-  function StatisticClick() {
-    axios
-      .get(
-        "https://fitt.ink/api/leaderboard/getOtherPerformance/" +
-          currentLeader.encryptedUid
-      )
-      .then(handleResponse)
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+  function getLeaderStatistic() {
+    LeaderBoardService.getOtherPerformance(currentLeader.encryptedUid).then(
+      (response) => {
+        cacheAllData.push({
+          key: currentLeader.encryptedUid,
+          data: response,
+        });
 
-  function handleResponse(response) {
-    let mappedResult = {
-      dailyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "DAILY" && x.statisticsType === "ROI"
-      ).value,
-      dailyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "DAILY" && x.statisticsType === "PNL"
-      ).value,
-      exactWeeklyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_WEEKLY" && x.statisticsType === "ROI"
-      ).value,
-      exactWeeklyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_WEEKLY" && x.statisticsType === "PNL"
-      ).value,
-      exactMonthlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_MONTHLY" && x.statisticsType === "ROI"
-      ).value,
-      exactMonthlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_MONTHLY" && x.statisticsType === "PNL"
-      ).value,
-      exactYearlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_YEARLY" && x.statisticsType === "ROI"
-      ).value,
-      exactYearlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "EXACT_YEARLY" && x.statisticsType === "PNL"
-      ).value,
-      weeklyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "WEEKLY" && x.statisticsType === "ROI"
-      ).value,
-      weeklyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "WEEKLY" && x.statisticsType === "PNL"
-      ).value,
-      monthlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "MONTHLY" && x.statisticsType === "ROI"
-      ).value,
-      monthlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "MONTHLY" && x.statisticsType === "PNL"
-      ).value,
-      yearlyRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "YEARLY" && x.statisticsType === "ROI"
-      ).value,
-      yearlyPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "YEARLY" && x.statisticsType === "PNL"
-      ).value,
-      allRoi: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "ALL" && x.statisticsType === "ROI"
-      ).value,
-      allPnl: response.data.data.performanceRetList.find(
-        (x) => x.periodType === "ALL" && x.statisticsType === "PNL"
-      ).value,
-    };
-
-    cacheAllData.push({
-      key: currentLeader.encryptedUid,
-      data: mappedResult,
-    });
-
-    setCacheAllData(cacheAllData);
-
-    setAllData(mappedResult);
+        console.log("avgPnl: " + response.avgPnl);
+        setLeaderAVGBalance(response.avgPnl);
+        setCacheAllData(cacheAllData);
+        setAllData(response);
+      }
+    );
   }
 
   return (
-    <div className="main-flex-container d-flex flex-wrap">
-      <Modal show={show} onHide={handleClose}>
+    <>
+      <div className="main-flex-container d-flex flex-wrap">
+        {props.data.map(function (leader, index) {
+          return (
+            <div key={index} onClick={(e) => onCardClick(e, leader)}>
+              <LeaderBoardCardItem data={leader} keyword={props.keyword} />
+            </div>
+          );
+        })}
+      </div>
+      <ModalFollowInfo
+        show={showFollowModal}
+        data={currentLeader}
+        onHide={() => setShowFollowModal(false)}
+        leaderBalance={leaderAVGBalance}
+      />
+      <Modal
+        show={showStatisticModal}
+        onHide={() => setShowStatisticModal(false)}
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body>
           <div className="d-flex card-all-data">
-            <Form.Label>Range</Form.Label>
-            <Form.Range />
             <div className="d-flex">
               <img
                 src={
@@ -127,7 +88,7 @@ export default function LeaderBoardTable(props) {
                     ? UnknownIcon
                     : currentLeader.userPhotoUrl
                 }
-                alt="icon"
+                alt="unknown-icon"
                 className="leader-icon me-3"
               ></img>
               <div>
@@ -155,174 +116,192 @@ export default function LeaderBoardTable(props) {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-bottom">
-                <td>Ежедневно</td>
-                <td
-                  className={
-                    Number(allData.dailyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.dailyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.dailyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.dailyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Последние 7 дней</td>
-                <td
-                  className={
-                    Number(allData.exactWeeklyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactWeeklyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.exactWeeklyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactWeeklyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Последние 30 дней</td>
-                <td
-                  className={
-                    Number(allData.exactMonthlyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactMonthlyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.exactMonthlyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactMonthlyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Последние 12 мес.</td>
-                <td
-                  className={
-                    Number(allData.exactYearlyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactYearlyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.exactYearlyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.exactYearlyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Еженедельно</td>
-                <td
-                  className={
-                    Number(allData.weeklyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.weeklyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.weeklyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.weeklyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Ежемесячно</td>
-                <td
-                  className={
-                    Number(allData.monthlyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.monthlyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.monthlyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.monthlyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
-              <tr className="border-bottom">
-                <td>Годовой</td>
-                <td
-                  className={
-                    Number(allData.yearlyRoi) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.yearlyRoi * 100).toFixed(2)}%
-                </td>
-                <td
-                  className={
-                    Number(allData.yearlyPnl) < 0
-                      ? "negative-value"
-                      : "positive-value"
-                  }
-                >
-                  {Number(allData.yearlyPnl).toLocaleString(undefined, {
-                    maximumFractionDigits: 0,
-                  })}
-                  $
-                </td>
-              </tr>
+              {allData.dailyRoi && (
+                <tr className="border-bottom">
+                  <td>Ежедневно</td>
+                  <td
+                    className={
+                      Number(allData.dailyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.dailyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.dailyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.dailyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
+              {allData.exactWeeklyRoi === 0 ||
+                (allData.exactWeeklyRoi && (
+                  <tr className="border-bottom">
+                    <td>Последние 7 дней</td>
+                    <td
+                      className={
+                        Number(allData.exactWeeklyRoi) < 0
+                          ? "negative-value"
+                          : "positive-value"
+                      }
+                    >
+                      {Number(allData.exactWeeklyRoi * 100).toFixed(2)}%
+                    </td>
+                    <td
+                      className={
+                        Number(allData.exactWeeklyPnl) < 0
+                          ? "negative-value"
+                          : "positive-value"
+                      }
+                    >
+                      {Number(allData.exactWeeklyPnl).toLocaleString(
+                        undefined,
+                        {
+                          maximumFractionDigits: 0,
+                        }
+                      )}
+                      $
+                    </td>
+                  </tr>
+                ))}
+              {allData.exactMonthlyRoi && (
+                <tr className="border-bottom">
+                  <td>Последние 30 дней</td>
+                  <td
+                    className={
+                      Number(allData.exactMonthlyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.exactMonthlyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.exactMonthlyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.exactMonthlyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
+              {allData.exactYearlyRoi && (
+                <tr className="border-bottom">
+                  <td>Последние 12 мес.</td>
+                  <td
+                    className={
+                      Number(allData.exactYearlyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.exactYearlyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.exactYearlyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.exactYearlyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
+              {allData.weeklyRoi && (
+                <tr className="border-bottom">
+                  <td>Еженедельно</td>
+                  <td
+                    className={
+                      Number(allData.weeklyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.weeklyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.weeklyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.weeklyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
+              {allData.monthlyRoi && (
+                <tr className="border-bottom">
+                  <td>Ежемесячно</td>
+                  <td
+                    className={
+                      Number(allData.monthlyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.monthlyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.monthlyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.monthlyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
+              {allData.yearlyRoi && (
+                <tr className="border-bottom">
+                  <td>Годовой</td>
+                  <td
+                    className={
+                      Number(allData.yearlyRoi) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.yearlyRoi * 100).toFixed(2)}%
+                  </td>
+                  <td
+                    className={
+                      Number(allData.yearlyPnl) < 0
+                        ? "negative-value"
+                        : "positive-value"
+                    }
+                  >
+                    {Number(allData.yearlyPnl).toLocaleString(undefined, {
+                      maximumFractionDigits: 0,
+                    })}
+                    $
+                  </td>
+                </tr>
+              )}
               <tr>
                 <td>Все</td>
                 <td
@@ -336,7 +315,7 @@ export default function LeaderBoardTable(props) {
                 </td>
                 <td
                   className={
-                    Number(allData.allPnlx) < 0
+                    Number(allData.allPnl) < 0
                       ? "negative-value"
                       : "positive-value"
                   }
@@ -353,20 +332,13 @@ export default function LeaderBoardTable(props) {
         <Modal.Footer>
           <button
             variant="secondary"
-            onClick={handleClose}
+            onClick={() => setShowStatisticModal(false)}
             className="close-btn"
           >
             Закрыть
           </button>
         </Modal.Footer>
       </Modal>
-      {props.data.map(function (leader, index) {
-        return (
-          <div key={index} onClick={() => handleShow(leader)}>
-            <LeaderBoardCardItem data={leader} keyword={props.keyword} />
-          </div>
-        );
-      })}
-    </div>
+    </>
   );
 }

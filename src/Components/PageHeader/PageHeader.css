@@ -44,8 +44,14 @@
   margin-right: 8px;
 }
 
+.user-header-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 28px;
+}
+
 .header-right {
-  margin-top: 32px;
+  margin-top: 20px;
   margin-right: 24px;
 }
 
@@ -67,4 +73,57 @@
 
 .header-right ul li {
   margin-right: 32px;
+}
+
+.header-button {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 100px;
+  height: 40px;
+  margin-left: 8px;
+  color: #080808;
+}
+
+.header-balance-container {
+  margin-left: 33px;
+}
+
+.header-balance-container .header-balance-amount {
+  margin-left: 24px;
+}
+
+.header-balance-subtitle p {
+  font-size: 12px;
+  font-weight: 500;
+  color: #81858c;
+}
+
+.header-balance-subtitle p:first-child {
+  margin-bottom: 29px;
+}
+
+.header-balance-subtitle .dollar-icon {
+  width: 13px;
+  height: 13px;
+  margin-right: 7px;
+}
+
+.header-balance-subtitle .lock-icon {
+  width: 10px;
+  height: 13px;
+  margin-right: 7px;
+}
+
+.header-balance-amount p {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.header-balance-amount p:first-child {
+  margin-bottom: 25px;
+}
+
+.selected-lang {
+  font-size: 14px;
 }

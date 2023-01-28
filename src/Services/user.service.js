@@ -8,16 +8,38 @@ class UserService {
     return axios.get(API_URL, { headers: authHeader() });
   }
 
-  getUserBoard() {
-    return axios.get(API_URL + "user", { headers: authHeader() });
+  login(email, password) {
+    return axios.post(API_URL + "/login", { email, password });
   }
 
-  getModeratorBoard() {
-    return axios.get(API_URL + "mod", { headers: authHeader() });
+  signup(email, password) {
+    return axios.post(API_URL + "/signup", { email, password });
   }
 
-  getAdminBoard() {
-    return axios.get(API_URL + "admin", { headers: authHeader() });
+  confirmEmail(code) {
+    return axios.put(
+      API_URL + "/confirm-email/" + code,
+      {},
+      {
+        headers: authHeader(),
+      }
+    );
+  }
+
+  details() {
+    return axios.get(API_URL + "/details", { headers: authHeader() });
+  }
+
+  sessions() {
+    return axios.get(API_URL + "/getlogs", { headers: authHeader() });
+  }
+
+  updateApiKey(key, secret) {
+    return axios.post(
+      API_URL + "/exchange",
+      { key: key, secret: secret },
+      { headers: authHeader() }
+    );
   }
 }
 

@@ -68,7 +68,7 @@ export default function LeaderBoardCardItem(props) {
           <div className="circle">
             <span className="star">&#9734;</span>
           </div>
-          <button type="button" className="follow-btn">
+          <button type="button" className="follow-btn" onClick={props.follow}>
             Следить
           </button>
         </div>
