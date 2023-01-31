@@ -5,11 +5,13 @@ import UnknownIcon from "../../images/unknown-icon.png";
 import DollarIcon from "../../images/dollar-icon.svg";
 import LockIcon from "../../images/lock-icon.svg";
 import BotService from "../../Services/bot.service";
+import UserService from "../../Services/user.service";
 import "./ModalFollowInfo.css";
 import { useNavigate } from "react-router-dom";
 
 export default function ModalFollowInfo(props) {
   let [investInput, setInvestInput] = useState(1);
+  let [type, setType] = useState(1);
   let [riskInput, setRiskInput] = useState(1);
   let [coefficientInput, setCoefficientInput] = useState(0.0);
   let [positionControlInput, setPositionControlInput] = useState(10);
@@ -20,33 +22,47 @@ export default function ModalFollowInfo(props) {
   let [stopLossControl, setStopLossControl] = useState(false);
   let [stopProfitControl, setStopProfitControl] = useState(false);
 
-  let [exchangeBalance, setExchangeBalance] = useState(10000);
-  let [availableBalance, setAvailableBalance] = useState(10000);
-  let [usedBalance, setUsedBalance] = useState(5000);
+  let [exchangeBalance, setExchangeBalance] = useState(0);
+  let [availableBalance, setAvailableBalance] = useState(0);
+  let [usedBalance, setUsedBalance] = useState(0);
 
   let navigate = useNavigate();
 
   useEffect(() => {
-    setExchangeBalance(10000);
-    setUsedBalance(5000);
-    // UserService.details().then((response) => {
-    //   setExchangeBalance(response.data.exchangeBalance);
-    //   setUsedBalance(response.data.usedBalance);
-    // });
+    UserService.details().then((response) => {
+      setExchangeBalance(response.data.exchangeBalance.toFixed(0));
+      setUsedBalance(response.data.usedBalance);
+      setAvailableBalance(
+        response.data.exchangeBalance.toFixed(0) - response.data.usedBalance
+      );
+      setType(0);
+    });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    // UserService.details().then((response) => {
-    //   setExchangeBalance(response.data.exchangeBalance);
-    //   setUsedBalance(response.data.usedBalance);
-    // });
-
     let availableBalance = exchangeBalance - usedBalance;
     setAvailableBalance(availableBalance);
-    setInvestInput(availableBalance);
     setCoefficientInput((investInput / props.leaderBalance) * riskInput);
+
+    if (props.isUpdate) {
+      console.log(props.data);
+      setType(props.data.type);
+      setInvestInput(props.data.balance);
+      setRiskInput(props.data.risk);
+      setCoefficientInput(props.data.coefficient);
+      setPositionControlInput(
+        props.data.positionControl ? props.data.positionControl : 10
+      );
+      setStopProfitInput(props.data.stopProfit ? props.data.stopProfit : 30);
+      setStopLossInput(props.data.stopLoss ? props.data.stopLoss : 30);
+      setPositionControl(props.data.positionControl != null);
+      setStopLossControl(props.data.stopLoss != null);
+      setStopProfitControl(props.data.stopProfit != null);
+    } else {
+      setInvestInput(availableBalance);
+    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.leaderBalance]);
@@ -57,23 +73,43 @@ export default function ModalFollowInfo(props) {
   }, [riskInput, investInput]);
 
   function onHide() {
-    setRiskInput(1);
+    if (!props.isUpdate) {
+      setRiskInput(1);
+    }
     props.onHide();
   }
 
   function submit() {
-    BotService.create(
-      props.data.encryptedUid,
-      props.data.nickName,
-      investInput,
-      coefficientInput,
-      riskInput,
-      positionControl ? positionControlInput : null,
-      stopLossControl ? stopLossInput : null,
-      stopProfitControl ? stopProfitInput : null
-    ).then((response) => {
-      navigate("/account");
-    });
+    if (props.isUpdate) {
+      BotService.update(
+        props.data.id,
+        props.data.encryptedUid,
+        props.data.nickName,
+        type,
+        investInput,
+        coefficientInput,
+        riskInput,
+        positionControl ? positionControlInput : null,
+        stopLossControl ? stopLossInput : null,
+        stopProfitControl ? stopProfitInput : null
+      ).then(() => {
+        props.onUpdate();
+      });
+    } else {
+      BotService.create(
+        props.data.encryptedUid,
+        props.data.nickName,
+        type,
+        investInput,
+        coefficientInput,
+        riskInput,
+        positionControl ? positionControlInput : null,
+        stopLossControl ? stopLossInput : null,
+        stopProfitControl ? stopProfitInput : null
+      ).then((response) => {
+        navigate("/account/bot-management");
+      });
+    }
   }
 
   return (
@@ -85,7 +121,7 @@ export default function ModalFollowInfo(props) {
           <div className="d-flex leadername-section">
             <img
               src={
-                props.data.userPhotoUrl === ""
+                props.isUpdate || props.data.userPhotoUrl === ""
                   ? UnknownIcon
                   : props.data.userPhotoUrl
               }
@@ -93,7 +129,7 @@ export default function ModalFollowInfo(props) {
               className="leader-icon"
             ></img>
             <div>
-              <h4 className="leader-name">{props.data.nickName}</h4>
+              <h4 className="leader-name">{props.data.leaderName}</h4>
               <p className="leader-type">USD-M</p>
             </div>
           </div>
@@ -112,9 +148,10 @@ export default function ModalFollowInfo(props) {
                 <input
                   type="radio"
                   name="mode"
-                  value="1-to-1"
-                  defaultChecked
+                  value={0}
+                  onChange={(e) => setType(0)}
                   className="radio"
+                  checked={type === 0 ? true : false}
                 />
                 Копирование трейдера 1 в 1
               </label>
@@ -122,7 +159,9 @@ export default function ModalFollowInfo(props) {
                 <input
                   type="radio"
                   name="mode"
-                  value="trade-entry-only"
+                  value={1}
+                  onChange={(e) => setType(1)}
+                  checked={type === 1 ? true : false}
                   className="radio"
                 />
                 Только вход в сделку (long/short)
@@ -131,8 +170,10 @@ export default function ModalFollowInfo(props) {
                 <input
                   type="radio"
                   name="mode"
-                  value="signal-only"
+                  value={2}
+                  onChange={(e) => setType(2)}
                   className="radio"
+                  checked={type === 2 ? true : false}
                 />
                 Только сигналы (long/short)
               </label>
@@ -190,7 +231,7 @@ export default function ModalFollowInfo(props) {
                     className="btn btn-outline-primary"
                     type="button"
                     onClick={() => {
-                      if (investInput < availableBalance) {
+                      if (investInput <= availableBalance) {
                         setInvestInput(Number(investInput) - 1);
                       }
                     }}
@@ -574,7 +615,7 @@ export default function ModalFollowInfo(props) {
             className="follow-btn w-100 mt-4"
             onClick={submit}
           >
-            Следить
+            {props.isUpdate ? "Сохранить" : "Следить"}
           </button>
         </Modal.Body>
         <Modal.Footer></Modal.Footer>

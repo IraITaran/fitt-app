@@ -113,6 +113,11 @@
   font-weight: 400;
 }
 
+.session-container table {
+  width: 100%;
+  margin: 0;
+}
+
 .user-info-container .account-bg {
   background-image: url("../../images/wallet-bg-icon.svg");
   background-size: cover;

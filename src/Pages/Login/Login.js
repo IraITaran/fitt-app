@@ -95,7 +95,7 @@ export default function Login() {
           </form>
           <div className="form-bottom d-flex justify-content-between">
             <p>
-              Нет аккаунта? <Link to="/registration">Регистрация</Link>
+              Нет аккаунта? <Link to="/signup">Регистрация</Link>
             </p>
             <a href="/">Забыли пароль?</a>
           </div>

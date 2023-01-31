@@ -19,9 +19,24 @@ class BotService {
     );
   }
 
+  stop(botId) {
+    return axios.post(
+      API_URL + "/stop",
+      {
+        botId: botId,
+      },
+      { headers: authHeader() }
+    );
+  }
+
+  delete(botId) {
+    return axios.delete(API_URL + "/" + botId, { headers: authHeader() });
+  }
+
   create(
     leaderKey,
     leaderName,
+    type,
     balance,
     coefficient,
     risk,
@@ -34,6 +49,37 @@ class BotService {
       {
         leaderKey: leaderKey,
         leaderName: leaderName,
+        type: type,
+        balance: balance,
+        coefficient: coefficient,
+        risk: risk,
+        positionControl: positionControl,
+        stopLoss: stopLoss,
+        stopProfit: stopProfit,
+      },
+      { headers: authHeader() }
+    );
+  }
+
+  update(
+    id,
+    leaderKey,
+    leaderName,
+    type,
+    balance,
+    coefficient,
+    risk,
+    positionControl,
+    stopLoss,
+    stopProfit
+  ) {
+    return axios.put(
+      API_URL,
+      {
+        id: id,
+        leaderKey: leaderKey,
+        leaderName: leaderName,
+        type: type,
         balance: balance,
         coefficient: coefficient,
         risk: risk,

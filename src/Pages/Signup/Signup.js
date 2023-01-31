@@ -136,7 +136,7 @@ export default function Signup() {
           </form>
           <div className="form-bottom text-center">
             <p>
-              Уже зарегистрированы? <Link to="/authorization">Войти</Link>
+              Уже зарегистрированы? <Link to="/login">Войти</Link>
             </p>
           </div>
         </div>

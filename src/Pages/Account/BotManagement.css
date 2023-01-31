@@ -2,4 +2,5 @@
   background-color: #fafafa;
   padding: 40px 46px;
   width: 100%;
+  flex-wrap: wrap;
 }

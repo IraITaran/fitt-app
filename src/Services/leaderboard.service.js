@@ -24,6 +24,17 @@ class LeaderBoardService {
       });
   }
 
+  getLeaderOpenPositions(leaderId) {
+    return axios
+      .get(API_URL + "/getOtherPosition/" + leaderId)
+      .then((response) => {
+        return response;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   handleOtherPerformanceResponse(response) {
     let result = {
       dailyRoi: response.data.data.performanceRetList.find(

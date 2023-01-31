@@ -9,10 +9,12 @@ import AuthService from "../../Services/auth.service";
 import UserService from "../../Services/user.service";
 import DollarIcon from "../../images/dollar-icon.svg";
 import LockIcon from "../../images/lock-icon.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function PageHeader() {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
@@ -24,6 +26,7 @@ export default function PageHeader() {
     }
 
     AuthService.subscribeOnUpdate(userUpdate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function userUpdate(user) {
@@ -35,6 +38,7 @@ export default function PageHeader() {
     } else {
       setUser({});
       setIsAuthenticated(false);
+      navigate("/login");
     }
   }
 

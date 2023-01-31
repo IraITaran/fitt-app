@@ -10,6 +10,8 @@ import Signup from "./Pages/Signup/Signup";
 import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
 import Leader from "./Pages/Leader/Leader";
 import AccountRoutes from "./Pages/Account/AccountRoutes";
+import axios from "axios";
+import AuthService from "./Services/auth.service";
 
 function App() {
   return (
@@ -33,5 +35,19 @@ function App() {
     </BrowserRouter>
   );
 }
+
+axios.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  function (error) {
+    if (error.response.status === 401) {
+      AuthService.logout();
+      return Promise.reject(error);
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default App;
