@@ -9,6 +9,8 @@ import statisticBotIcon from "../../images/statisticbot-icon.svg";
 import Modal from "react-bootstrap/Modal";
 import BotService from "../../Services/bot.service";
 import LeaderboardService from "../../Services/leaderboard.service";
+import { useNavigate } from "react-router-dom";
+import authService from "../../Services/auth.service";
 
 export default function BotManagementCard(props) {
   let [modal, setModal] = useState(false);
@@ -16,6 +18,7 @@ export default function BotManagementCard(props) {
 
   let [runOption, setRunOption] = useState(0);
   let [leaderPositions, setLeaderPositions] = useState([]);
+  let navigate = useNavigate();
 
   function showModal() {
     if (props.data.status === 1) {
@@ -45,6 +48,8 @@ export default function BotManagementCard(props) {
       .then((response) => {
         setModal(false);
         props.updateList();
+
+        authService.updateUserDetails();
       })
       .catch((error) => {
         alert(error.response.data);
@@ -56,8 +61,9 @@ export default function BotManagementCard(props) {
       return;
     }
     BotService.stop(props.data.id)
-      .then((response) => {
+      .then(() => {
         props.updateList();
+        authService.updateUserDetails();
       })
       .catch((error) => {
         alert(error.response.data);
@@ -95,16 +101,12 @@ export default function BotManagementCard(props) {
               new Date(props.data.createdDate).toLocaleTimeString("es-ES")}
           </p>
           <p className="bot-option">
-            <span>
-              {props.data.status === 1
-                ? "Запущен:"
-                : props.data.status === 2
-                ? "Остановлен:"
-                : "-"}
-            </span>{" "}
-            {new Date(props.data.runStopDate).toLocaleDateString() +
-              " | " +
-              new Date(props.data.runStopDate).toLocaleTimeString("es-ES")}
+            <span>{props.data.status === 2 ? "Остановлен:" : "Запущен:"}</span>{" "}
+            {props.data.status === 0
+              ? "-"
+              : new Date(props.data.runStopDate).toLocaleDateString() +
+                " | " +
+                new Date(props.data.runStopDate).toLocaleTimeString("es-ES")}
           </p>
         </div>
         <div className="col">
@@ -176,11 +178,11 @@ export default function BotManagementCard(props) {
         >
           <img src={deleteBotIcon} alt="delete-icon"></img>
         </div>
-        <div>
+        <div onClick={() => navigate("/leader/" + props.data.leaderKey)}>
           <img src={statisticBotIcon} alt="statistic-icon"></img>
         </div>
       </div>
-      <Modal className="bot-modal" show={modal} onHide={() => setModal(false)}>
+      <Modal show={modal} onHide={() => setModal(false)}>
         <Modal.Header closeButton>
           <h4 className="copy-header">Настройки копирования</h4>
         </Modal.Header>

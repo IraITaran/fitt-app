@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export default function Leader(props) {
   const [positions, setPositions] = useState([]);
-  const [leaders, setLeaders] = useState([]);
+  //const [leaders, setLeaders] = useState([]);
 
   let { leaderId } = useParams();
 
@@ -14,9 +14,9 @@ export default function Leader(props) {
     //2B5D309B9C5C7E845B77EE8AF7006998
     updatePositions(leaderId);
 
-    LeaderService.getLeaders().then((response) => {
-      setLeaders(response.data);
-    });
+    // LeaderService.getLeaders().then((response) => {
+    //   setLeaders(response.data);
+    // });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -26,14 +26,14 @@ export default function Leader(props) {
     });
   }
 
-  function changeLeader(id) {
-    console.log("sdsaa" + id);
-    updatePositions(id);
-  }
+  // function changeLeader(id) {
+  //   console.log("sdsaa" + id);
+  //   updatePositions(id);
+  // }
 
   return (
     <div>
-      <select
+      {/* <select
         onChange={(e) => {
           changeLeader(e.target.value);
         }}
@@ -45,7 +45,7 @@ export default function Leader(props) {
             </option>
           );
         })}
-      </select>
+      </select> */}
       <table className="m-auto w-100">
         <thead>
           <tr className="border-bottom">

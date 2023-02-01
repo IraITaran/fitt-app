@@ -54,11 +54,18 @@ class AuthService {
     return JSON.parse(localStorage.getItem("user"));
   }
 
-  updateUserDetails(newUserDetails) {
-    var user = JSON.parse(localStorage.getItem("user"));
-    user.userDetails = newUserDetails;
+  updateUserDetails() {
+    UserService.details().then((response) => {
+      let newUserDetails = response.data;
+      var user = JSON.parse(localStorage.getItem("user"));
+      user.userDetails = newUserDetails;
 
-    localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
+
+      subscribers.forEach((item) => {
+        item(newUserDetails);
+      });
+    });
   }
 
   isAuthenticated() {

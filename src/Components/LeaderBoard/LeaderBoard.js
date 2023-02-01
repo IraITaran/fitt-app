@@ -79,10 +79,7 @@ export default function LeaderBoard() {
 
   function updateApiKey() {
     UserService.updateApiKey(apiKey, apiSecret).then((response) => {
-      UserService.details().then((response) => {
-        AuthService.updateUserDetails(response.data);
-      });
-
+      AuthService.updateUserDetails();
       setApiKeyModal(false);
     });
   }

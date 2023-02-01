@@ -39,19 +39,19 @@
 }
 
 .language-icon {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin-right: 8px;
 }
 
 .user-header-icon {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   margin-right: 28px;
 }
 
 .header-right {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: 24px;
 }
 
@@ -94,34 +94,34 @@
 }
 
 .header-balance-subtitle p {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #81858c;
 }
 
 .header-balance-subtitle p:first-child {
-  margin-bottom: 29px;
+  margin-bottom: 15px;
 }
 
 .header-balance-subtitle .dollar-icon {
-  width: 13px;
-  height: 13px;
+  width: 20px;
+  height: 20px;
   margin-right: 7px;
 }
 
 .header-balance-subtitle .lock-icon {
-  width: 10px;
-  height: 13px;
+  width: 20px;
+  height: 20px;
   margin-right: 7px;
 }
 
 .header-balance-amount p {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 
 .header-balance-amount p:first-child {
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .selected-lang {
