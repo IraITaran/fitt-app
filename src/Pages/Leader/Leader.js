@@ -46,7 +46,7 @@ export default function Leader(props) {
           );
         })}
       </select> */}
-      <table className="m-auto w-100">
+      <table className="leader-position-table m-auto w-100">
         <thead>
           <tr className="border-bottom">
             <th>Общая информация</th>

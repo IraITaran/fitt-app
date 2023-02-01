@@ -5,7 +5,7 @@ import UnknownIcon from "../../images/unknown-icon.png";
 export default function LeaderPosition(props) {
   return (
     <>
-      <tr className="border-bottom">
+      <tr className="leader-position-item border-bottom">
         <td className="d-flex">
           <img
             src={

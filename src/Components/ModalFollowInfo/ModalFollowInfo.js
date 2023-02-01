@@ -83,8 +83,8 @@ export default function ModalFollowInfo(props) {
     if (props.isUpdate) {
       BotService.update(
         props.data.id,
-        props.data.encryptedUid,
-        props.data.nickName,
+        props.data.leaderKey,
+        props.data.leaderName,
         type,
         investInput,
         coefficientInput,

@@ -78,6 +78,11 @@
   color: #080808;
 }
 
+.start-btn:disabled {
+  border: 1px solid lightgrey;
+  background-color: lightgrey;
+}
+
 .copy-header,
 .approve-header {
   margin: 0;
@@ -92,14 +97,27 @@
   font-size: 18px;
 }
 
-.bot-modal {
-  top: 130px;
+.run-bot-modal .modal-content {
+  width: 900px;
+  right: 40%;
+  margin-top: 10%;
 }
 
-.bot-modal .modal-dialog {
-  max-width: 1200px !important;
-  margin-right: auto;
-  margin-left: auto;
+.run-bot-modal h5 {
+  margin-top: 30px;
+}
+
+.run-bot-modal .bot-modal th,
+.run-bot-modal .bot-modal td,
+.run-bot-modal .bot-modal tr .direction {
+  width: 0;
+  padding: 10px 0px;
+  font-size: 14px !important;
+}
+
+.run-bot-modal .insufient-funds-warning {
+  color: red;
+  text-align: center;
 }
 
 .approve-modal .modal-dialog {
@@ -120,17 +138,26 @@
 }
 
 .approve-btn.delete {
-  border: 1px solid rgb(241, 103, 103);
-  background-color: rgb(241, 103, 103);
+  border: 1px solid rgb(255, 68, 68);
+  background-color: rgb(255, 68, 68);
   color: white;
+  font-weight: 500;
 }
 
 .table-container {
   overflow-y: scroll;
-  height: 370px;
+  height: 300px;
 }
 
 .radio-buttons-wrapper {
-  width: 500px;
+  width: 900px;
   margin: 10px 30px;
+}
+
+.radio-buttons-wrapper span.green {
+  color: #10b866;
+}
+
+.radio-buttons-wrapper span.red {
+  color: #ff0000;
 }

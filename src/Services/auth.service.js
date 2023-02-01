@@ -68,6 +68,13 @@ class AuthService {
     });
   }
 
+  updateUserInternal(newUserDetails) {
+    var user = JSON.parse(localStorage.getItem("user"));
+    user.userDetails = newUserDetails;
+
+    localStorage.setItem("user", JSON.stringify(user));
+  }
+
   isAuthenticated() {
     return localStorage.getItem("user") !== null;
   }

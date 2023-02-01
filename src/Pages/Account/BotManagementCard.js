@@ -18,15 +18,46 @@ export default function BotManagementCard(props) {
 
   let [runOption, setRunOption] = useState(0);
   let [leaderPositions, setLeaderPositions] = useState([]);
+  let [negativePNLChoiceAmount, setNegativePNLChoiceAmount] = useState(0);
+  let [allPositionChoiceAmount, setAllPositionChoiceAmount] = useState(0);
+  let [availableBalance, setAvailableBalance] = useState(0);
+  let [disableRun, setDisableRun] = useState(false);
   let navigate = useNavigate();
 
   function showModal() {
     if (props.data.status === 1) {
       return;
     }
+
+    let userDetails = authService.getCurrentUser().userDetails;
+    let userAvailableBalance =
+      userDetails.exchangeBalance - userDetails.usedBalance;
+    setAvailableBalance(userAvailableBalance);
+
     LeaderboardService.getLeaderOpenPositions(props.data.leaderKey).then(
       (response) => {
-        setLeaderPositions(response.data.data.otherPositionRetList);
+        let positions = response.data.data.otherPositionRetList;
+        setLeaderPositions(positions);
+
+        let filteredList = positions.filter((x) => x.pnl < 0);
+        let totalAmount = 0;
+
+        filteredList.forEach((item) => {
+          totalAmount +=
+            (item.markPrice * Math.abs(item.amount) * props.data.coefficient) /
+            item.leverage;
+        });
+
+        setNegativePNLChoiceAmount(totalAmount.toFixed(0));
+
+        positions.forEach((item) => {
+          totalAmount +=
+            (item.markPrice * Math.abs(item.amount) * props.data.coefficient) /
+            item.leverage;
+        });
+
+        setAllPositionChoiceAmount(totalAmount.toFixed(0));
+        setDisableRun(userAvailableBalance < totalAmount);
       }
     );
     setModal(true);
@@ -182,7 +213,11 @@ export default function BotManagementCard(props) {
           <img src={statisticBotIcon} alt="statistic-icon"></img>
         </div>
       </div>
-      <Modal show={modal} onHide={() => setModal(false)}>
+      <Modal
+        show={modal}
+        onHide={() => setModal(false)}
+        className="run-bot-modal"
+      >
         <Modal.Header closeButton>
           <h4 className="copy-header">Настройки копирования</h4>
         </Modal.Header>
@@ -205,7 +240,14 @@ export default function BotManagementCard(props) {
                 value={1}
                 onChange={(e) => setRunOption(e.target.value)}
               />
-              Копировать позиции с отрицательным PNL-ROI
+              Копировать позиции с отрицательным PNL-ROI{" "}
+              <span
+                className={
+                  availableBalance > negativePNLChoiceAmount ? "green" : "red"
+                }
+              >
+                (общая сумма с учетом коефициента: {negativePNLChoiceAmount}$)
+              </span>
             </label>
             <label>
               <input
@@ -214,13 +256,20 @@ export default function BotManagementCard(props) {
                 value={2}
                 onChange={(e) => setRunOption(e.target.value)}
               />
-              Копироват все открытые позиции
+              Копироват все открытые позиции{" "}
+              <span
+                className={
+                  availableBalance > allPositionChoiceAmount ? "green" : "red"
+                }
+              >
+                (общая сумма с учетом коефициента: {allPositionChoiceAmount}$)
+              </span>
             </label>
           </div>
           <div className="text-center">
-            <h4 className="copy-header">Открытые позиции трейдера</h4>
+            <h5>Открытые позиции трейдера</h5>
             <div className="table-container">
-              <table className="m-auto w-100">
+              <table className="m-auto">
                 <thead>
                   <tr className="border-bottom">
                     <th>Пара</th>
@@ -264,8 +313,20 @@ export default function BotManagementCard(props) {
               </table>
             </div>
           </div>
+          {disableRun && (
+            <div className="insufient-funds-warning">
+              Текущие позиции трейдера превыщают Ваш доступный баланс с учетом
+              коэффициента. Пересмотрите коэффициент или пополните баланс на
+              Futures кошельке.
+            </div>
+          )}
           <div className="text-center">
-            <button type="button" className="start-btn mt-4" onClick={run}>
+            <button
+              type="button"
+              className="start-btn mt-4"
+              onClick={run}
+              disabled={disableRun}
+            >
               Запустить
             </button>
           </div>
@@ -293,7 +354,7 @@ export default function BotManagementCard(props) {
           </button>
           <button
             type="button"
-            className="approve-btn  mt-4"
+            className="approve-btn mt-4"
             onClick={() => setApproveModal(false)}
           >
             Отмена

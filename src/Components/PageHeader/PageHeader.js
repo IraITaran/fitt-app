@@ -21,7 +21,9 @@ export default function PageHeader() {
     if (user) {
       UserService.details().then((response) => {
         setUser(response.data);
+        AuthService.updateUserInternal(response.data);
       });
+
       setIsAuthenticated(true);
     }
 
