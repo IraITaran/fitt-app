@@ -23,7 +23,7 @@ export default function Login() {
       formIsValid = true;
     }
 
-    if (!password.match(/^[a-zA-Z0-9]{6,22}$/)) {
+    if (!password.match(/^[a-zA-Z0-9\s!]{6,22}$/)) {
       formIsValid = false;
       setpasswordError(
         "Only Letters and length must be min 8 Chracters and Max 22 Chracters"
