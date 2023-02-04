@@ -166,7 +166,7 @@ export default function BotManagementCard(props) {
                 : "bot-option"
             }
           >
-            <span>Профит:</span> {props.data.roi}%
+            <span>Профит:</span> {props.data.roi.toFixed(0)}%
           </p>
           <p
             className={
@@ -177,7 +177,7 @@ export default function BotManagementCard(props) {
                 : "bot-option"
             }
           >
-            <span>Общий доход:</span> {props.data.pnl}$
+            <span>Общий доход:</span> {props.data.pnl.toFixed(0)}$
           </p>
           <p className="bot-option">
             <span>Депозит:</span> {props.data.balance} USDT
