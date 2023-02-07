@@ -1,7 +1,13 @@
-.header-left {
-  margin-left: 24px;
-  margin-top: 20px;
-  margin-right: auto;
+.header-container {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background: white;
+}
+
+.PageHeader {
+  margin-bottom: 100px;
 }
 
 .PageHeader .fitt-logo {
@@ -12,6 +18,12 @@
 
 .PageHeader ul {
   list-style: none;
+}
+
+.header-left {
+  margin-left: 24px;
+  margin-top: 20px;
+  margin-right: auto;
 }
 
 .header-left ul {
@@ -51,7 +63,7 @@
 }
 
 .header-right {
-  margin-top: 10px;
+  margin-top: 20px;
   margin-right: 24px;
 }
 
