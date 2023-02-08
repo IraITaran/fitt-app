@@ -41,6 +41,14 @@ class UserService {
       { headers: authHeader() }
     );
   }
+
+  requestTelegramCode() {
+    return axios.put(
+      API_URL + "/requestTelegramCode",
+      {},
+      { headers: authHeader() }
+    );
+  }
 }
 
 export default new UserService();

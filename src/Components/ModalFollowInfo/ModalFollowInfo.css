@@ -4,6 +4,19 @@
   color: #262626;
 }
 
+.modal-dialog {
+  max-width: 1000px;
+}
+
+.modal-follow-left {
+  width: 50%;
+  margin-right: 40px;
+}
+
+.modal-follow-right {
+  width: 50%;
+}
+
 .ModalFollowInfo .section-header {
   font-size: 20px;
   font-weight: 400;

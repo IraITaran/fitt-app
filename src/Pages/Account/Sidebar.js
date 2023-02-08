@@ -51,7 +51,7 @@ export default function Sidebar() {
           </li>
           <li className="sidebar-option">
             <img src={BellIcon} alt="bell-icon"></img>
-            <Link to="/">Уведомления</Link>
+            <Link to="/account/notifications">Уведомления</Link>
           </li>
           <li className="sidebar-option">
             <img src={SidebarGiftIcon} alt="gift-icon"></img>
