@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 
 export default function Leader(props) {
   const [positions, setPositions] = useState([]);
+  const [totalPnl, setTotalPNL] = useState(0);
   //const [leaders, setLeaders] = useState([]);
 
   let { leaderId } = useParams();
@@ -22,7 +23,17 @@ export default function Leader(props) {
 
   function updatePositions(leaderId) {
     LeaderService.getPositions(leaderId).then((response) => {
-      setPositions(response.data.sort((x) => x.id));
+      setPositions(
+        response.data.sort(
+          (a, b) => new Date(b.createDate) - new Date(a.createDate)
+        )
+      );
+
+      let total = 0;
+      response.data.forEach((element) => {
+        total += element.pnl;
+      });
+      setTotalPNL(total);
     });
   }
 
@@ -46,15 +57,16 @@ export default function Leader(props) {
           );
         })}
       </select> */}
+      <div>Общий PNL: {totalPnl}</div>
       <table className="leader-position-table m-auto w-100">
         <thead>
           <tr className="border-bottom">
             <th>Общая информация</th>
             <th>Пара</th>
+            <th>Дата открытия</th>
             <th>Short/Buy</th>
             <th>Amount</th>
             <th>Цена входа</th>
-
             <th>ROI</th>
             <th>Общий PnL</th>
             <th>Плечо</th>

@@ -22,6 +22,11 @@ export default function LeaderPosition(props) {
           </div>
         </td>
         <td>{props.data.symbol}</td>
+        <td>
+          {new Date(props.data.createDate).toLocaleDateString("es-ES") +
+            " " +
+            new Date(props.data.createDate).toLocaleTimeString("es-ES")}
+        </td>
         <td
           className={`direction ${
             props.data.direction === 0 ? "green" : "red"
