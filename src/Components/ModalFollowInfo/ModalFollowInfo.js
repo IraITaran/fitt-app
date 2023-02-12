@@ -114,7 +114,11 @@ export default function ModalFollowInfo(props) {
 
   return (
     <div>
-      <Modal show={props.show} onHide={onHide}>
+      <Modal
+        show={props.show}
+        onHide={onHide}
+        className="modal-follow-container"
+      >
         <Modal.Header closeButton></Modal.Header>
         <Modal.Body className="ModalFollowInfo">
           <p className="section-header">За кем следим</p>
