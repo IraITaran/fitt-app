@@ -7,6 +7,7 @@ import TarrifPlans from "./Pages/TarrifPlans/TarrifPlans";
 import About from "./Pages/About";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
+import Payment from "./Pages/Payment/Payment";
 import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
 import Leader from "./Pages/Leader/Leader";
 import AccountRoutes from "./Pages/Account/AccountRoutes";
@@ -28,6 +29,7 @@ function App() {
             <Route path="/confirm-email" element={<ConfirmEmail />} />
             <Route path="/leader/:leaderId" element={<Leader />} />
             <Route path="/account/*" element={<AccountRoutes />} />
+            <Route path="/payment/:subscriptionType" element={<Payment />} />
           </Routes>
           <PageFooter />
         </div>

@@ -49,6 +49,10 @@ class UserService {
       { headers: authHeader() }
     );
   }
+
+  getApiKeys() {
+    return axios.get(API_URL + "/apikey", { headers: authHeader() });
+  }
 }
 
 export default new UserService();

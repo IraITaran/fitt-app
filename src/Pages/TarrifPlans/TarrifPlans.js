@@ -3,6 +3,7 @@ import "./TarrifPlans.css";
 import OptionListIcon from "../../images/option-list-icon.svg";
 import OptionListLightIcon from "../../images/list-light-icon.svg";
 import FrequentQuestions from "./FrequentQuestions";
+import { Link } from "react-router-dom";
 
 export default function TarrifPlans() {
   return (
@@ -53,9 +54,11 @@ export default function TarrifPlans() {
               <img src={OptionListIcon} alt="list - icon" />
               Уведомления в Telegram
             </li>
-            <button type="button" className="tarrif-btn">
-              Выбрать тариф
-            </button>
+            <Link to="/payment/1">
+              <button type="button" className="tarrif-btn">
+                Выбрать тариф
+              </button>
+            </Link>
           </ul>
         </div>
         <div className="option-dark-card">
@@ -80,9 +83,11 @@ export default function TarrifPlans() {
               <img src={OptionListLightIcon} alt="list - icon" />
               Уведомления в Telegram
             </li>
-            <button type="button" className="tarrif-btn">
-              Выбрать тариф
-            </button>
+            <Link to="/payment/2">
+              <button type="button" className="tarrif-btn">
+                Выбрать тариф
+              </button>
+            </Link>
           </ul>
         </div>
         <div className="option-card">
@@ -104,9 +109,11 @@ export default function TarrifPlans() {
               <img src={OptionListIcon} alt="list - icon" />
               Уведомления в Telegram
             </li>
-            <button type="button" className="tarrif-btn">
-              Выбрать тариф
-            </button>
+            <Link to="/payment/3">
+              <button type="button" className="tarrif-btn">
+                Выбрать тариф
+              </button>
+            </Link>
           </ul>
         </div>
       </div>
