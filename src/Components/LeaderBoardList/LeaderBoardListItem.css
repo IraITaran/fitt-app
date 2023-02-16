@@ -1,3 +1,7 @@
+.list-row:hover {
+  transform: scale(1.01);
+}
+
 .leader-icon {
   width: 56px;
   height: 56px;

@@ -49,7 +49,6 @@ export default function LeaderBoardTable(props) {
           data: response,
         });
 
-        console.log("avgPnl: " + response.avgPnl);
         setLeaderAVGBalance(response.avgPnl);
         setCacheAllData(cacheAllData);
         setAllData(response);

@@ -6,6 +6,10 @@
   background-color: white;
 }
 
+.LeaderBoardCardItem:hover {
+  transform: scale(1.05);
+}
+
 .leaderboard-container-item {
   margin: 16px;
 }

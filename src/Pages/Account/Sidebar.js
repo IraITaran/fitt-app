@@ -55,7 +55,7 @@ export default function Sidebar() {
           </li>
           <li className="sidebar-option">
             <img src={SidebarGiftIcon} alt="gift-icon"></img>
-            <Link to="/">Реферальная программа</Link>
+            <Link to="/account/referral-program">Реферальная программа</Link>
           </li>
           <li className="sidebar-option">
             <img src={ApiIcon} alt="api-icon"></img>

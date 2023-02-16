@@ -58,7 +58,7 @@ export default function LeaderBoardListItem(props) {
 
   if (!expand) {
     return (
-      <tr className="border-bottom" onClick={showStatistic}>
+      <tr className="list-row border-bottom" onClick={showStatistic}>
         <td className="d-flex">
           <img
             src={

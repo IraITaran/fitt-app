@@ -1,0 +1,11 @@
+.ReferralProgram {
+  color: #262626;
+}
+
+.ReferralProgram .referral-header {
+  padding: 80px 200px 40px 200px;
+}
+
+.referral-header-left p:first-child {
+  font-size: 72px;
+}

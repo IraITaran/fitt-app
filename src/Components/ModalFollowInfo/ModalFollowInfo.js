@@ -68,7 +68,14 @@ export default function ModalFollowInfo(props) {
   }, [props.leaderBalance]);
 
   useEffect(() => {
-    setCoefficientInput((investInput / props.leaderBalance) * riskInput);
+    if (riskInput > 0) {
+      setCoefficientInput((investInput / props.leaderBalance) * riskInput);
+    } else {
+      setCoefficientInput(
+        investInput / props.leaderBalance / Math.abs(riskInput)
+      );
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [riskInput, investInput]);
 
@@ -279,9 +286,9 @@ export default function ModalFollowInfo(props) {
                     value={investInput}
                     max={availableBalance}
                     step="1"
-                    list="steplist"
+                    list="balance-option-list"
                   />
-                  <datalist id="steplist">
+                  <datalist id="balance-option-list">
                     <option>0</option>
                     <option>{availableBalance / 4}</option>
                     <option>{(availableBalance / 4) * 2}</option>
@@ -299,17 +306,17 @@ export default function ModalFollowInfo(props) {
                       setRiskInput(e.target.value);
                     }}
                     type="range"
-                    min="1"
+                    min="-10"
                     value={riskInput}
                     max="100"
                     step="1"
-                    list="steplist"
+                    list="risk-option-list"
                   />
-                  <datalist id="steplist">
+                  <datalist id="risk-option-list">
+                    <option>-10</option>
                     <option>0</option>
-                    <option>25</option>
-                    <option>50</option>
-                    <option>75</option>
+                    <option>33</option>
+                    <option>66</option>
                     <option>100</option>
                   </datalist>
                   <span id="output">{riskInput}</span>
@@ -323,7 +330,11 @@ export default function ModalFollowInfo(props) {
                           className="btn btn-outline-primary"
                           type="button"
                           onClick={() => {
-                            if (riskInput > 1) {
+                            if (riskInput === 1) {
+                              setRiskInput(-2);
+                              return;
+                            }
+                            if (riskInput > -10) {
                               setRiskInput(Number(riskInput) - 1);
                             }
                           }}
@@ -343,6 +354,10 @@ export default function ModalFollowInfo(props) {
                           className="btn btn-outline-primary"
                           type="button"
                           onClick={() => {
+                            if (riskInput === -2) {
+                              setRiskInput(1);
+                              return;
+                            }
                             if (riskInput < 100) {
                               setRiskInput(Number(riskInput) + 1);
                             }
@@ -355,18 +370,18 @@ export default function ModalFollowInfo(props) {
                   </div>
                 </div>
                 <div className="risk-ratio d-flex justify-content-between align-items-center">
-                  {coefficientInput > 0.0001 && (
+                  {coefficientInput > 0.00001 && (
                     <>
                       <p className="labels">Коэффициент: </p>
                       <div>
                         {" "}
                         <span className="account-amounts">
-                          {coefficientInput.toFixed(4)}
+                          {coefficientInput.toFixed(5)}
                         </span>
                       </div>
                     </>
                   )}
-                  {coefficientInput < 0.0001 && (
+                  {coefficientInput < 0.00001 && (
                     <p className="warn-labels">Коэффициент слишком низкий!</p>
                   )}
                 </div>
@@ -401,9 +416,9 @@ export default function ModalFollowInfo(props) {
                         value={positionControlInput}
                         max="100"
                         step="1"
-                        list="steplist"
+                        list="position-option-list"
                       />
-                      <datalist id="steplist">
+                      <datalist id="position-option-list">
                         <option>0</option>
                         <option>25</option>
                         <option>50</option>
@@ -488,14 +503,14 @@ export default function ModalFollowInfo(props) {
                         value={stopProfitInput}
                         max="999"
                         step="1"
-                        list="steplist"
+                        list="stopprofit-option-list"
                       />
-                      <datalist id="steplist">
+                      <datalist id="stopprofit-option-list">
                         <option>0</option>
-                        <option>25</option>
-                        <option>50</option>
-                        <option>75</option>
-                        <option>100</option>
+                        <option>250</option>
+                        <option>500</option>
+                        <option>750</option>
+                        <option>999</option>
                       </datalist>
                     </div>
                     <div className="max-stop-profit d-flex justify-content-between align-items-center">
@@ -573,9 +588,9 @@ export default function ModalFollowInfo(props) {
                         value={stopLossInput}
                         max="100"
                         step="1"
-                        list="steplist"
+                        list="stoploss-option-list"
                       />
-                      <datalist id="steplist">
+                      <datalist id="stoploss-option-list">
                         <option>0</option>
                         <option>25</option>
                         <option>50</option>
