@@ -276,3 +276,7 @@ input:checked + .slider:before {
   border-radius: 1px;
   background-color: #f1f1f1;
 }
+
+span.green-text {
+  color: #10b866;
+}

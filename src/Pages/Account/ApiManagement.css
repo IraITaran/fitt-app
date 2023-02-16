@@ -12,7 +12,7 @@
 
 .ApiManagement .api-info-container {
   background-color: #fafafa;
-  padding: 49px 43px 147px 44px;
+  padding: 49px 43px 101px 44px;
 }
 
 .api-info-container .api-info-header {
@@ -33,7 +33,7 @@
   position: absolute;
   width: 655px;
   height: 664px;
-  top: 51px;
+  top: 44px;
   right: 20px;
   opacity: 0.99;
 }

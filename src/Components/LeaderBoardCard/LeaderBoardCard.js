@@ -11,7 +11,6 @@ export default function LeaderBoardTable(props) {
   let [currentLeader, setCurrentLeader] = useState({});
   let [showStatisticModal, setShowStatisticModal] = useState(false);
   let [showFollowModal, setShowFollowModal] = useState(false);
-  let [cacheAllData, setCacheAllData] = useState([]);
   let [leaderAVGBalance, setLeaderAVGBalance] = useState(0.0);
 
   let onCardClick = (e, leader) => {
@@ -24,36 +23,19 @@ export default function LeaderBoardTable(props) {
   };
 
   useEffect(() => {
-    if (Object.keys(currentLeader).length === 0) {
-      return;
-    } else {
-      if (cacheAllData.some((x) => x.key === currentLeader.encryptedUid)) {
-        let cachedItem = cacheAllData.find(
-          (x) => x.key === currentLeader.encryptedUid
-        );
+    if (Object.keys(currentLeader).length === 0) return;
 
-        setLeaderAVGBalance(cachedItem.data.avgPnl);
-        setAllData(cachedItem.data);
-      } else {
-        getLeaderStatistic();
-      }
-    }
+    getLeaderStatistic();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLeader]);
 
   function getLeaderStatistic() {
-    LeaderBoardService.getOtherPerformance(currentLeader.encryptedUid).then(
-      (response) => {
-        cacheAllData.push({
-          key: currentLeader.encryptedUid,
-          data: response,
-        });
-
-        setLeaderAVGBalance(response.avgPnl);
-        setCacheAllData(cacheAllData);
-        setAllData(response);
-      }
+    let leaderStatistic = LeaderBoardService.getLeaderStatistic(
+      currentLeader.encryptedUid
     );
+
+    setLeaderAVGBalance(leaderStatistic.avgPnl);
+    setAllData(leaderStatistic);
   }
 
   return (

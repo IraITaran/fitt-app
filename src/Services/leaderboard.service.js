@@ -13,15 +13,28 @@ class LeaderBoardService {
     });
   }
 
-  getOtherPerformance(leaderId) {
-    return axios
+  getLeaderStatistic(leaderId) {
+    let cachedStatistic = localStorage.getItem("leader_stat_" + leaderId);
+    if (cachedStatistic !== null) {
+      return JSON.parse(cachedStatistic);
+    }
+
+    let response = axios
       .get(API_URL + "/getOtherPerformance/" + leaderId)
       .then((response) => {
-        return this.handleOtherPerformanceResponse(response);
+        cachedStatistic = this.handleOtherPerformanceResponse(response);
+        localStorage.setItem(
+          "leader_stat_" + leaderId,
+          JSON.stringify(cachedStatistic)
+        );
+        return cachedStatistic;
       })
       .catch(function (error) {
         console.log(error);
+        return null;
       });
+
+    return response;
   }
 
   getLeaderOpenPositions(leaderId) {

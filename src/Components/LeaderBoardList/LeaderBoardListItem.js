@@ -13,21 +13,6 @@ export default function LeaderBoardListItem(props) {
   let navigate = useNavigate();
 
   useEffect(() => {
-    let changeName = function (name, keyword) {
-      let index = name.toLowerCase().indexOf(keyword.toLowerCase());
-
-      if (index === -1) {
-        return name;
-      }
-
-      let substring = name.substring(index, index + keyword.length);
-
-      return name.replace(
-        substring,
-        '<span class="highlight">' + substring + "</span>"
-      );
-    };
-
     setName(
       props.keyword.length > 0
         ? changeName(props.data.nickName, props.keyword)
@@ -35,11 +20,25 @@ export default function LeaderBoardListItem(props) {
     );
   }, [props.keyword, props.data.nickName]);
 
+  function changeName(name, keyword) {
+    let index = name.toLowerCase().indexOf(keyword.toLowerCase());
+
+    if (index === -1) return name;
+
+    let substring = name.substring(index, index + keyword.length);
+
+    return name.replace(
+      substring,
+      '<span class="highlight">' + substring + "</span>"
+    );
+  }
+
   function showStatistic() {
     if (Object.keys(allData).length === 0) {
-      LeaderBoardService.getOtherPerformance(props.data.encryptedUid).then(
-        setAllData
+      let leaderStatistic = LeaderBoardService.getLeaderStatistic(
+        props.data.encryptedUid
       );
+      setAllData(leaderStatistic);
     }
 
     setExpand(true);

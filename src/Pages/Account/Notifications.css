@@ -1,0 +1,23 @@
+.Notifications {
+  padding: 49px 43px 101px 44px;
+}
+
+.Notifications h1 {
+  font-size: 32px;
+  font-weight: 400;
+  color: #262626;
+}
+
+.Notifications p {
+  margin-bottom: 50px;
+  font-size: 20px;
+  color: #81858c;
+}
+
+.Notifications ol {
+  color: #81858c;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 50px;
+}

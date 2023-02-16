@@ -67,8 +67,8 @@ export default function Sidebar() {
           </li>
         </ul>
       </nav>
-      <div className="logout-section">
-        <img src={Logout} alt="logout-icon" onClick={logout}></img>Выйти
+      <div className="logout-section" onClick={logout}>
+        <img src={Logout} alt="logout-icon"></img>Выйти
       </div>
     </div>
   );

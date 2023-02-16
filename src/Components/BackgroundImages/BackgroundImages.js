@@ -15,11 +15,11 @@ export default function BackgroundImages() {
       <div className="bg-image-bottom"></div>
       <div
         className="bg-image-right"
-        style={{ top: +Math.round(scrollTop / 3 + 372).toString() + "px" }}
+        style={{ top: +Math.round(scrollTop / 3 + 272).toString() + "px" }}
       ></div>
       <div
         className="bg-image-left"
-        style={{ top: +Math.round(scrollTop / 3 + 600).toString() + "px" }}
+        style={{ top: +Math.round(scrollTop / 3 + 400).toString() + "px" }}
       ></div>
     </div>
   );
