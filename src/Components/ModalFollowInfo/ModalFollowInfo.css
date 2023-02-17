@@ -278,5 +278,30 @@ input:checked + .slider:before {
 }
 
 span.green-text {
-  color: #10b866;
+  color: darkorange;
+}
+
+.tooltip2 {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip2 .tooltiptext {
+  visibility: hidden;
+  min-width: 200px;
+  background-color: white;
+  border: 1px solid #000000;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip2:hover .tooltiptext {
+  visibility: visible;
 }

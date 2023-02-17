@@ -18,6 +18,9 @@ export default function PageHeader() {
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
+
+    if (user.userDetails.userRole === "Admin") return;
+
     if (user) {
       UserService.details().then((response) => {
         setUser(response.data);

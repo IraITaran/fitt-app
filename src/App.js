@@ -11,6 +11,7 @@ import Payment from "./Pages/Payment/Payment";
 import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
 import Leader from "./Pages/Leader/Leader";
 import AccountRoutes from "./Pages/Account/AccountRoutes";
+import AdminRoutes from "./Pages/Admin/AdminRoutes";
 import axios from "axios";
 import AuthService from "./Services/auth.service";
 
@@ -29,6 +30,7 @@ function App() {
             <Route path="/confirm-email" element={<ConfirmEmail />} />
             <Route path="/leader/:leaderId" element={<Leader />} />
             <Route path="/account/*" element={<AccountRoutes />} />
+            <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="/payment/:subscriptionType" element={<Payment />} />
           </Routes>
           <PageFooter />

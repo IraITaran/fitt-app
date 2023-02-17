@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import "./LeaderBoardListItem.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 import LeaderAllData from "./LeaderAllData";
-import AuthService from "../../Services/auth.service";
-import { useNavigate } from "react-router-dom";
+
 import LeaderBoardService from "../../Services/leaderboard.service";
 
 export default function LeaderBoardListItem(props) {
   let [name, setName] = useState("");
   let [expand, setExpand] = useState(false);
   let [allData, setAllData] = useState({});
-  let navigate = useNavigate();
 
   useEffect(() => {
     setName(
@@ -46,13 +44,6 @@ export default function LeaderBoardListItem(props) {
 
   function hideStatistic() {
     setExpand(false);
-  }
-
-  function follow(event) {
-    event.stopPropagation();
-    if (!AuthService.isAuthenticated()) {
-      navigate("/login");
-    }
   }
 
   if (!expand) {
@@ -91,7 +82,10 @@ export default function LeaderBoardListItem(props) {
             <div className="circle">
               <span className="star">&#9734;</span>
             </div>
-            <button className="follow-btn" onClick={follow}>
+            <button
+              className="follow-btn"
+              onClick={() => props.onFollowClick()}
+            >
               Следить
             </button>
           </div>

@@ -1,0 +1,62 @@
+.ApiManagement {
+  border-left: 1px solid #dcdfe4;
+  width: 100%;
+}
+
+.ApiManagement h1 {
+  margin-right: auto;
+  font-size: 32px;
+  font-weight: 400;
+  color: #262626;
+}
+
+.ApiManagement .api-info-container {
+  background-color: #fafafa;
+  padding: 49px 43px 101px 44px;
+}
+
+.api-info-container .api-info-header {
+  margin-bottom: 50px;
+}
+
+.api-info-list {
+  color: #81858c;
+  margin-bottom: 0px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.api-info-container .account-bg {
+  background-image: url("../../images/wallet-bg-icon.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  width: 655px;
+  height: 664px;
+  top: 44px;
+  right: 20px;
+  opacity: 0.99;
+}
+
+.admin-users-container .not-found-container {
+  margin: 235px auto 243px auto;
+  text-align: center;
+}
+
+.not-found-container .not-found-icon {
+  margin-bottom: 36px;
+  width: 157px;
+  height: 148px;
+}
+
+.not-found-container p {
+  color: #81858c;
+  font-size: 19px;
+  font-weight: 500;
+}
+
+.apikey-container {
+  padding: 10px 10px;
+  margin: 20px 20px;
+  border: gray 1px solid;
+}

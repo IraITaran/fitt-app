@@ -14,7 +14,7 @@ export default function ModalFollowInfo(props) {
   let [type, setType] = useState(1);
   let [riskInput, setRiskInput] = useState(1);
   let [coefficientInput, setCoefficientInput] = useState(0.0);
-  let [positionControlInput, setPositionControlInput] = useState(10);
+  let [positionControlInput, setPositionControlInput] = useState(80);
   let [stopProfitInput, setStopProfitInput] = useState(10);
   let [stopLossInput, setStopLossInput] = useState(10);
 
@@ -142,18 +142,27 @@ export default function ModalFollowInfo(props) {
                   className="leader-icon"
                 ></img>
                 <div>
-                  <h4 className="leader-name">{props.data.leaderName}</h4>
+                  <h4 className="leader-name">
+                    {props.isUpdate
+                      ? props.data.leaderName
+                      : props.data.nickName}
+                  </h4>
                   <p className="leader-type">USD-M</p>
                 </div>
               </div>
               <div className="mode-selection">
                 <p className="section-header">
                   Выбор режима
-                  <img
-                    src={MoreInfoIcon}
-                    alt="more-info"
-                    className="more-info-icon"
-                  ></img>
+                  <div className="tooltip2">
+                    <img
+                      src={MoreInfoIcon}
+                      alt="more-info"
+                      className="more-info-icon"
+                    ></img>
+                    <span className="tooltiptext">
+                      Выбор режима влияет процесс уведомления
+                    </span>
+                  </div>
                 </p>
 
                 <div className="mode-inputs">
@@ -479,12 +488,17 @@ export default function ModalFollowInfo(props) {
 
               <div className="stop-profit">
                 <div className="d-flex justify-content-between">
-                  <p className="section-header">Стоп профит</p>
+                  <p className="section-header">
+                    Стоп профит{" "}
+                    <span style={{ color: "grey", fontSize: "14px" }}>
+                      (недоступно)
+                    </span>
+                  </p>
                   <label className="switch">
                     <input
                       type="checkbox"
                       checked={stopProfitControl}
-                      onChange={() => setStopProfitControl(!stopProfitControl)}
+                      //  onChange={() => setStopProfitControl(!stopProfitControl)}
                     />
                     <span className="slider round"></span>
                   </label>
@@ -564,12 +578,17 @@ export default function ModalFollowInfo(props) {
               </div>
               <div className="stop-loss">
                 <div className="d-flex justify-content-between">
-                  <p className="section-header">Стоп лосс</p>
+                  <p className="section-header">
+                    Стоп лосс{" "}
+                    <span style={{ color: "grey", fontSize: "14px" }}>
+                      (недоступно)
+                    </span>
+                  </p>
                   <label className="switch">
                     <input
                       type="checkbox"
                       checked={stopLossControl}
-                      onChange={() => setStopLossControl(!stopLossControl)}
+                      // onChange={() => setStopLossControl(!stopLossControl)}
                     />
                     <span className="slider round"></span>
                   </label>
