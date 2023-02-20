@@ -498,6 +498,7 @@ export default function ModalFollowInfo(props) {
                     <input
                       type="checkbox"
                       checked={stopProfitControl}
+                      readOnly
                       //  onChange={() => setStopProfitControl(!stopProfitControl)}
                     />
                     <span className="slider round"></span>
@@ -588,6 +589,7 @@ export default function ModalFollowInfo(props) {
                     <input
                       type="checkbox"
                       checked={stopLossControl}
+                      readOnly
                       // onChange={() => setStopLossControl(!stopLossControl)}
                     />
                     <span className="slider round"></span>

@@ -33,7 +33,7 @@ export default function LeaderBoardCardItem(props) {
         <div className="header-board">
           <img
             src={
-              props.data.userPhotoUrl === ""
+              !props.data.userPhotoUrl?.includes("https")
                 ? UnknownIcon
                 : props.data.userPhotoUrl
             }

@@ -16,10 +16,12 @@ class LeaderBoardService {
   getLeaderStatistic(leaderId) {
     let cachedStatistic = localStorage.getItem("leader_stat_" + leaderId);
     if (cachedStatistic !== null) {
-      return JSON.parse(cachedStatistic);
+      return new Promise((resolve, reject) => {
+        resolve(JSON.parse(cachedStatistic));
+      });
     }
 
-    let response = axios
+    return axios
       .get(API_URL + "/getOtherPerformance/" + leaderId)
       .then((response) => {
         cachedStatistic = this.handleOtherPerformanceResponse(response);
@@ -34,7 +36,9 @@ class LeaderBoardService {
         return null;
       });
 
-    return response;
+    //console.log("server:");
+    // console.log(response);
+    // return response;
   }
 
   getLeaderOpenPositions(leaderId) {

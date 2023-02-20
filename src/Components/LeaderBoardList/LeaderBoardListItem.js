@@ -32,11 +32,14 @@ export default function LeaderBoardListItem(props) {
   }
 
   function showStatistic() {
+    console.log("click list");
     if (Object.keys(allData).length === 0) {
-      let leaderStatistic = LeaderBoardService.getLeaderStatistic(
-        props.data.encryptedUid
+      LeaderBoardService.getLeaderStatistic(props.data.encryptedUid).then(
+        (leaderStatistic) => {
+          console.log(leaderStatistic);
+          setAllData(leaderStatistic);
+        }
       );
-      setAllData(leaderStatistic);
     }
 
     setExpand(true);
@@ -52,7 +55,7 @@ export default function LeaderBoardListItem(props) {
         <td className="d-flex">
           <img
             src={
-              props.data.userPhotoUrl === ""
+              !props.data.userPhotoUrl.includes("https")
                 ? UnknownIcon
                 : props.data.userPhotoUrl
             }

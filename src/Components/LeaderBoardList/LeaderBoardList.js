@@ -16,11 +16,12 @@ export default function LeaderBoardList(props) {
   useEffect(() => {
     if (Object.keys(currentLeader).length === 0) return;
 
-    let leaderStatistic = leaderboardService.getLeaderStatistic(
-      currentLeader.encryptedUid
-    );
+    leaderboardService
+      .getLeaderStatistic(currentLeader.encryptedUid)
+      .then((leaderStatistic) => {
+        setLeaderAVGBalance(leaderStatistic.avgPnl);
+      });
 
-    setLeaderAVGBalance(leaderStatistic.avgPnl);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLeader]);
 

@@ -30,12 +30,13 @@ export default function LeaderBoardTable(props) {
   }, [currentLeader]);
 
   function getLeaderStatistic() {
-    let leaderStatistic = LeaderBoardService.getLeaderStatistic(
-      currentLeader.encryptedUid
+    LeaderBoardService.getLeaderStatistic(currentLeader.encryptedUid).then(
+      (leaderStatistic) => {
+        console.log(leaderStatistic);
+        setLeaderAVGBalance(leaderStatistic.avgPnl);
+        setAllData(leaderStatistic);
+      }
     );
-
-    setLeaderAVGBalance(leaderStatistic.avgPnl);
-    setAllData(leaderStatistic);
   }
 
   return (
@@ -65,7 +66,7 @@ export default function LeaderBoardTable(props) {
             <div className="d-flex">
               <img
                 src={
-                  currentLeader.userPhotoUrl === ""
+                  !currentLeader.userPhotoUrl?.includes("https")
                     ? UnknownIcon
                     : currentLeader.userPhotoUrl
                 }
@@ -123,8 +124,10 @@ export default function LeaderBoardTable(props) {
                   </td>
                 </tr>
               )}
-              {allData.exactWeeklyRoi === 0 ||
-                (allData.exactWeeklyRoi && (
+              {allData.exactWeeklyRoi !== 0 &&
+                allData.exactWeeklyRoi &&
+                allData.exactWeeklyPnl !== 0 &&
+                allData.exactWeeklyPnl && (
                   <tr className="border-bottom">
                     <td>Последние 7 дней</td>
                     <td
@@ -152,8 +155,8 @@ export default function LeaderBoardTable(props) {
                       $
                     </td>
                   </tr>
-                ))}
-              {allData.exactMonthlyRoi && (
+                )}
+              {allData.exactMonthlyRoi !== 0 && allData.exactMonthlyRoi && (
                 <tr className="border-bottom">
                   <td>Последние 30 дней</td>
                   <td
