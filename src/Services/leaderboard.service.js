@@ -35,10 +35,6 @@ class LeaderBoardService {
         console.log(error);
         return null;
       });
-
-    //console.log("server:");
-    // console.log(response);
-    // return response;
   }
 
   getLeaderOpenPositions(leaderId) {

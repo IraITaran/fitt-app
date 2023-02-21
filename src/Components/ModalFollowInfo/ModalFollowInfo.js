@@ -33,7 +33,7 @@ export default function ModalFollowInfo(props) {
       setExchangeBalance(response.data.exchangeBalance.toFixed(0));
       setUsedBalance(response.data.usedBalance);
       setAvailableBalance(
-        response.data.exchangeBalance.toFixed(0) - response.data.usedBalance
+        Math.floor(response.data.exchangeBalance) - response.data.usedBalance
       );
       setType(0);
     });
@@ -126,7 +126,9 @@ export default function ModalFollowInfo(props) {
         onHide={onHide}
         className="modal-follow-container"
       >
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <h5>Настройки слежения</h5>
+        </Modal.Header>
         <Modal.Body className="ModalFollowInfo">
           <p className="section-header">За кем следим</p>
           <div className="d-flex">

@@ -26,52 +26,51 @@ export default function ApiManagement() {
 
   return (
     <>
-      <div className="ApiManagement">
-        <div className="admin-users-container">
-          <table className="leader-position-table m-auto w-100">
-            <thead>
-              <tr className="border-bottom">
-                <th>ID</th>
-                <th>Email</th>
-                <th>Binance Key</th>
-                <th>Used Balance</th>
-                <th>Telegram</th>
-                <th>Status</th>
-                <th>Subscription</th>
-                <th>Created At</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((item, index) => {
-                return (
-                  <tr>
-                    <td>{item.id} </td>
-                    <td>{item.email} </td>
-                    <td>{item.binanceKey ? "Yes" : "No"}</td>
-                    <td>{item.usedBalance}</td>
-                    <td>{item.telegramChatId} </td>
-                    <td>{item.status} </td>
-                    <td>{item.subscription} </td>
-                    <td>{item.dateCreated} </td>
-                    <td>
-                      <button
-                        className="yellow-btn"
-                        onClick={() => {
-                          setCurrentUser(item);
-                          setApproveModal(true);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+      <div className="admin-table-container w-100">
+        <table className="admin-table m-auto w-100">
+          <thead>
+            <tr className="border-bottom">
+              <th>ID</th>
+              <th>Email</th>
+              <th>Binance Key</th>
+              <th>Used Balance</th>
+              <th>Telegram</th>
+              <th>Status</th>
+              <th>Subscription</th>
+              <th>Created At</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((item, index) => {
+              return (
+                <tr>
+                  <td>{item.id} </td>
+                  <td>{item.email} </td>
+                  <td>{item.binanceKey ? "Yes" : "No"}</td>
+                  <td>{item.usedBalance}</td>
+                  <td>{item.telegramChatId} </td>
+                  <td>{item.status} </td>
+                  <td>{item.subscription} </td>
+                  <td>{item.dateCreated} </td>
+                  <td>
+                    <button
+                      className="yellow-btn"
+                      onClick={() => {
+                        setCurrentUser(item);
+                        setApproveModal(true);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
+
       <Modal
         className="approve-modal"
         show={approveModal}

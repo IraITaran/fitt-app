@@ -5,7 +5,7 @@ table {
 }
 
 .leader-position-table .leader-position-item th,
-td,
+.leader-position-table .leader-position-item td,
 .leader-position-table .leader-position-item tr .direction {
   padding: 15px 40px;
 }

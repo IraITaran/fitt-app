@@ -39,7 +39,7 @@ export default function LeaderBoardList(props) {
 
   return (
     <>
-      <table className="m-auto w-100">
+      <table className="leader-table-container m-auto w-100">
         <thead>
           <tr className="border-bottom">
             <th>Общая информация</th>

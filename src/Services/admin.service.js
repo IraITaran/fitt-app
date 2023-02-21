@@ -16,6 +16,10 @@ class AdminService {
   getAllBots() {
     return axios.get(BOTAPI_URL, { headers: authHeader() });
   }
+
+  deleteBot(botId) {
+    return axios.delete(BOTAPI_URL + "/" + botId, { headers: authHeader() });
+  }
 }
 
 export default new AdminService();

@@ -60,7 +60,9 @@ export default function LeaderBoardTable(props) {
         show={showStatisticModal}
         onHide={() => setShowStatisticModal(false)}
       >
-        <Modal.Header closeButton></Modal.Header>
+        <Modal.Header closeButton>
+          <h5>Статистика трейдера</h5>
+        </Modal.Header>
         <Modal.Body>
           <div className="d-flex card-all-data">
             <div className="d-flex">

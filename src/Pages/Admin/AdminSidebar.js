@@ -25,7 +25,7 @@ export default function AdminSidebar() {
           </li>
           <li className="sidebar-option">
             <img src={SidebarLockIcon} alt="lock-icon"></img>
-            <Link to="/admin/leaders">Leaders</Link>
+            <Link to="/admin/bots">Bots</Link>
           </li>
           {/* <li className="sidebar-option">
             <img src={QuestionIcon} alt="question-icon"></img>
