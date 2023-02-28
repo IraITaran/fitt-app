@@ -672,10 +672,7 @@ export default function ModalFollowInfo(props) {
               </div>
             </div>
           </div>
-          <span className="green-text">
-            После сохранения бот не будет запущен автоматически, для запуска
-            бота перейдите в личный кабинет на вкладку "Мои боты".
-          </span>
+
           <button
             type="button"
             className="follow-btn w-100 mt-4"

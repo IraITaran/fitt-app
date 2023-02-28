@@ -49,7 +49,11 @@ export default function BotManagement() {
           show={showFollowModal}
           data={currentBot}
           leaderBalance={
-            (currentBot.balance * currentBot.risk) / currentBot.coefficient
+            currentBot.risk > 0
+              ? (currentBot.balance * currentBot.risk) / currentBot.coefficient
+              : currentBot.balance /
+                Math.abs(currentBot.risk) /
+                currentBot.coefficient
           }
           onHide={() => setShowFollowModal(false)}
           onUpdate={() => {

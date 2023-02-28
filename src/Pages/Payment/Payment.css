@@ -1,0 +1,49 @@
+.Payment {
+  padding: 64px 200px 60px;
+}
+
+.payment-option-card {
+  width: 384px;
+  height: 377px;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: white;
+  padding: 32px 24px;
+  margin-left: auto;
+}
+
+.payment-option-card .option-name {
+  font-size: 20px;
+  font-weight: 400px;
+  line-height: 23px;
+  margin-bottom: 12px;
+}
+
+.payment-option-card .option-price {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.payment-option-card .option-price span {
+  font-size: 32px;
+}
+
+.payment-option-card ul {
+  margin-top: 32px;
+  list-style: none;
+  padding: 0px;
+}
+
+.payment-option-card ul li {
+  font-size: 16px;
+  line-height: 25px;
+}
+
+.payment-option-card ul li:first-child,
+.payment-option-card ul li:nth-child(2) {
+  margin-bottom: 18px;
+}
+
+.payment-option-card ul img {
+  margin-right: 12px;
+}
