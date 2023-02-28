@@ -3,11 +3,17 @@ import "./AccountWallet.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 import MoreInfoIcon from "../../images/more-info-icon.svg";
 import UserService from "../../Services/user.service";
+import AuthService from "../../Services/auth.service";
 
 export default function AccountWallet() {
-  const [sessions, setSessions] = useState([]);
+  let [sessions, setSessions] = useState([]);
+  let [user, setUser] = useState({});
 
   useEffect(() => {
+    let user = AuthService.getCurrentUser();
+    if (user) {
+      setUser(user.userDetails);
+    }
     UserService.sessions().then((response) => {
       setSessions(response.data);
     });
@@ -25,15 +31,24 @@ export default function AccountWallet() {
             ></img>
           </div>
           <div>
-            <p className="wallet-username">Anonymous-user-2234</p>
+            <p className="wallet-username">{user?.email}</p>
             <div className="d-flex">
               <div className="userId">
                 <p>ID пользователя</p>
-                <p>586734352</p>
+                <p>{user?.id}</p>
               </div>
               <div className="last-login">
                 <p>Время последнего входа</p>
-                <p>2021-01-06 18:23:01 (46.34.203.123)</p>
+                <p>
+                  {new Date(sessions[0]?.createdDate).toLocaleDateString(
+                    "es-ES"
+                  ) +
+                    " " +
+                    new Date(sessions[0]?.createdDate).toLocaleTimeString(
+                      "es-ES"
+                    )}{" "}
+                  ({sessions[0]?.data.ip})
+                </p>
               </div>
             </div>
           </div>
@@ -48,8 +63,8 @@ export default function AccountWallet() {
                 className="more-info-icon"
               ></img>
             </p>
-            <p>19102.18 USD</p>
-            <p>1.00001 BTC</p>
+            <p>{user?.exchangeBalance?.toFixed(2)} USD</p>
+            <p></p>
           </div>
           <div className="referrals">
             <p>
@@ -93,12 +108,12 @@ export default function AccountWallet() {
           <tbody>
             {sessions.map(function (session, index) {
               return (
-                <tr key="{index}">
+                <tr key={index}>
                   <td>
                     {new Date(session.createdDate).toLocaleDateString("es-ES") +
                       " " +
                       new Date(session.createdDate).toLocaleTimeString("es-ES")}
-                  </td>{" "}
+                  </td>
                   <td>{session.data.ip}</td>
                   <td>{session.data.os}</td>
                   <td>{session.data.browser}</td>

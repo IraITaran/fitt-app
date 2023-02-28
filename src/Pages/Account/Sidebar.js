@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
 import SideBarHideIcon from "../../images/sidebar-hide-icon.svg";
@@ -14,7 +14,16 @@ import AuthService from "../../Services/auth.service";
 import { useNavigate } from "react-router-dom";
 
 export default function Sidebar() {
+  let [user, setUser] = useState({});
   let navigate = useNavigate();
+
+  useEffect(() => {
+    let user = AuthService.getCurrentUser();
+    if (user) {
+      setUser(user.userDetails);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function logout() {
     AuthService.logout();
@@ -25,8 +34,8 @@ export default function Sidebar() {
     <div className="Sidebar">
       <div className="sidebar-header d-flex">
         <div className="sidebar-user-info">
-          <p>vl***gmail.com</p>
-          <p>UID:zoh3g19</p>
+          <p>{user.email}</p>
+          <p>UID: {user.id}</p>
         </div>
         <div className="sidebar-icon d-flex justify-content-center align-items-center">
           <img
