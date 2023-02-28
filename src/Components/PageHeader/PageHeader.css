@@ -4,6 +4,7 @@
   width: 100%;
   z-index: 100;
   background: white;
+  border: 1px solid lightgrey;
 }
 
 .PageHeader {
@@ -22,7 +23,7 @@
 
 .header-left {
   margin-left: 24px;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-right: auto;
 }
 

@@ -21,7 +21,7 @@ export default function Signup() {
   const handleValidation = (event) => {
     let formIsValid = true;
 
-    if (!email.match(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)) {
+    if (!email.match(/[\w\-\._]+@[\w\-\._]+\.\w{2,10}/)) {
       formIsValid = false;
       setemailError("Email Not Valid");
       return false;
@@ -30,10 +30,14 @@ export default function Signup() {
       formIsValid = true;
     }
 
-    if (!password.match(/^[a-zA-Z0-9]{8,22}$/)) {
+    if (
+      !password.match(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,22}$/
+      )
+    ) {
       formIsValid = false;
       setpasswordError(
-        "Only Letters and length must best min 8 Chracters and Max 22 Chracters"
+        "At least one letter, one number and one special character and length must be min 8 Chracters and Max 22 Chracters"
       );
 
       return false;

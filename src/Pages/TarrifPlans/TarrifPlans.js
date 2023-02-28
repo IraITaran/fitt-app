@@ -14,25 +14,6 @@ export default function TarrifPlans() {
       <p className="text-center choice">
         Выберите срок и тариф, который будет подходить вам больше всего
       </p>
-      <div className="duration-inputs d-flex justify-content-center">
-        <form>
-          <label className="me-4">
-            <input
-              type="radio"
-              name="duration"
-              value="1-month"
-              defaultChecked
-            />{" "}
-            1 месяц
-          </label>
-          <label className="me-4">
-            <input type="radio" name="duration" value="3-months" /> 3 месяца
-          </label>
-          <label>
-            <input type="radio" name="duration" value="1-year" /> 1 год
-          </label>
-        </form>
-      </div>
 
       <div className="tarrifs-option-container d-flex align-items-center justify-content-center">
         <div className="option-card">

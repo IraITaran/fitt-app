@@ -26,6 +26,16 @@ class UserService {
     );
   }
 
+  sendEmailVerificationCode() {
+    return axios.post(
+      API_URL + "/confirm-email",
+      {},
+      {
+        headers: authHeader(),
+      }
+    );
+  }
+
   details() {
     return axios.get(API_URL + "/details", { headers: authHeader() });
   }

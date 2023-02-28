@@ -17,7 +17,11 @@ export default function BotManagement() {
 
   function updateList() {
     BotService.getBots().then((response) => {
-      setBotList(response.data);
+      setBotList(
+        response.data.sort(
+          (a, b) => new Date(a.createdDate) - new Date(b.createdDate)
+        )
+      );
     });
   }
 
@@ -40,19 +44,21 @@ export default function BotManagement() {
           );
         })}
       </div>
-      <ModalFollowInfo
-        show={showFollowModal}
-        data={currentBot}
-        leaderBalance={
-          (currentBot.balance * currentBot.risk) / currentBot.coefficient
-        }
-        onHide={() => setShowFollowModal(false)}
-        onUpdate={() => {
-          setShowFollowModal(false);
-          updateList();
-        }}
-        isUpdate={true}
-      />
+      {showFollowModal && (
+        <ModalFollowInfo
+          show={showFollowModal}
+          data={currentBot}
+          leaderBalance={
+            (currentBot.balance * currentBot.risk) / currentBot.coefficient
+          }
+          onHide={() => setShowFollowModal(false)}
+          onUpdate={() => {
+            setShowFollowModal(false);
+            updateList();
+          }}
+          isUpdate={true}
+        />
+      )}
     </>
   );
 }

@@ -15,6 +15,7 @@ import authService from "../../Services/auth.service";
 export default function BotManagementCard(props) {
   let [modal, setModal] = useState(false);
   let [approveModal, setApproveModal] = useState(false);
+  let [subscriptionModal, setSubscriptionModal] = useState(false);
 
   let [runOption, setRunOption] = useState(0);
   let [leaderPositions, setLeaderPositions] = useState([]);
@@ -40,16 +41,17 @@ export default function BotManagementCard(props) {
         setLeaderPositions(positions);
 
         let filteredList = positions.filter((x) => x.pnl < 0);
-        let totalAmount = 0;
+        let totalNegativeAmount = 0;
 
         filteredList.forEach((item) => {
-          totalAmount +=
+          totalNegativeAmount +=
             (item.markPrice * Math.abs(item.amount) * props.data.coefficient) /
             item.leverage;
         });
 
-        setNegativePNLChoiceAmount(totalAmount.toFixed(0));
+        setNegativePNLChoiceAmount(totalNegativeAmount.toFixed(0));
 
+        let totalAmount = 0;
         positions.forEach((item) => {
           totalAmount +=
             (item.markPrice * Math.abs(item.amount) * props.data.coefficient) /
@@ -57,7 +59,6 @@ export default function BotManagementCard(props) {
         });
 
         setAllPositionChoiceAmount(totalAmount.toFixed(0));
-        setDisableRun(userAvailableBalance < totalAmount);
       }
     );
     setModal(true);
@@ -75,6 +76,13 @@ export default function BotManagementCard(props) {
   }
 
   function run() {
+    var user = authService.getCurrentUser();
+
+    if (user.userDetails.subscription === 0) {
+      setSubscriptionModal(true);
+      return;
+    }
+
     BotService.run(props.data.id, runOption)
       .then((response) => {
         setModal(false);
@@ -238,7 +246,10 @@ export default function BotManagementCard(props) {
                 type="radio"
                 name="following-option"
                 value={1}
-                onChange={(e) => setRunOption(e.target.value)}
+                onChange={(e) => {
+                  setRunOption(e.target.value);
+                  setDisableRun(availableBalance < negativePNLChoiceAmount);
+                }}
               />
               Копировать позиции с отрицательным PNL-ROI{" "}
               <span
@@ -254,7 +265,10 @@ export default function BotManagementCard(props) {
                 type="radio"
                 name="following-option"
                 value={2}
-                onChange={(e) => setRunOption(e.target.value)}
+                onChange={(e) => {
+                  setRunOption(e.target.value);
+                  setDisableRun(availableBalance < allPositionChoiceAmount);
+                }}
               />
               Копироват все открытые позиции{" "}
               <span
@@ -356,6 +370,39 @@ export default function BotManagementCard(props) {
             type="button"
             className="approve-btn mt-4"
             onClick={() => setApproveModal(false)}
+          >
+            Отмена
+          </button>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        className="approve-modal"
+        show={subscriptionModal}
+        onHide={() => setSubscriptionModal(false)}
+      >
+        <Modal.Header closeButton>
+          <h4 className="approve-header">Оплата Подписки</h4>
+        </Modal.Header>
+        <Modal.Body>
+          <h4 className="approve-text">
+            У Вас нет активной подписки. Вы сможете запустить бота после оплаты
+            подписки.
+          </h4>
+          <button
+            type="button"
+            className="green approve-btn mt-4"
+            onClick={() => {
+              navigate("/tarrifs");
+              setSubscriptionModal(false);
+            }}
+          >
+            Выбрать подписку
+          </button>
+          <button
+            type="button"
+            className="approve-btn mt-4"
+            onClick={() => setSubscriptionModal(false)}
           >
             Отмена
           </button>

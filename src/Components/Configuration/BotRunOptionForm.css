@@ -1,20 +1,25 @@
-.BotManagementCard {
-  min-width: 580px;
-  height: 262px;
-  padding: 25px 30px;
+.BotRunOptionForm {
   background-color: #ffffff;
   border: 1px solid #ffffff;
-  margin: 10px;
 }
 
-.BotManagementCard .user-account-icon {
+.BotRunOptionForm .bot-option-container {
+  border: 1px solid #dde0e5;
+  border-radius: 4px;
+  padding: 20px 25px;
+
+  width: 70%;
+  margin: 30px auto;
+}
+
+.BotRunOptionForm .user-account-icon {
   width: 54px;
   height: 54px;
   margin-right: 13px;
   margin-bottom: 30px;
 }
 
-.BotManagementCard .col:first-child {
+.BotRunOptionForm .col:first-child {
   min-width: 290px;
 }
 
@@ -94,41 +99,26 @@
   font-size: 20px;
 }
 
-.approve-text {
-  margin: 20px;
-  text-align: center;
-  font-weight: 250;
-  font-size: 18px;
-}
-
-.run-bot-modal .modal-content {
-  width: 900px;
-  right: 40%;
-  margin-top: 10%;
-}
-
-.run-bot-modal h5 {
+.bot-option-container h5 {
   margin-top: 30px;
 }
 
-.run-bot-modal th,
-.run-bot-modal td,
-.run-bot-modal tr .direction {
+.BotRunOptionForm .table-container {
+  height: auto;
+}
+
+.bot-option-container th,
+.bot-option-container td,
+.bot-option-container tr .direction {
   width: 0;
-  padding: 10px 40px;
+  padding: 10px 0px;
   font-size: 14px !important;
 }
 
-.run-bot-modal .insufient-funds-warning {
+.bot-option-container .insufient-funds-warning {
+  padding-top: 20px;
   color: red;
   text-align: center;
-}
-
-.approve-modal .modal-dialog {
-  top: 130px;
-  max-width: 400px;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .approve-btn {
@@ -148,11 +138,6 @@
   font-weight: 500;
 }
 
-.table-container {
-  overflow-y: scroll;
-  height: 300px;
-}
-
 .radio-buttons-wrapper {
   width: 900px;
   margin: 10px 30px;
@@ -164,6 +149,11 @@
 
 .radio-buttons-wrapper span.red {
   color: #ff0000;
+}
+
+.bot-options-button-container {
+  width: 30%;
+  margin: 0 auto;
 }
 
 .approve-btn.green {

@@ -118,6 +118,11 @@
   margin: 0;
 }
 
+.session-container th,
+.session-container td {
+  padding: 10px 40px;
+}
+
 .user-info-container .account-bg {
   background-image: url("../../images/wallet-bg-icon.svg");
   background-size: cover;

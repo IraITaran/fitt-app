@@ -61,6 +61,43 @@ class BotService {
     );
   }
 
+  save(botConfiguration) {
+    return axios.post(
+      API_URL,
+      {
+        leaderKey: botConfiguration.leaderId,
+        leaderName: botConfiguration.nickName,
+        type: botConfiguration.type,
+        balance: botConfiguration.balance,
+        coefficient: botConfiguration.coefficient,
+        risk: botConfiguration.risk,
+        positionControl: botConfiguration.positionControl,
+        stopLoss: botConfiguration.stopLoss,
+        stopProfit: botConfiguration.stopProfit,
+      },
+      { headers: authHeader() }
+    );
+  }
+
+  saveAndRun(botConfiguration, runOption) {
+    console.log(botConfiguration);
+    return axios.post(
+      API_URL + "/saveAndRun/" + runOption,
+      {
+        leaderKey: botConfiguration.leaderId,
+        leaderName: botConfiguration.nickName,
+        type: botConfiguration.type,
+        balance: botConfiguration.balance,
+        coefficient: botConfiguration.coefficient,
+        risk: botConfiguration.risk,
+        positionControl: botConfiguration.positionControl,
+        stopLoss: botConfiguration.stopLoss,
+        stopProfit: botConfiguration.stopProfit,
+      },
+      { headers: authHeader() }
+    );
+  }
+
   update(
     id,
     leaderKey,

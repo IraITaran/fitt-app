@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./LeaderBoardCardItem.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 
@@ -68,9 +69,11 @@ export default function LeaderBoardCardItem(props) {
           <div className="circle">
             <span className="star">&#9734;</span>
           </div>
-          <button type="button" className="follow-btn">
-            Следить
-          </button>
+          <Link to={"/follow/" + props.data.encryptedUid}>
+            <button type="button" className="follow-btn">
+              Следить
+            </button>
+          </Link>
         </div>
       </div>
     </div>

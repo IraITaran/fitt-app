@@ -59,7 +59,7 @@ export default function LeaderPosition(props) {
       {props.data.history?.map(function (history, index) {
         return (
           <tr
-            className="border-bottom"
+            className="leader-position-item border-bottom"
             style={{ backgroundColor: "lightgray" }}
             key={"history_" + props.data.id + "_" + index}
           >

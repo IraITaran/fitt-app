@@ -3,6 +3,10 @@ import axios from "axios";
 const API_URL = "https://fitt.ink/api/leaderboard";
 
 class LeaderBoardService {
+  getLeaderInfo(leaderId) {
+    return axios.get(API_URL + "/getLeaderInfo/" + leaderId);
+  }
+
   search(sortChoice, periodChoice) {
     return axios.post(API_URL + "/getLeaderboardRank", {
       tradeType: "PERPETUAL",

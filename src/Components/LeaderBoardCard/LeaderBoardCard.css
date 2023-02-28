@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.leaderboard-card-table th,
+.leaderboard-card-table td {
+  padding: 15px 40px;
+}
+
 .card-all-data .follow-btn {
   width: 108px;
 }

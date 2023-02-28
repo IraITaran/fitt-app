@@ -30,7 +30,7 @@ export default function ModalFollowInfo(props) {
 
   useEffect(() => {
     UserService.details().then((response) => {
-      setExchangeBalance(response.data.exchangeBalance.toFixed(0));
+      setExchangeBalance(response.data.exchangeBalance?.toFixed(0));
       setUsedBalance(response.data.usedBalance);
       setAvailableBalance(
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance
@@ -41,10 +41,20 @@ export default function ModalFollowInfo(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function updateCoefficient() {
+    if (riskInput > 0) {
+      setCoefficientInput((investInput / props.leaderBalance) * riskInput);
+    } else {
+      setCoefficientInput(
+        investInput / props.leaderBalance / Math.abs(riskInput)
+      );
+    }
+  }
+
   useEffect(() => {
     let availableBalance = exchangeBalance - usedBalance;
     setAvailableBalance(availableBalance);
-    setCoefficientInput((investInput / props.leaderBalance) * riskInput);
+    updateCoefficient();
 
     if (props.isUpdate) {
       console.log(props.data);
@@ -68,13 +78,7 @@ export default function ModalFollowInfo(props) {
   }, [props.leaderBalance]);
 
   useEffect(() => {
-    if (riskInput > 0) {
-      setCoefficientInput((investInput / props.leaderBalance) * riskInput);
-    } else {
-      setCoefficientInput(
-        investInput / props.leaderBalance / Math.abs(riskInput)
-      );
-    }
+    updateCoefficient();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [riskInput, investInput]);

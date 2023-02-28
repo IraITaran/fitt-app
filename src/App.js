@@ -12,6 +12,7 @@ import ConfirmEmail from "./Pages/ConfirmEmail/ConfirmEmail";
 import Leader from "./Pages/Leader/Leader";
 import AccountRoutes from "./Pages/Account/AccountRoutes";
 import AdminRoutes from "./Pages/Admin/AdminRoutes";
+import MultistepFollow from "./Pages/MultistepFollow/MultistepFollow";
 import axios from "axios";
 import AuthService from "./Services/auth.service";
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/account/*" element={<AccountRoutes />} />
             <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="/payment/:subscriptionType" element={<Payment />} />
+            <Route path="/follow/:leaderId" element={<MultistepFollow />} />
           </Routes>
           <PageFooter />
         </div>

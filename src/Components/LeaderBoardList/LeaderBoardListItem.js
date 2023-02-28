@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./LeaderBoardListItem.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 import LeaderAllData from "./LeaderAllData";
+import { Link } from "react-router-dom";
 
 import LeaderBoardService from "../../Services/leaderboard.service";
 
@@ -32,11 +33,9 @@ export default function LeaderBoardListItem(props) {
   }
 
   function showStatistic() {
-    console.log("click list");
     if (Object.keys(allData).length === 0) {
       LeaderBoardService.getLeaderStatistic(props.data.encryptedUid).then(
         (leaderStatistic) => {
-          console.log(leaderStatistic);
           setAllData(leaderStatistic);
         }
       );
@@ -85,12 +84,9 @@ export default function LeaderBoardListItem(props) {
             <div className="circle">
               <span className="star">&#9734;</span>
             </div>
-            <button
-              className="follow-btn"
-              onClick={() => props.onFollowClick()}
-            >
-              Следить
-            </button>
+            <Link to={"/follow/" + props.data.encryptedUid}>
+              <button className="follow-btn">Следить</button>
+            </Link>
           </div>
         </td>
       </tr>

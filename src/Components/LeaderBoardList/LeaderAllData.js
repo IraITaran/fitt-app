@@ -1,6 +1,7 @@
 import React from "react";
 import UnknownIcon from "../../images/unknown-icon.png";
 import "./LeaderAllData.css";
+import { Link } from "react-router-dom";
 
 export default function LeaderAllData(props) {
   return (
@@ -30,9 +31,11 @@ export default function LeaderAllData(props) {
             <div className="circle">
               <span className="star">&#9734;</span>
             </div>
-            <button type="button" className="follow-btn ms-2">
-              Следить
-            </button>
+            <Link to={"/follow/" + props.data.encryptedUid}>
+              <button type="button" className="follow-btn ms-2">
+                Следить
+              </button>
+            </Link>
           </div>
         </div>
 

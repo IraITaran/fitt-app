@@ -50,7 +50,8 @@ export default function ApiManagement() {
               return (
                 <tr>
                   <td>
-                    <b>{item.leaderName}</b> <br />
+                    <span className="leader-name">{item.leaderName}</span>{" "}
+                    <br />
                     {item.leaderKey}
                   </td>
                   <td>{item.userId}</td>

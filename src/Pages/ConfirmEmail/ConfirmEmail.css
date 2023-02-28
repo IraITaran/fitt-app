@@ -1,5 +1,5 @@
 .ConfirmEmail {
-  margin-top: 80px;
+  margin-top: 180px;
   margin-bottom: 200px;
 }
 /* 
@@ -16,9 +16,17 @@
   text-align: center;
 } */
 
+.ConfirmEmail .submit-code-btn {
+  width: 250px;
+}
+
 .ReactInputVerificationCode__container {
   margin: 0 auto;
   margin-top: 40px;
+}
+
+.confirm-email-button-container {
+  margin: 0 auto;
 }
 
 .submit-code-btn {
@@ -27,5 +35,5 @@
   border-radius: 4px;
   padding: 10px 10px;
   display: block;
-  margin: 35px auto;
+  margin: 35px 10px;
 }

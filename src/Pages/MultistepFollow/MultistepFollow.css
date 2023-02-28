@@ -1,0 +1,34 @@
+.multistep-container {
+  justify-content: center;
+}
+
+.go2392553372 {
+  padding: 0px;
+}
+
+.go3842760039:before {
+  background-color: #feeb61;
+  color: #feeb61;
+}
+
+.go433304200:before {
+  background-color: #feeb61;
+}
+
+.go2150698616:hover {
+  color: #feeb61;
+}
+
+.go2392553372 ~ div:last-child {
+  text-align: center;
+  margin-top: -20px;
+}
+
+.multistep-container .yellow-btn:disabled {
+  background-color: lightgrey;
+  border: 1px solid lightgrey;
+}
+
+.multistep-button-container {
+  text-align: center;
+}

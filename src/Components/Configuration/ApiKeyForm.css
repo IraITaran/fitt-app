@@ -1,0 +1,72 @@
+.ApiKeyForm {
+  padding: 48px;
+  width: 700px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.apikey-container {
+  border: 1px solid #dde0e5;
+  border-radius: 4px;
+  padding: 30px 25px;
+}
+
+.apikey-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.apikey-inputs-container label {
+  font-size: 12px;
+  color: #81858c;
+  margin-bottom: 20px;
+}
+
+.apikey-inputs-container label:last-child {
+  margin-bottom: 12px;
+}
+
+.apikey-inputs-container .apikey-input {
+  height: 40px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #dde0e5;
+  padding: 12px auto 12px 15px;
+  font-size: 14px;
+  color: #000000;
+  margin-top: 8px;
+}
+
+.apikey-description {
+  color: #9a9a9a;
+  font-size: 12px;
+  text-align: center;
+  line-height: 19px;
+  margin-bottom: 0px;
+}
+
+.apikey-description a {
+  text-decoration: none;
+  color: #9a9a9a;
+}
+
+.save-btn {
+  border: 1px solid #feeb61;
+  background-color: #feeb61;
+  border-radius: 4px;
+  width: 207px;
+  height: 40px;
+  margin: 0 auto;
+  color: #080808;
+  padding: 24px, 32px, 24px, 32px;
+  font-size: 14px;
+}
+
+.red {
+  color: red;
+  font-size: 14px;
+}
+.green {
+  color: #10b866;
+  font-size: 14px;
+}

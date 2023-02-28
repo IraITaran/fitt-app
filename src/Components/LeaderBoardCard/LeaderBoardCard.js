@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import LeaderBoardCardItem from "./LeaderBoardCardItem";
 import "./LeaderBoardCard.css";
 import Modal from "react-bootstrap/Modal";
 import UnknownIcon from "../../images/unknown-icon.png";
-import ModalFollowInfo from "../ModalFollowInfo/ModalFollowInfo";
 import LeaderBoardService from "../../Services/leaderboard.service";
 
 export default function LeaderBoardTable(props) {
   let [allData, setAllData] = useState({});
   let [currentLeader, setCurrentLeader] = useState({});
   let [showStatisticModal, setShowStatisticModal] = useState(false);
-  let [showFollowModal, setShowFollowModal] = useState(false);
-  let [leaderAVGBalance, setLeaderAVGBalance] = useState(0.0);
 
   let onCardClick = (e, leader) => {
     setCurrentLeader(leader);
-    if (e.target.localName === "button") {
-      setShowFollowModal(true);
-    } else {
+    if (!(e.target.localName === "button")) {
       setShowStatisticModal(true);
     }
   };
@@ -32,8 +28,6 @@ export default function LeaderBoardTable(props) {
   function getLeaderStatistic() {
     LeaderBoardService.getLeaderStatistic(currentLeader.encryptedUid).then(
       (leaderStatistic) => {
-        console.log(leaderStatistic);
-        setLeaderAVGBalance(leaderStatistic.avgPnl);
         setAllData(leaderStatistic);
       }
     );
@@ -50,12 +44,7 @@ export default function LeaderBoardTable(props) {
           );
         })}
       </div>
-      <ModalFollowInfo
-        show={showFollowModal}
-        data={currentLeader}
-        onHide={() => setShowFollowModal(false)}
-        leaderBalance={leaderAVGBalance}
-      />
+
       <Modal
         show={showStatisticModal}
         onHide={() => setShowStatisticModal(false)}
@@ -85,13 +74,15 @@ export default function LeaderBoardTable(props) {
               <div className="circle">
                 <span className="star">&#9734;</span>
               </div>
-              <button type="button" className="follow-btn ms-2">
-                Следить
-              </button>
+              <Link to={"/follow/" + currentLeader.encryptedUid}>
+                <button type="button" className="follow-btn ms-2">
+                  Следить
+                </button>
+              </Link>
             </div>
           </div>
 
-          <table className="m-auto">
+          <table className="m-auto leaderboard-card-table">
             <thead>
               <tr className="border-bottom">
                 <th>Временной интервал</th>
