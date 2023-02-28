@@ -21,7 +21,7 @@ export default function Signup() {
   const handleValidation = (event) => {
     let formIsValid = true;
 
-    if (!email.match(/[\w\-\._]+@[\w\-\._]+\.\w{2,10}/)) {
+    if (!email.match(/[\w\-_]+@[\w\-_]+\w{2,10}/)) {
       formIsValid = false;
       setemailError("Email Not Valid");
       return false;
