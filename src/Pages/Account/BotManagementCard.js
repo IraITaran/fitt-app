@@ -37,7 +37,10 @@ export default function BotManagementCard(props) {
 
     LeaderboardService.getLeaderOpenPositions(props.data.leaderKey).then(
       (response) => {
-        let positions = response.data.data.otherPositionRetList;
+        let positions =
+          response.data.data.otherPositionRetList === null
+            ? []
+            : response.data.data.otherPositionRetList;
         setLeaderPositions(positions);
 
         let filteredList = positions.filter((x) => x.pnl < 0);

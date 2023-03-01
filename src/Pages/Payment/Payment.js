@@ -3,6 +3,9 @@ import "./Payment.css";
 import { useParams } from "react-router-dom";
 import paymentService from "../../Services/payment.service";
 import OptionListIcon from "../../images/option-list-icon.svg";
+import BitcoinIcon from "../../images/bitcoin-icon.svg";
+import ApplePayIcon from "../../images/apple-pay-icon.svg";
+import CreditCardIcon from "../../images/credit-card-icon.svg";
 
 export default function Payment() {
   let [invoice, setInvoice] = useState("");
@@ -20,38 +23,79 @@ export default function Payment() {
       <div className="row">
         <div className="payment-info-container col">
           <h1>Подтверждение и оплата</h1>
-          <div className="personal-data payment-section">
-            <h6>1. Персональная информация</h6>
-            <label>
-              Email
-              <input></input>
-            </label>
-            <label>
-              Имя
-              <input></input>
-            </label>
-            <label>
-              Фамилия
-              <input></input>
-            </label>
+          <div className="payment-method payment-section">
+            <h6>1. Способ оплаты</h6>
+            <div className="payment-method-input">
+              <label>
+                <img src={BitcoinIcon} alt="bitcoin-icon" />
+                Криптовалютой
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="Криптовалютой"
+                  className="radio"
+                  defaultChecked
+                />
+              </label>
+            </div>
+            <div className="payment-method-input">
+              <label>
+                <img src={CreditCardIcon} alt="credit-card-icon" />
+                Кредитной картой
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="Кредитной картой"
+                  className="radio"
+                />
+              </label>
+            </div>
+            <div className="credit-card-info">
+              <label className="credit-number-input">
+                Номер карты*
+                <input type="text" placeholder="1234 1234 1234 1234"></input>
+              </label>
+              <div className="row">
+                <label className="col">
+                  Дата окончания*
+                  <input type="text" placeholder="ДД / ГГ"></input>
+                </label>
+                <label className="col">
+                  CVC*
+                  <input type="text" placeholder="***"></input>
+                </label>
+              </div>
+            </div>
+            <div className="payment-method-input">
+              <label>
+                <img src={ApplePayIcon} alt="apple-pay-icon" />
+                Apple Pay
+                <input
+                  type="radio"
+                  name="payment-method"
+                  value="Apple Pay"
+                  className="radio"
+                />
+              </label>
+            </div>
           </div>
           <div className="personal-data payment-section">
-            <h6>1. Персональная информация</h6>
+            <h6>2. Персональная информация</h6>
             <label>
               Email
-              <input type="text"></input>
+              <input></input>
             </label>
-            <label type="text">
+            <label>
               Имя
-              <input type="text"></input>
+              <input></input>
             </label>
             <label>
               Фамилия
-              <input type="text"></input>
+              <input></input>
             </label>
           </div>
           <div className="account-address payment-section">
-            <h6>2. Адрес для выставления счета</h6>
+            <h6>3. Адрес для выставления счета</h6>
             <label>
               Страна
               <input></input>
@@ -71,44 +115,6 @@ export default function Payment() {
             <label>
               Почтовый индекс
               <input></input>
-            </label>
-          </div>
-          <div className="payment-method payment-section">
-            <h6>3. Способ оплаты</h6>
-            <label>
-              <input
-                type="radio"
-                name="payment-method"
-                value="Криптовалютой"
-                defaultChecked
-              />
-              Криптовалютой
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="payment-method"
-                value="Кредитной картой"
-              />
-              Кредитной картой
-            </label>
-            <div className="credit-card-info">
-              <label>
-                Номер карты*
-                <input type="text" placeholder="1234 1234 1234 1234"></input>
-              </label>
-              <label>
-                Дата окончания*
-                <input type="text" placeholder="ДД / ГГ"></input>
-              </label>
-              <label>
-                CVC*
-                <input type="text" placeholder="***"></input>
-              </label>
-            </div>
-            <label>
-              <input type="radio" name="payment-method" value="Apple Pay" />
-              Apple Pay
             </label>
           </div>
           <div className="payment-period payment-section">

@@ -10,12 +10,6 @@
   margin-right: 13px;
 }
 
-.leader-name {
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 4px;
-}
-
 .leader-type {
   font-size: 12px;
   font-weight: 300;
@@ -36,6 +30,12 @@ th {
 .leader-table-container th,
 .leader-table-container td {
   padding: 15px 40px;
+}
+
+.leader-table-container .leader-name {
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 4px;
 }
 
 .LeaderBoardListItem th:first-child {

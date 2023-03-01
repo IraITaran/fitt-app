@@ -52,7 +52,7 @@ export default function LeaderBoardCardItem(props) {
         <div className="main-board">
           <div className="roi">
             <p>+{(props.data.roi * 100).toFixed(2)}%</p>
-            <p>ROI за 30 дней</p>
+            <p>ROI за период</p>
           </div>
           <div className="pnl">
             <p>
@@ -62,7 +62,7 @@ export default function LeaderBoardCardItem(props) {
               })}
               $
             </p>
-            <p>Общий PnL</p>
+            <p>PNL за период</p>
           </div>
         </div>
         <div className="footer-board">
