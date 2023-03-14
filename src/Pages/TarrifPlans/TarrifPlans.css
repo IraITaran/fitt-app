@@ -63,7 +63,7 @@ input {
 
 .option-card {
   width: 384px;
-  height: 377px;
+  height: 420px;
   border: 1px solid white;
   border-radius: 4px;
   background-color: white;
@@ -99,8 +99,7 @@ input {
   font-size: 16px;
   line-height: 25px;
 }
-.option-card ul li:first-child,
-.option-card ul li:nth-child(2) {
+.option-card ul li {
   margin-bottom: 18px;
 }
 
@@ -109,7 +108,7 @@ input {
 }
 
 .option-card .tarrif-btn {
-  margin-top: 32px;
+  margin-top: 12px;
   border: 1px solid #feeb61;
   background-color: #feeb61;
   border-radius: 4px;
@@ -121,7 +120,7 @@ input {
 
 .option-dark-card {
   width: 440px;
-  height: 458px;
+  height: 515px;
   border: 1px solid #32312f;
   border-radius: 4px;
   background-color: #32312f;
@@ -164,8 +163,7 @@ input {
   font-size: 20px;
   line-height: 32px;
 }
-.option-dark-card ul li:first-child,
-.option-dark-card ul li:nth-child(2) {
+.option-dark-card ul li {
   margin-bottom: 20px;
 }
 
@@ -174,7 +172,7 @@ input {
 }
 
 .option-dark-card .tarrif-btn {
-  margin-top: 32px;
+  margin-top: 12px;
   border: 1px solid #feeb61;
   background-color: #feeb61;
   border-radius: 4px;

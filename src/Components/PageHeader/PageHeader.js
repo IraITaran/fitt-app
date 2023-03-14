@@ -63,10 +63,10 @@ export default function PageHeader() {
                 <a href="/">Торговля</a>
               </li>
               <li>
-                <Link to="about">Информация</Link>
+                <Link to="about">О нас</Link>
               </li>
               <li>
-                <Link to="tarrifs">Бонус</Link>
+                <Link to="tarrifs">Тарифы</Link>
               </li>
             </ul>
           </nav>

@@ -1,0 +1,194 @@
+.About {
+  color: #262626;
+}
+
+.about-header-container {
+  margin: 0px 175px;
+}
+
+.about-header-container .main-left {
+  margin-top: 160px;
+}
+
+.about-header-container .main-right {
+  margin-top: 85px;
+}
+
+.about-header-container .main-right img {
+  width: 464px;
+  height: 440px;
+}
+
+.about-header-container .main-left p {
+  font-size: 72px;
+  line-height: 85px;
+  font-weight: 300px;
+  margin-bottom: 30px;
+}
+
+.about-header-container .main-left span {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+.about-header-container .main-left .binance-logo {
+  margin-left: 16px;
+}
+
+.about-header-container .bg-about-main {
+  background-image: url("../../images/bg-about-header.svg");
+  width: 900px;
+  height: 525px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 90px;
+  left: 274px;
+  z-index: -1;
+  opacity: 0.99;
+}
+
+.About .about-main-container {
+  padding: 80px 175px 80px 175px;
+  background-color: #f5f5f585;
+  width: 100%;
+}
+
+.about-main-container .advantages-container {
+  margin-bottom: 80px;
+}
+
+.about-main-container .advantages-container h2,
+.flow-trading-container h2 {
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+
+.about-main-container .advantages-container img {
+  margin-bottom: 32px;
+}
+
+.advantages-container .advantages-section p:first-of-type {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.advantages-container .advantages-section p:last-of-type {
+  font-size: 16px;
+  margin-bottom: 0px;
+}
+
+.flow-trading-container .yellow-btn {
+  padding: 11px 32px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.flow-left-section {
+  padding-top: 75px;
+}
+
+.flow-left-section ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  width: 69%;
+}
+
+.flow-left-section ul li {
+  margin-bottom: 32px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.flow-left-section ul img {
+  margin-right: 16px;
+}
+
+.flow-right-section {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 80px 40px 80px;
+  position: relative;
+}
+
+.flow-right-section .bg-flow-fitt {
+  background-image: url("../../images/bg-flow-fitt.svg");
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 250px;
+  left: 35px;
+  opacity: 0.99;
+}
+
+.flow-right-section .bg-flow-rhombus {
+  background-image: url("../../images/bg-flow-rhombus.svg");
+  width: 146px;
+  height: 146px;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.99;
+}
+
+.flow-right-section ul {
+  list-style: none;
+  margin: 0px;
+}
+
+.flow-right-section ul li {
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 28px;
+  width: 85%;
+}
+
+.flow-right-section ul li:last-child {
+  margin-bottom: 0px;
+}
+
+.flow-right-section ul .grey-item {
+  background-color: #f6f6f6;
+}
+
+.flow-right-section ul .black-item {
+  background-color: #29261e;
+  color: #ffffff;
+  margin-left: auto;
+}
+
+.flow-right-section ul li span {
+  display: block;
+  margin-bottom: 30px;
+}
+
+.about-footer {
+  background-color: #29261e;
+  color: #ffffff;
+  padding: 80px 0px;
+}
+
+.about-footer p:first-of-type {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.about-footer p:last-of-type {
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.about-footer ul {
+  list-style: none;
+  padding: 0px;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
+
+.about-footer ul li {
+  margin-right: 20px;
+}

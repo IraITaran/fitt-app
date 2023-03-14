@@ -7,17 +7,12 @@ import { useParams } from "react-router-dom";
 export default function Leader(props) {
   const [positions, setPositions] = useState([]);
   const [totalPnl, setTotalPNL] = useState(0);
-  //const [leaders, setLeaders] = useState([]);
 
   let { leaderId } = useParams();
 
   useEffect(() => {
-    //2B5D309B9C5C7E845B77EE8AF7006998
     updatePositions(leaderId);
 
-    // LeaderService.getLeaders().then((response) => {
-    //   setLeaders(response.data);
-    // });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -37,27 +32,16 @@ export default function Leader(props) {
     });
   }
 
-  // function changeLeader(id) {
-  //   console.log("sdsaa" + id);
-  //   updatePositions(id);
-  // }
-
   return (
     <div>
-      {/* <select
-        onChange={(e) => {
-          changeLeader(e.target.value);
-        }}
-      >
-        {leaders.map(function (leader, index) {
-          return (
-            <option key={index} value={leader.id}>
-              {leader.name} - {leader.id}
-            </option>
-          );
-        })}
-      </select> */}
-      <div>Общий PNL: {totalPnl}</div>
+      <div className="leader-position-total-container">
+        <h4>
+          Общий PNL:{" "}
+          <span className={totalPnl > 0 ? "green" : "red"}>
+            {totalPnl.toFixed(2)}$
+          </span>
+        </h4>
+      </div>
       <table className="leader-position-table m-auto w-100">
         <thead>
           <tr className="border-bottom">

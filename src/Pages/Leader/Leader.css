@@ -4,8 +4,23 @@ table {
   margin: 0 auto;
 }
 
-.leader-position-table .leader-position-item th,
+.leader-position-table th,
 .leader-position-table .leader-position-item td,
 .leader-position-table .leader-position-item tr .direction {
-  padding: 15px 40px;
+  text-align: center;
+  padding: 15px 20px;
+}
+
+.leader-position-total-container {
+  padding: 30px;
+}
+
+.leader-position-total-container .green {
+  font-size: 22px;
+  color: #10b866;
+}
+
+.leader-position-total-container .red {
+  font-size: 22px;
+  color: red;
 }

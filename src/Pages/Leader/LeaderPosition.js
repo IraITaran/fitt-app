@@ -69,6 +69,7 @@ export default function LeaderPosition(props) {
                 new Date(history.updateDateTime).toLocaleTimeString("es-ES")}
             </td>
             <td></td>
+            <td></td>
             <td>
               {history.isIncrease && <>&uarr;</>}
               {!history.isIncrease && <>&darr;</>}
@@ -76,10 +77,10 @@ export default function LeaderPosition(props) {
 
             <td>
               <div>
-                <span style={{ color: "gray" }}>new:</span> {history.newAmount}
+                <span style={{ color: "gray" }}>old:</span> {history.oldAmount}
               </div>
               <div>
-                <span style={{ color: "gray" }}>old:</span> {history.oldAmount}
+                <span style={{ color: "gray" }}>new:</span> {history.newAmount}
               </div>
             </td>
             <td>{history.marketPrice.toFixed(5)}$</td>

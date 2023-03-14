@@ -4,7 +4,7 @@ import PageHeader from "./Components/PageHeader/PageHeader";
 import PageFooter from "./Components/PageFooter/PageFooter";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import TarrifPlans from "./Pages/TarrifPlans/TarrifPlans";
-import About from "./Pages/About";
+import About from "./Pages/About/About";
 import Login from "./Pages/Login/Login";
 import Signup from "./Pages/Signup/Signup";
 import Payment from "./Pages/Payment/Payment";
@@ -47,6 +47,9 @@ axios.interceptors.response.use(
     return response;
   },
   function (error) {
+    // if (error.response.status === 302) {
+    //   console.log(error);
+    // }
     if (error.response.status === 401) {
       AuthService.logout();
       return Promise.reject(error);

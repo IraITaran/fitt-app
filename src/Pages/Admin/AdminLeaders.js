@@ -3,7 +3,7 @@ import "./AdminLeaders.css";
 import Modal from "react-bootstrap/Modal";
 import adminService from "../../Services/admin.service";
 
-export default function ApiManagement() {
+export default function AdminLeaders() {
   let [leaders, setLeaders] = useState([]);
   let [approveModal, setApproveModal] = useState(false);
   let [approvePositionsModal, setApprovePositionsModal] = useState(false);

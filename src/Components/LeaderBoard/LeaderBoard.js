@@ -10,6 +10,7 @@ import LeaderBoardService from "../../Services/leaderboard.service";
 import Modal from "react-bootstrap/Modal";
 import AuthService from "../../Services/auth.service";
 import UserService from "../../Services/user.service";
+import { useSearchParams } from "react-router-dom";
 
 export default function LeaderBoard() {
   let [results, setResults] = useState([]);
@@ -26,6 +27,8 @@ export default function LeaderBoard() {
   let [exchangeChoice, setExchangeChoice] = useState("Binance");
   let [apiKey, setApiKey] = useState("");
   let [apiSecret, setApiSecret] = useState("");
+  // eslint-disable-next-line
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function handleResponse(response) {
     setViewCount(1);
@@ -33,6 +36,10 @@ export default function LeaderBoard() {
   }
 
   useEffect(() => {
+    if (searchParams.get("rc") !== null) {
+      localStorage.setItem("referral_code", searchParams.get("rc"));
+    }
+
     searchApi();
     setLoaded(true);
 

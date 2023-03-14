@@ -31,6 +31,10 @@ export default function AdminSidebar() {
             <img src={SidebarLockIcon} alt="lock-icon"></img>
             <Link to="/admin/leaders">Leaders</Link>
           </li>
+          <li className="sidebar-option">
+            <img src={SidebarLockIcon} alt="lock-icon"></img>
+            <Link to="/admin/payments">Payments</Link>
+          </li>
           {/* <li className="sidebar-option">
             <img src={QuestionIcon} alt="question-icon"></img>
             <Link to="/">Центр поддержки</Link>

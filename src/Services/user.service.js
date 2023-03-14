@@ -12,8 +12,8 @@ class UserService {
     return axios.post(API_URL + "/login", { email, password });
   }
 
-  signup(email, password) {
-    return axios.post(API_URL + "/signup", { email, password });
+  signup(email, password, refCode) {
+    return axios.post(API_URL + "/signup", { email, password, refCode });
   }
 
   confirmEmail(code) {

@@ -34,7 +34,11 @@ class AuthService {
   }
 
   signup(email, password) {
-    return UserService.signup(email, password)
+    return UserService.signup(
+      email,
+      password,
+      localStorage.getItem("referral_code")
+    )
       .then((response) => {
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));

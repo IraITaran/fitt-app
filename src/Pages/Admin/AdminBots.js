@@ -3,7 +3,7 @@ import "./AdminBots.css";
 import Modal from "react-bootstrap/Modal";
 import adminService from "../../Services/admin.service";
 
-export default function ApiManagement() {
+export default function AdminBots() {
   let [bots, setBots] = useState([]);
   let [approveModal, setApproveModal] = useState(false);
   let [currentBot, setCurrentBot] = useState({});

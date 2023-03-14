@@ -1,25 +1,29 @@
 import React, { useState, useEffect } from "react";
-import "./AdminUsers.css";
+import "./AdminBots.css";
 import Modal from "react-bootstrap/Modal";
 import adminService from "../../Services/admin.service";
 
-export default function AdminUsers() {
-  let [users, setUsers] = useState([]);
+export default function AdminPayments() {
+  let [payments, setPayment] = useState([]);
   let [approveModal, setApproveModal] = useState(false);
-  let [currentUser, setCurrentUser] = useState({});
+  let [currentItem, setCurrentItem] = useState({});
 
   useEffect(() => {
     updateList();
   }, []);
 
   function updateList() {
-    adminService.getAllUsers().then((response) => {
-      setUsers(response.data);
+    adminService.getAllPayment().then((response) => {
+      setPayment(
+        response.data.sort(
+          (a, b) => new Date(b.createDate) - new Date(a.createDate)
+        )
+      );
     });
   }
 
-  function deleteUser(userId) {
-    adminService.deleteUser(userId).then(() => {
+  function deleteItem(id) {
+    adminService.deletePayment(id).then(() => {
       updateList();
     });
   }
@@ -30,34 +34,45 @@ export default function AdminUsers() {
         <table className="admin-table m-auto w-100">
           <thead>
             <tr className="border-bottom">
-              <th>ID</th>
-              <th>Email</th>
-              <th>Binance Key</th>
-              <th>Used Balance</th>
-              <th>Telegram</th>
+              <th>User ID</th>
               <th>Status</th>
+              <th>Currency</th>
+              <th>Amount</th>
               <th>Subscription</th>
+              <th>Tx ID</th>
+              <th>Invoice</th>
+              <th>Status Text</th>
+              <th>Error</th>
               <th>Created At</th>
+              <th>Updated At</th>
+
               <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {users.map((item, index) => {
+            {payments.map((item, index) => {
               return (
                 <tr>
-                  <td>{item.id} </td>
-                  <td>{item.email} </td>
-                  <td>{item.binanceKey ? "Yes" : "No"}</td>
-                  <td>{item.usedBalance}</td>
-                  <td>{item.telegramChatId} </td>
-                  <td>{item.status} </td>
-                  <td>{item.subscription} </td>
-                  <td>{item.dateCreated} </td>
+                  <td>{item.userId}</td>
+                  <td>{item.status}</td>
+                  <td>{item.currency}</td>
+                  <td>{item.amount}</td>
+                  <td>{item.subscriptionType}</td>
+                  <td>{item.txId}</td>
+                  <td>{item.invoice}</td>
+                  <td>{item.statusText}</td>
+                  <td>{item.error}</td>
+                  <td>{new Date(item.createdDate).toLocaleString()} </td>
+                  <td>
+                    {item.updatedDate !== null
+                      ? new Date(item.updatedDate).toLocaleString()
+                      : "-"}{" "}
+                  </td>
                   <td>
                     <button
                       className="yellow-btn"
                       onClick={() => {
-                        setCurrentUser(item);
+                        setCurrentItem(item);
                         setApproveModal(true);
                       }}
                     >
@@ -70,24 +85,23 @@ export default function AdminUsers() {
           </tbody>
         </table>
       </div>
-
       <Modal
         className="approve-modal"
         show={approveModal}
         onHide={() => setApproveModal(false)}
       >
         <Modal.Header closeButton>
-          <h4 className="approve-header">Удаление пользователя</h4>
+          <h4 className="approve-header">Удаление бота</h4>
         </Modal.Header>
         <Modal.Body>
           <h4 className="approve-text">
-            Вы действительно хотите удалить пользователя?
+            Вы действительно хотите удалить бота?
           </h4>
           <button
             type="button"
             className="approve-btn delete mt-4"
             onClick={() => {
-              deleteUser(currentUser.id);
+              deleteItem(currentItem.id);
               setApproveModal(false);
             }}
           >
