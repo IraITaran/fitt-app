@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import UnknownIcon from "../../images/unknown-icon.png";
 import DoneIcon from "../../images/done-icon.svg";
 import CloseIcon from "../../images/close-icon.svg";
 import "./AccountSecurity.css";
+import UserService from "../../Services/user.service";
 
 export default function AccountSecurity() {
+  let [sessions, setSessions] = useState([]);
+  let [displaySessions, setDisplaySessions] = useState(false);
+
+  useEffect(() => {
+    UserService.sessions().then((response) => {
+      setSessions(response.data);
+    });
+  }, []);
   return (
     <div className="AccountSecurity">
       <div className="user-info-container">
@@ -226,11 +235,55 @@ export default function AccountSecurity() {
             </div>
             <div className="col-2 p-0 text-center"></div>
             <div className="col-2 p-0">
-              <button type="button" className="delete-btn">
+              <button
+                type="button"
+                className="delete-btn"
+                onClick={() => {
+                  setDisplaySessions(!displaySessions);
+                }}
+              >
                 Больше
               </button>
             </div>
           </div>
+          {displaySessions && (
+            <div className="session-container">
+              <h2>Сессии</h2>
+
+              <table>
+                <thead>
+                  <tr className="border-bottom">
+                    <th>Время</th>
+                    <th>IP</th>
+                    <th>OS</th>
+                    <th>Browser</th>
+                    <th>Device Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sessions.map(function (session, index) {
+                    return (
+                      <tr key={index}>
+                        <td>
+                          {new Date(session.createdDate).toLocaleDateString(
+                            "es-ES"
+                          ) +
+                            " " +
+                            new Date(session.createdDate).toLocaleTimeString(
+                              "es-ES"
+                            )}
+                        </td>
+                        <td>{session.data.ip}</td>
+                        <td>{session.data.os}</td>
+                        <td>{session.data.browser}</td>
+                        <td>{session.data.device}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 .ReferralProgram {
   color: #262626;
   width: 100%;
+  border-left: 1px solid #dcdfe4;
 }
 
 .ReferralProgram h2 {
@@ -110,8 +111,8 @@
   background-repeat: no-repeat;
   position: absolute;
   width: 655px;
-  height: 737px;
-  top: 29px;
+  height: 745px;
+  top: 26px;
   right: 439px;
   opacity: 0.99;
 }
@@ -127,11 +128,25 @@
   margin-top: 23px;
   margin-bottom: 15px;
   padding-left: 0px;
+  z-index: 1;
+  position: relative;
 }
 
 .referral-main-container .toolbar-list li {
+  cursor: pointer;
+}
+
+.referral-main-container .toolbar-list .grey {
   margin-right: 24px;
   font-size: 15px;
+  border-bottom: 2px solid #dde0e5;
+}
+
+.yellow {
+  border-bottom: 3px solid #feeb61;
+  margin-right: 24px;
+  font-size: 15px;
+  color: #262626;
 }
 
 .toolbar-info-container {
@@ -160,14 +175,14 @@
   margin-bottom: 8px;
   padding: 0px;
 }
-
+/* 
 .toolbar-info-container .toolbar-info-section p:last-child {
   font-size: 14px;
   font-weight: 500;
   color: #10b866;
   margin-bottom: 0px;
   padding: 0px;
-}
+} */
 
 .referral-main-container .attention-paragraph {
   font-size: 12px;

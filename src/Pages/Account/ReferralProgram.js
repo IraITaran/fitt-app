@@ -5,14 +5,50 @@ import ClipIcon from "../../images/clip-icon.svg";
 import MoreInfoIcon from "../../images/more-info-icon.svg";
 import referralService from "../../Services/referral.service";
 import UnknownIcon from "../../images/unknown-icon.png";
+import userService from "../../Services/user.service";
 
 export default function ReferralProgram() {
   let [referrals, setReferrals] = useState([]);
+  let [bonusData, setBonusData] = useState({});
+  let [loading, setLoading] = useState(true);
+  let [currentBonusPeriod, setCurrentBonusPeriod] = useState("all");
   useEffect(() => {
+    changeBonusPeriod("all");
+
     referralService.getAll().then((response) => {
       setReferrals(response.data);
     });
   }, []);
+
+  function changeBonusPeriod(period) {
+    let from = new Date();
+    let to = new Date();
+
+    setCurrentBonusPeriod(period);
+
+    switch (period) {
+      case "day":
+        from.setDate(from.getDate() - 1);
+        break;
+      case "week":
+        from.setDate(from.getDate() - 7);
+        break;
+      case "month":
+        from.setDate(from.getDate() - 30);
+        break;
+      default:
+        from = null;
+        to = null;
+        setCurrentBonusPeriod("all");
+        break;
+    }
+
+    setLoading(true);
+    userService.getReferralBonus(from, to).then((response) => {
+      setBonusData(response.data);
+      setLoading(false);
+    });
+  }
 
   return (
     <div className="ReferralProgram">
@@ -25,8 +61,8 @@ export default function ReferralProgram() {
             <br /> вместе.
           </p>
           <p>
-            Получите до 40% комиссии за каждую
-            <br /> сделку на Binance Spot, Futures и Pool.
+            Получите до 20% комиссии за каждого
+            <br /> приведенного пользователя с активной подпиской.
           </p>
         </div>
         <div className="referral-header-right">
@@ -36,7 +72,7 @@ export default function ReferralProgram() {
           </div>
           <div className="referral-benefit-section text-center">
             <p className="m-0">Вы получите</p>
-            <p className="m-0">10%</p>
+            <p className="m-0">20%</p>
           </div>
           <hr className="m-0" />
           <div className="d-flex justify-content-between referral-id-section">
@@ -71,12 +107,39 @@ export default function ReferralProgram() {
       <div className="referral-main-container">
         <h2>Панель инструментов</h2>
         <ul className="d-flex toolbar-list">
-          <li>Все</li>
-          <li>Вчера</li>
-          <li>На этой недели</li>
-          <li>В этом месяце</li>
+          <li
+            onClick={() => {
+              changeBonusPeriod("all");
+            }}
+            className={currentBonusPeriod === "all" ? "yellow" : "grey"}
+          >
+            Все
+          </li>
+          <li
+            onClick={() => {
+              changeBonusPeriod("day");
+            }}
+            className={currentBonusPeriod === "day" ? "yellow" : "grey"}
+          >
+            За сутки
+          </li>
+          <li
+            onClick={() => {
+              changeBonusPeriod("week");
+            }}
+            className={currentBonusPeriod === "week" ? "yellow" : "grey"}
+          >
+            За неделю
+          </li>
+          <li
+            onClick={() => {
+              changeBonusPeriod("month");
+            }}
+            className={currentBonusPeriod === "month" ? "yellow" : "grey"}
+          >
+            За месяц
+          </li>
         </ul>
-        <hr className="m-0" />
         <div className="d-flex flex-wrap toolbar-info-container">
           <div className="toolbar-info-section">
             <p>
@@ -87,8 +150,7 @@ export default function ReferralProgram() {
                 className="more-info-icon"
               ></img>
             </p>
-            <p>0.00000513 USDT</p>
-            <p>+0 USDT</p>
+            <p>{loading ? "-" : bonusData.amount} USDT</p>
           </div>
           <div className="toolbar-info-section">
             <p>
@@ -99,8 +161,7 @@ export default function ReferralProgram() {
                 className="more-info-icon"
               ></img>
             </p>
-            <p>2</p>
-            <p>+0</p>
+            <p>{loading ? "-" : bonusData.depositedReferralsCount}</p>
           </div>
           <div className="toolbar-info-section">
             <p>
@@ -111,8 +172,8 @@ export default function ReferralProgram() {
                 className="more-info-icon"
               ></img>
             </p>
-            <p>4</p>
-            <p>+0</p>
+
+            <p>{loading ? "-" : bonusData.referralsCount}</p>
           </div>
           <div className="mt-5 toolbar-info-section">
             <p>
@@ -123,15 +184,13 @@ export default function ReferralProgram() {
                 className="more-info-icon"
               ></img>
             </p>
-            <p>5.9790228 USDT</p>
+            <p>1000 USDT</p>
             <p>ID 42522222</p>
           </div>
         </div>
         <p className="attention-paragraph">
-          * Данные обновляются по часовому поясу UTC+0. Время обработки данных —
-          с 6:00 по 8:00 (МСК) каждый день. В течение этого периода расчет
-          данных за новый день производится на основе значений активов за
-          предыдущий день. После обработки все данные будут отображаться
+          * Данные обновляются по часовому поясу UTC+0. Время обработки данных
+          занимает около 5 мин. После обработки все данные будут отображаться
           корректно.
           <br /> Обратите внимание: из-за сложности финансовых данных возможны
           задержки в их обработке и представлении. Отображаемые выше данные
@@ -156,9 +215,9 @@ export default function ReferralProgram() {
                 <th className="text-end">Дата</th>
               </tr>
             </thead>
-            {referrals.map(function (item, index) {
-              return (
-                <tbody>
+            <tbody>
+              {referrals.map(function (item, index) {
+                return (
                   <tr key={index}>
                     <td className="d-flex">
                       <img
@@ -178,9 +237,9 @@ export default function ReferralProgram() {
                     </td>
                     <td className="text-end">{item.createdDate}</td>
                   </tr>
-                </tbody>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>

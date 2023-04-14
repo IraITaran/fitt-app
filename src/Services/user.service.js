@@ -63,6 +63,16 @@ class UserService {
   getApiKeys() {
     return axios.get(API_URL + "/apikey", { headers: authHeader() });
   }
+
+  getReferralBonus(from, to) {
+    return axios.post(
+      API_URL + "/refbonus",
+      { from: from, to: to },
+      {
+        headers: authHeader(),
+      }
+    );
+  }
 }
 
 export default new UserService();

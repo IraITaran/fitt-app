@@ -3,6 +3,8 @@ import "./Signup.css";
 import { Link } from "react-router-dom";
 import AuthService from "../../Services/auth.service";
 import { useNavigate } from "react-router-dom";
+import SignUpConsent from "./SignUpConsent";
+import Modal from "react-bootstrap/Modal";
 
 export default function Signup() {
   const [password, setPassword] = useState("");
@@ -13,6 +15,7 @@ export default function Signup() {
   const [passwordConfirmError, setPasswordConfirmError] = useState("");
   const [emailError, setemailError] = useState("");
   let navigate = useNavigate();
+  let [consentModal, setConsentModal] = useState(false);
 
   function handleCheckboxChange(e) {
     setServiceAgreement(e.target.checked);
@@ -125,7 +128,13 @@ export default function Signup() {
               />
               <label className="form-check-label conf-agreement">
                 Я прочитал(-а) и принимаю{" "}
-                <a href="/">
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setConsentModal(true);
+                  }}
+                >
                   Соглашение об обслуживании, Заявление о конфиденциальности
                 </a>
               </label>
@@ -145,6 +154,27 @@ export default function Signup() {
           </div>
         </div>
       </div>
+      <Modal
+        className="consent-modal"
+        show={consentModal}
+        onHide={() => setConsentModal(false)}
+      >
+        <Modal.Header closeButton>
+          <h4 className="approve-header">
+            Соглашение об обслуживании, Заявление о конфиденциальности
+          </h4>
+        </Modal.Header>
+        <Modal.Body>
+          <SignUpConsent />
+          <button
+            type="button"
+            className="approve-btn w-100 mt-2"
+            onClick={() => setConsentModal(false)}
+          >
+            Закрыть
+          </button>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

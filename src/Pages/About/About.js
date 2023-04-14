@@ -66,9 +66,7 @@ export default function About() {
             <ul>
               <li>
                 <img src={ListFlowIcon} alt="list-icon"></img>
-                <p>
-                  Получайте пасивный доход, следуя стратегиям лучших трейдеров
-                </p>
+                Получайте пасивный доход, следуя стратегиям лучших трейдеров
               </li>
               <li>
                 <img src={ListFlowIcon} alt="list-icon"></img>Автоматически

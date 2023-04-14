@@ -13,7 +13,6 @@ export default function Payment() {
   let [isButton, setIsButton] = useState(false);
 
   let { subscriptionType } = useParams();
-  console.log(subscriptionType);
 
   useEffect(() => {
     paymentService.getInvoice().then((response) => {

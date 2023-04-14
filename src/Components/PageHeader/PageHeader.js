@@ -10,11 +10,14 @@ import UserService from "../../Services/user.service";
 import DollarIcon from "../../images/dollar-icon.svg";
 import LockIcon from "../../images/lock-icon.svg";
 import { useNavigate } from "react-router-dom";
+import ListIcon from "../../images/list-icon.svg";
+import TableIcon from "../../images/table-icon.svg";
 
 export default function PageHeader() {
   const [user, setUser] = useState({});
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+  let [switchToList, setSwitchToList] = useState(false);
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
@@ -54,6 +57,17 @@ export default function PageHeader() {
           <Link to="/">
             <img src={FittLogoHeader} alt="fitt" className="fitt-logo"></img>
           </Link>
+          {switchToList && (
+            <div className="ms-4 m-auto" onClick={() => setSwitchToList(false)}>
+              <img className="header-list-icon" src={ListIcon} alt="list"></img>
+            </div>
+          )}
+          {!switchToList && (
+            <div className="ms-4 m-auto" onClick={() => setSwitchToList(true)}>
+              <img src={TableIcon} alt="table"></img>
+            </div>
+          )}
+
           <nav>
             <ul className="d-flex">
               <li>

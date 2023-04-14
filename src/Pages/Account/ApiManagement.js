@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import "./ApiManagement.css";
 import NotFoundIcon from "../../images/not-found-icon.svg";
 import userService from "../../Services/user.service";
+import stopBotIcon from "../../images/stopbot-icon.svg";
+import editBotIcon from "../../images/editbot-icon.svg";
+import deleteBotIcon from "../../images/deletebot-icon.svg";
 
 export default function ApiManagement() {
   let [key, setKey] = useState("");
@@ -51,13 +54,69 @@ export default function ApiManagement() {
           </li>
         </ol>
         <div className="account-bg"></div>
-      </div>
-      <div className="api-main-container">
         {key !== "" && (
-          <div className="apikey-container">
-            <h5>API Key: {key}</h5>
-            <h5>API Secret: {secret}</h5>
-          </div>
+          <>
+            <div className="apikey-container">
+              <div className="apikey-container-header d-flex">
+                <div className="d-flex">
+                  <p className="apikey-hmac">HMAC</p>
+                  <p className="apikey-name">Name</p>
+                </div>
+                <div className="apikey-button-container d-flex justify-content-center">
+                  <div>
+                    <img src={stopBotIcon} alt="stop-icon"></img>
+                  </div>
+                  <div>
+                    <img src={editBotIcon} alt="edit-icon"></img>
+                  </div>
+                  <div>
+                    <img src={deleteBotIcon} alt="delete-icon"></img>
+                  </div>
+                </div>
+              </div>
+              <div className="apikey-container-main"></div>
+              <div className="apikey-section">
+                <p>API Key</p>
+                <p className="apikey-value">
+                  {key} <span>Copy</span>
+                </p>
+              </div>
+              <div className="secret-key-section">
+                <p>Secret Key</p>
+                <p className="secret-key-value">{secret}</p>
+              </div>
+            </div>
+            <div className="apikey-container">
+              <div className="apikey-container-header d-flex">
+                <div className="d-flex">
+                  <p className="apikey-rca">RSA</p>
+                  <p className="apikey-name">Name</p>
+                </div>
+                <div className="apikey-button-container d-flex justify-content-center">
+                  <div>
+                    <img src={stopBotIcon} alt="stop-icon"></img>
+                  </div>
+                  <div>
+                    <img src={editBotIcon} alt="edit-icon"></img>
+                  </div>
+                  <div>
+                    <img src={deleteBotIcon} alt="delete-icon"></img>
+                  </div>
+                </div>
+              </div>
+              <div className="apikey-container-main"></div>
+              <div className="apikey-section">
+                <p>API Key</p>
+                <p className="apikey-value">
+                  {key} <span>Copy</span>
+                </p>
+              </div>
+              <div className="secret-key-section">
+                <p>Secret Key</p>
+                <p className="secret-key-value">{secret}</p>
+              </div>
+            </div>
+          </>
         )}
         {key === "" && (
           <div className="not-found-container">

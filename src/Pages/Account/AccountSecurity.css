@@ -134,3 +134,24 @@
   font-weight: 500;
   margin-left: 20px;
 }
+
+.session-container {
+  padding-top: 39px;
+}
+
+.session-container h2 {
+  font-size: 32px;
+  color: #262626;
+  font-weight: 400;
+  margin-top: 0px;
+}
+
+.session-container table {
+  width: 100%;
+  margin: 0;
+}
+
+.session-container th,
+.session-container td {
+  padding: 10px 40px;
+}

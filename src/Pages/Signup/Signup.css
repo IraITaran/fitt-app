@@ -58,3 +58,25 @@
 .conf-agreement a {
   color: #000000;
 }
+
+article ol {
+  counter-reset: item;
+  padding: 0px;
+}
+
+article ol li {
+  display: block;
+}
+
+article ol li::before {
+  content: counters(item, ".") " ";
+  counter-increment: item;
+}
+
+.consent-modal .modal-dialog {
+  max-width: 800px;
+}
+
+.consent-modal .modal-body {
+  padding: 25px;
+}

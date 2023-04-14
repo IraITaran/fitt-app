@@ -4,10 +4,11 @@ import UnknownIcon from "../../images/unknown-icon.png";
 import MoreInfoIcon from "../../images/more-info-icon.svg";
 import UserService from "../../Services/user.service";
 import AuthService from "../../Services/auth.service";
+import QuestionDarkIcon from "../../images/question-dark-icon.svg";
 
 export default function AccountWallet() {
-  let [sessions, setSessions] = useState([]);
   let [user, setUser] = useState({});
+  let [sessions, setSessions] = useState([]);
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
@@ -92,35 +93,112 @@ export default function AccountWallet() {
         </div>
         <div className="account-bg"></div>
       </div>
-      <div className="session-container">
-        <h2>Сессии</h2>
-
-        <table>
+      <div className="user-statistics-container">
+        <table className="user-statistics-table">
           <thead>
-            <tr className="border-bottom">
-              <th>Время</th>
-              <th>IP</th>
-              <th>OS</th>
-              <th>Browser</th>
-              <th>Device Type</th>
+            <tr>
+              <th>Тикер</th>
+              <th>Сторона</th>
+              <th>
+                В сделке
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>
+                Вход
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>
+                Плечо
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>Маржа $</th>
+              <th>
+                Вход
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>
+                Выход
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>
+                Выход
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>
+                ROI
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>Доход $</th>
+              <th>
+                PNL
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th>Объем</th>
+              <th>
+                Макс. Объем
+                <img
+                  src={QuestionDarkIcon}
+                  alt="question-icon"
+                  className="ms-1"
+                />
+              </th>
+              <th className="text-center">Действие</th>
             </tr>
           </thead>
           <tbody>
-            {sessions.map(function (session, index) {
-              return (
-                <tr key={index}>
-                  <td>
-                    {new Date(session.createdDate).toLocaleDateString("es-ES") +
-                      " " +
-                      new Date(session.createdDate).toLocaleTimeString("es-ES")}
-                  </td>
-                  <td>{session.data.ip}</td>
-                  <td>{session.data.os}</td>
-                  <td>{session.data.browser}</td>
-                  <td>{session.data.device}</td>
-                </tr>
-              );
-            })}
+            <tr>
+              <td>BTCUSDT</td>
+              <td>LONG</td>
+              <td>8c</td>
+              <td>вт 11 апр 23 22:18:17</td>
+              <td>x25</td>
+              <td>$100,000.00</td>
+              <td>$333,000.00</td>
+              <td>вт 11 апр 23 22:19:16</td>
+              <td>$999,000.00</td>
+              <td>81,01%</td>
+              <td>-81,03%</td>
+              <td>-$30.000</td>
+              <td>$999.00</td>
+              <td>$1.076,00</td>
+              <td>
+                <button className="statistic-table-btn">
+                  Закрыть по рынку
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

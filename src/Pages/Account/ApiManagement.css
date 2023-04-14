@@ -13,13 +13,15 @@
 .ApiManagement .api-info-container {
   background-color: #fafafa;
   padding: 49px 43px 101px 44px;
+  z-index: 2;
+  position: relative;
 }
 
 .api-info-container .api-info-header {
   margin-bottom: 50px;
 }
 
-.api-info-list {
+.api-info-container .api-info-list {
   color: #81858c;
   margin-bottom: 0px;
   font-size: 16px;
@@ -31,32 +33,115 @@
   background-size: cover;
   background-repeat: no-repeat;
   position: absolute;
-  width: 655px;
+  width: 1390px;
   height: 664px;
-  top: 33px;
-  right: 20px;
+  top: -266px;
+  right: -185px;
   opacity: 0.99;
+  z-index: -1;
 }
 
-.api-main-container .not-found-container {
+.api-info-container .not-found-container {
   margin: 235px auto 243px auto;
   text-align: center;
 }
 
-.not-found-container .not-found-icon {
+.api-info-container .not-found-container .not-found-icon {
   margin-bottom: 36px;
   width: 157px;
   height: 148px;
 }
 
-.not-found-container p {
+.api-info-container .not-found-container p {
   color: #81858c;
   font-size: 19px;
   font-weight: 500;
 }
 
-.apikey-container {
-  padding: 10px 10px;
-  margin: 20px 20px;
-  border: gray 1px solid;
+.api-info-container .apikey-container {
+  margin-top: 48px;
+  padding: 33px 20px 55px 20px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+}
+
+.apikey-button-container {
+  margin-left: auto;
+  align-items: baseline;
+}
+
+.apikey-button-container div {
+  background-color: #feeb61;
+  border: 4px solid #f1df58;
+  border-radius: 50%;
+  margin-right: 15px;
+  padding: 7px 12px;
+}
+
+.apikey-button-container div:hover {
+  background-color: #fef961;
+}
+
+.apikey-button-container .play-icon {
+  width: 14px;
+  height: 20px;
+  margin-left: 2px;
+}
+
+.apikey-button-container .stop-icon,
+.apikey-button-container .edit-icon,
+.apikey-button-container .delete-icon {
+  width: 15px;
+  height: 15px;
+}
+
+.apikey-container-header .apikey-hmac {
+  margin-right: 16px;
+  color: #10b866;
+  padding: 4px 20px;
+  background-color: #e8fff4;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.apikey-container-header .apikey-rca {
+  margin-right: 16px;
+  color: #fe616a;
+  padding: 4px 20px;
+  background-color: #ffe8e8;
+  border-radius: 8px;
+  font-size: 18px;
+}
+
+.apikey-container-header .apikey-name {
+  margin-right: 16px;
+  color: #202020;
+  padding: 4px 20px;
+  font-size: 18px;
+}
+
+.apikey-section p:first-child,
+.secret-key-section p:first-child {
+  color: #898d93;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.apikey-section .apikey-value,
+.secret-key-section .secret-key-value {
+  color: #202020;
+  font-size: 20px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.apikey-section .apikey-value span {
+  color: #565657;
+  font-size: 16px;
+  padding: 4px 16px;
+  background-color: #feeb61;
+  border-radius: 8px;
+  margin-left: 16px;
 }

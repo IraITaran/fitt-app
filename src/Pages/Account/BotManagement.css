@@ -3,4 +3,5 @@
   padding: 40px 46px;
   width: 100%;
   flex-wrap: wrap;
+  border-left: 1px solid #dcdfe4;
 }
