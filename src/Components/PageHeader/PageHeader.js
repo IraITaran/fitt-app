@@ -18,8 +18,17 @@ export default function PageHeader() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
   let [switchToList, setSwitchToList] = useState(false);
+  let [currentUserAccount, setCurrentUserAccount] = useState("");
+  let [userAccounts, setUserAccounts] = useState([]);
 
   useEffect(() => {
+    loadHeader();
+
+    AuthService.subscribeOnUpdate(userUpdate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function loadHeader() {
     let user = AuthService.getCurrentUser();
 
     if (user) {
@@ -27,15 +36,24 @@ export default function PageHeader() {
 
       UserService.details().then((response) => {
         setUser(response.data);
+        setUserAccounts(response.data.userExchangeAccounts);
+        setCurrentUserAccount(response.data.defaultExchangeAccount);
         AuthService.updateUserInternal(response.data);
       });
 
       setIsAuthenticated(true);
     }
+  }
 
-    AuthService.subscribeOnUpdate(userUpdate);
+  useEffect(() => {
+    UserService.changeAccount(currentUserAccount).then((response) => {
+      if (response.data.success) {
+        loadHeader();
+      }
+    });
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currentUserAccount]);
 
   function userUpdate(user) {
     if (user !== null) {
@@ -109,6 +127,21 @@ export default function PageHeader() {
           {isAuthenticated && (
             <>
               <div className="d-flex align-items-center">
+                <select
+                  className="apikey-input"
+                  value={currentUserAccount}
+                  onChange={(e) => {
+                    setCurrentUserAccount(e.target.value);
+                  }}
+                >
+                  {userAccounts.map((item, index) => {
+                    return (
+                      <option key={index} value={item.id}>
+                        {"Binance: " + item.name}
+                      </option>
+                    );
+                  })}
+                </select>
                 <div>
                   <Link to="/account/wallet">
                     <img

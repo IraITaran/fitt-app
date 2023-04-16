@@ -28,6 +28,9 @@ export default function BotConfigurationForm(props) {
   let [availableBalance, setAvailableBalance] = useState(0);
   let [usedBalance, setUsedBalance] = useState(0);
 
+  let [currentUserAccount, setCurrentUserAccount] = useState("");
+  let [userAccounts, setUserAccounts] = useState([]);
+
   useEffect(() => {
     props.nextEnabled(true);
     leaderboardService
@@ -45,6 +48,9 @@ export default function BotConfigurationForm(props) {
       leaderboardService.getLeaderStatistic(props.leaderId).then((response) => {
         setLeaderBalance(response["avgPnl"].toFixed(0));
       });
+
+      setUserAccounts(response.data.userExchangeAccounts);
+      setCurrentUserAccount(response.data.userExchangeAccounts[0]);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,6 +98,7 @@ export default function BotConfigurationForm(props) {
         balance: investInput,
         coefficient: coefficientInput,
         risk: riskInput,
+        userExchangeAccountId: currentUserAccount,
         positionControl: positionControl ? positionControlInput : null,
         stopLoss: stopLossControl ? stopLossInput : null,
         stopProfit: stopProfitControl ? stopProfitInput : null,
@@ -190,6 +197,26 @@ export default function BotConfigurationForm(props) {
                   Только сигналы (long/short)
                 </label>
               </div>
+            </div>
+            <div className="account-choice">
+              <div className="section-header">Выбор аккаунта:</div>
+              <label className="w-100">
+                <select
+                  className="w-100 apikey-input"
+                  value={currentUserAccount}
+                  onChange={(e) => {
+                    setCurrentUserAccount(e.target.value);
+                  }}
+                >
+                  {userAccounts.map((item, index) => {
+                    return (
+                      <option key={index} value={item.id}>
+                        {"Binance: " + item.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
             </div>
             <div className="account-state">
               <p className="section-header">
@@ -296,6 +323,8 @@ export default function BotConfigurationForm(props) {
                 </datalist>
               </div>
             </div>
+          </div>
+          <div className="modal-follow-right">
             <div className="risk">
               <p className="section-header">Риск</p>
               <div className="range-slider grad">
@@ -385,8 +414,6 @@ export default function BotConfigurationForm(props) {
                 )}
               </div>
             </div>
-          </div>
-          <div className="modal-follow-right">
             <div className="transaction-control">
               <div className="d-flex justify-content-between">
                 <p className="section-header">Контроль сделки</p>

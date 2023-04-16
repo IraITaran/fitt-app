@@ -44,12 +44,16 @@ class UserService {
     return axios.get(API_URL + "/getlogs", { headers: authHeader() });
   }
 
-  updateApiKey(key, secret) {
+  updateApiKey(name, key, secret, exchange) {
     return axios.post(
       API_URL + "/exchange",
-      { key: key, secret: secret },
+      { name: name, key: key, secret: secret, exchange: exchange },
       { headers: authHeader() }
     );
+  }
+
+  deleteApiKey(id) {
+    return axios.delete(API_URL + "/exchange/" + id, { headers: authHeader() });
   }
 
   requestTelegramCode() {
@@ -71,6 +75,14 @@ class UserService {
       {
         headers: authHeader(),
       }
+    );
+  }
+
+  changeAccount(id) {
+    return axios.post(
+      API_URL + "/account/" + id,
+      {},
+      { headers: authHeader() }
     );
   }
 }

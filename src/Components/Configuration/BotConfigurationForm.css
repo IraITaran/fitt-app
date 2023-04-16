@@ -29,7 +29,8 @@
   height: 16.67px;
 }
 
-.BotConfigurationForm .mode-selection {
+.BotConfigurationForm .mode-selection,
+.BotConfigurationForm .account-choice {
   margin-bottom: 32px;
 }
 
@@ -52,7 +53,7 @@
 }
 
 .account-state {
-  margin-bottom: px;
+  margin-bottom: 0px;
 }
 .account-state .account-indicator {
   font-size: 16px;

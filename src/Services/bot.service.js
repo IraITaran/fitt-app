@@ -74,6 +74,7 @@ class BotService {
         positionControl: botConfiguration.positionControl,
         stopLoss: botConfiguration.stopLoss,
         stopProfit: botConfiguration.stopProfit,
+        userExchangeAccountId: botConfiguration.userExchangeAccountId,
       },
       { headers: authHeader() }
     );
@@ -93,6 +94,7 @@ class BotService {
         positionControl: botConfiguration.positionControl,
         stopLoss: botConfiguration.stopLoss,
         stopProfit: botConfiguration.stopProfit,
+        userExchangeAccountId: botConfiguration.userExchangeAccountId,
       },
       { headers: authHeader() }
     );
@@ -108,7 +110,8 @@ class BotService {
     risk,
     positionControl,
     stopLoss,
-    stopProfit
+    stopProfit,
+    userExchangeAccountId
   ) {
     return axios.put(
       API_URL,
@@ -123,6 +126,7 @@ class BotService {
         positionControl: positionControl,
         stopLoss: stopLoss,
         stopProfit: stopProfit,
+        userExchangeAccountId: userExchangeAccountId,
       },
       { headers: authHeader() }
     );

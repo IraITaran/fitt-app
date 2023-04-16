@@ -73,6 +73,7 @@
   width: 30px;
   height: 30px;
   margin-right: 28px;
+  margin-left: 20px;
 }
 
 .header-right {
@@ -97,6 +98,11 @@
 
 .header-right ul li {
   margin-right: 32px;
+}
+
+.header-right .apikey-input {
+  outline: none;
+  padding-right: 10px;
 }
 
 .header-button {

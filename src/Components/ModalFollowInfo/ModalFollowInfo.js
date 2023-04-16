@@ -26,6 +26,9 @@ export default function ModalFollowInfo(props) {
   let [availableBalance, setAvailableBalance] = useState(0);
   let [usedBalance, setUsedBalance] = useState(0);
 
+  let [currentUserAccount, setCurrentUserAccount] = useState("");
+  let [userAccounts, setUserAccounts] = useState([]);
+
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -36,6 +39,9 @@ export default function ModalFollowInfo(props) {
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance
       );
       setType(0);
+
+      setUserAccounts(response.data.userExchangeAccounts);
+      setCurrentUserAccount(response.data.userExchangeAccounts[0]);
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -102,7 +108,8 @@ export default function ModalFollowInfo(props) {
         riskInput,
         positionControl ? positionControlInput : null,
         stopLossControl ? stopLossInput : null,
-        stopProfitControl ? stopProfitInput : null
+        stopProfitControl ? stopProfitInput : null,
+        currentUserAccount
       ).then(() => {
         props.onUpdate();
       });
@@ -206,6 +213,26 @@ export default function ModalFollowInfo(props) {
                     Только сигналы (long/short)
                   </label>
                 </div>
+              </div>
+              <div className="account-choice">
+                <div className="section-header">Выбор аккаунта:</div>
+                <label className="w-100">
+                  <select
+                    className="w-100 apikey-input"
+                    value={currentUserAccount}
+                    onChange={(e) => {
+                      setCurrentUserAccount(e.target.value);
+                    }}
+                  >
+                    {userAccounts.map((item, index) => {
+                      return (
+                        <option key={index} value={item.id}>
+                          {"Binance: " + item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </label>
               </div>
               <div className="account-state">
                 <p className="section-header">
@@ -312,6 +339,8 @@ export default function ModalFollowInfo(props) {
                   </datalist>
                 </div>
               </div>
+            </div>
+            <div className="modal-follow-right">
               <div className="risk">
                 <p className="section-header">Риск</p>
                 <div className="range-slider grad">
@@ -401,8 +430,6 @@ export default function ModalFollowInfo(props) {
                   )}
                 </div>
               </div>
-            </div>
-            <div className="modal-follow-right">
               <div className="transaction-control">
                 <div className="d-flex justify-content-between">
                   <p className="section-header">Контроль сделки</p>
