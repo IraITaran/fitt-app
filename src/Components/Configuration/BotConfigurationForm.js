@@ -98,7 +98,7 @@ export default function BotConfigurationForm(props) {
         balance: investInput,
         coefficient: coefficientInput,
         risk: riskInput,
-        userExchangeAccountId: currentUserAccount,
+        userExchangeAccountId: currentUserAccount.id,
         positionControl: positionControl ? positionControlInput : null,
         stopLoss: stopLossControl ? stopLossInput : null,
         stopProfit: stopProfitControl ? stopProfitInput : null,
@@ -203,7 +203,7 @@ export default function BotConfigurationForm(props) {
               <label className="w-100">
                 <select
                   className="w-100 apikey-input"
-                  value={currentUserAccount}
+                  value={currentUserAccount.id}
                   onChange={(e) => {
                     setCurrentUserAccount(e.target.value);
                   }}

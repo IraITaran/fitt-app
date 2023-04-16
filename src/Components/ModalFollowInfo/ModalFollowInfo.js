@@ -76,6 +76,7 @@ export default function ModalFollowInfo(props) {
       setPositionControl(props.data.positionControl != null);
       setStopLossControl(props.data.stopLoss != null);
       setStopProfitControl(props.data.stopProfit != null);
+      setCurrentUserAccount(props.data.userExchangeAccountId);
     } else {
       setInvestInput(availableBalance);
     }
@@ -109,7 +110,7 @@ export default function ModalFollowInfo(props) {
         positionControl ? positionControlInput : null,
         stopLossControl ? stopLossInput : null,
         stopProfitControl ? stopProfitInput : null,
-        currentUserAccount
+        currentUserAccount.id
       ).then(() => {
         props.onUpdate();
       });
@@ -123,7 +124,8 @@ export default function ModalFollowInfo(props) {
         riskInput,
         positionControl ? positionControlInput : null,
         stopLossControl ? stopLossInput : null,
-        stopProfitControl ? stopProfitInput : null
+        stopProfitControl ? stopProfitInput : null,
+        currentUserAccount.id
       ).then((response) => {
         navigate("/account/bot-management");
       });
