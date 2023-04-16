@@ -46,6 +46,7 @@ export default function PageHeader() {
   }
 
   useEffect(() => {
+    if (currentUserAccount === "") return;
     UserService.changeAccount(currentUserAccount).then((response) => {
       if (response.data.success) {
         loadHeader();
@@ -59,6 +60,8 @@ export default function PageHeader() {
     if (user !== null) {
       UserService.details().then((response) => {
         setUser(response.data);
+        setUserAccounts(response.data.userExchangeAccounts);
+        setCurrentUserAccount(response.data.defaultExchangeAccount);
       });
       setIsAuthenticated(true);
     } else {
@@ -127,21 +130,23 @@ export default function PageHeader() {
           {isAuthenticated && (
             <>
               <div className="d-flex align-items-center">
-                <select
-                  className="apikey-input"
-                  value={currentUserAccount}
-                  onChange={(e) => {
-                    setCurrentUserAccount(e.target.value);
-                  }}
-                >
-                  {userAccounts.map((item, index) => {
-                    return (
-                      <option key={index} value={item.id}>
-                        {"Binance: " + item.name}
-                      </option>
-                    );
-                  })}
-                </select>
+                {userAccounts.length > 0 && (
+                  <select
+                    className="apikey-input"
+                    value={currentUserAccount}
+                    onChange={(e) => {
+                      setCurrentUserAccount(e.target.value);
+                    }}
+                  >
+                    {userAccounts.map((item, index) => {
+                      return (
+                        <option key={index} value={item.id}>
+                          {"Binance: " + item.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                )}
                 <div>
                   <Link to="/account/wallet">
                     <img
