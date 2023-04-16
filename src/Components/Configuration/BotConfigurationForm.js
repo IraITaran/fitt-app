@@ -38,7 +38,7 @@ export default function BotConfigurationForm(props) {
       .then((response) => setLeaderInfo(response.data.data));
 
     UserService.details().then((response) => {
-      setExchangeBalance(response.data.exchangeBalance.toFixed(2));
+      setExchangeBalance(Math.floor(response.data.exchangeBalance));
       setUsedBalance(response.data.usedBalance);
       setAvailableBalance(
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance

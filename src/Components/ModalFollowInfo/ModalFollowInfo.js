@@ -33,7 +33,7 @@ export default function ModalFollowInfo(props) {
 
   useEffect(() => {
     UserService.details().then((response) => {
-      setExchangeBalance(response.data.exchangeBalance?.toFixed(0));
+      setExchangeBalance(Math.floor(response.data.exchangeBalance));
       setUsedBalance(response.data.usedBalance);
       setAvailableBalance(
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance
