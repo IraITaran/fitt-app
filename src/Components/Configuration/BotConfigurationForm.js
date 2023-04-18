@@ -8,7 +8,6 @@ import UserService from "../../Services/user.service";
 import "./BotConfigurationForm.css";
 
 import leaderboardService from "../../Services/leaderboard.service";
-import authService from "../../Services/auth.service";
 
 export default function BotConfigurationForm(props) {
   let [leaderInfo, setLeaderInfo] = useState({});
