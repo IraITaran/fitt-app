@@ -105,6 +105,18 @@
   padding-right: 10px;
 }
 
+.header-right .drop-container select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 170px;
+  border-color: gray;
+  background: url("../../images/arrow-down.png") no-repeat 147px 16px;
+  background-color: #f1f1f1;
+  -moz-appearance: none;
+  padding-left: 10px;
+}
+
 .header-button {
   border: 1px solid #feeb61;
   background-color: #feeb61;

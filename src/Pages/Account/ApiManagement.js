@@ -29,7 +29,7 @@ export default function ApiManagement() {
     setIsSaved(false);
     let user = AuthService.getCurrentUser();
 
-    if (user.subscription > 1) {
+    if (user.userDetails.subscription > 1) {
       setAllowedAccounts(2);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

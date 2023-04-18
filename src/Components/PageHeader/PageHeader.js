@@ -131,21 +131,24 @@ export default function PageHeader() {
             <>
               <div className="d-flex align-items-center">
                 {userAccounts.length > 0 && (
-                  <select
-                    className="apikey-input"
-                    value={currentUserAccount}
-                    onChange={(e) => {
-                      setCurrentUserAccount(e.target.value);
-                    }}
-                  >
-                    {userAccounts.map((item, index) => {
-                      return (
-                        <option key={index} value={item.id}>
-                          {"Binance: " + item.name}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  <div className="drop-container">
+                    {" "}
+                    <select
+                      className="apikey-input"
+                      value={currentUserAccount}
+                      onChange={(e) => {
+                        setCurrentUserAccount(e.target.value);
+                      }}
+                    >
+                      {userAccounts.map((item, index) => {
+                        return (
+                          <option key={index} value={item.id}>
+                            {"Binance: " + item.name}
+                          </option>
+                        );
+                      })}
+                    </select>
+                  </div>
                 )}
                 <div>
                   <Link to="/account/wallet">
