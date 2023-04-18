@@ -8,6 +8,7 @@ import UserService from "../../Services/user.service";
 import "./BotConfigurationForm.css";
 
 import leaderboardService from "../../Services/leaderboard.service";
+import authService from "../../Services/auth.service";
 
 export default function BotConfigurationForm(props) {
   let [leaderInfo, setLeaderInfo] = useState({});
@@ -37,6 +38,16 @@ export default function BotConfigurationForm(props) {
       .getLeaderInfo(props.leaderId)
       .then((response) => setLeaderInfo(response.data.data));
 
+    leaderboardService.getLeaderStatistic(props.leaderId).then((response) => {
+      setLeaderBalance(response["avgPnl"].toFixed(0));
+    });
+
+    updateUserDetails();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function updateUserDetails() {
     UserService.details().then((response) => {
       setExchangeBalance(Math.floor(response.data.exchangeBalance));
       setUsedBalance(response.data.usedBalance);
@@ -45,16 +56,12 @@ export default function BotConfigurationForm(props) {
       );
       setType(0);
 
-      leaderboardService.getLeaderStatistic(props.leaderId).then((response) => {
-        setLeaderBalance(response["avgPnl"].toFixed(0));
-      });
-
       setUserAccounts(response.data.userExchangeAccounts);
-      setCurrentUserAccount(response.data.userExchangeAccounts[0]);
+      setCurrentUserAccount(
+        response.data.userExchangeAccounts.find((x) => !x.isBusy).id
+      );
     });
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
 
   function updateCoefficient() {
     if (riskInput > 0) {
@@ -64,7 +71,7 @@ export default function BotConfigurationForm(props) {
     }
   }
 
-  useEffect(() => {
+  function updateFinance() {
     let availableBalance = exchangeBalance - usedBalance;
     setAvailableBalance(availableBalance);
     updateCoefficient();
@@ -85,7 +92,9 @@ export default function BotConfigurationForm(props) {
     } else {
       setInvestInput(availableBalance);
     }
-
+  }
+  useEffect(() => {
+    updateFinance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leaderBalance]);
 
@@ -121,6 +130,21 @@ export default function BotConfigurationForm(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [riskInput, investInput]);
+
+  useEffect(() => {
+    if (currentUserAccount.length < 1) return;
+
+    UserService.detailsByAccount(currentUserAccount).then((response) => {
+      setExchangeBalance(Math.floor(response.data.exchangeBalance));
+      setUsedBalance(response.data.usedBalance);
+      let availableBalance =
+        Math.floor(response.data.exchangeBalance) - response.data.usedBalance;
+      setAvailableBalance(availableBalance);
+      setInvestInput(availableBalance);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUserAccount]);
 
   return (
     <div className="BotConfigurationForm">
@@ -203,15 +227,20 @@ export default function BotConfigurationForm(props) {
               <label className="w-100">
                 <select
                   className="w-100 apikey-input"
-                  value={currentUserAccount.id}
+                  value={currentUserAccount}
                   onChange={(e) => {
                     setCurrentUserAccount(e.target.value);
                   }}
                 >
                   {userAccounts.map((item, index) => {
                     return (
-                      <option key={index} value={item.id}>
-                        {"Binance: " + item.name}
+                      <option
+                        key={index}
+                        value={item.id}
+                        disabled={item.isBusy}
+                      >
+                        {"Binance: " + item.name}{" "}
+                        {item.isBusy ? "[используется]" : ""}
                       </option>
                     );
                   })}

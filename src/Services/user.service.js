@@ -40,6 +40,12 @@ class UserService {
     return axios.get(API_URL + "/details", { headers: authHeader() });
   }
 
+  detailsByAccount(id) {
+    return axios.get(API_URL + "/details-account/" + id, {
+      headers: authHeader(),
+    });
+  }
+
   sessions() {
     return axios.get(API_URL + "/getlogs", { headers: authHeader() });
   }

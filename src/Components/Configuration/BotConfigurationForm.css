@@ -301,3 +301,7 @@ p.green-text {
 .tooltip2:hover .tooltiptext {
   visibility: visible;
 }
+
+.busy-state {
+  color: lightgray;
+}

@@ -33,15 +33,17 @@ export default function ModalFollowInfo(props) {
 
   useEffect(() => {
     UserService.details().then((response) => {
-      setExchangeBalance(Math.floor(response.data.exchangeBalance));
-      setUsedBalance(response.data.usedBalance);
-      setAvailableBalance(
-        Math.floor(response.data.exchangeBalance) - response.data.usedBalance
-      );
+      // setExchangeBalance(Math.floor(response.data.exchangeBalance));
+      // setUsedBalance(response.data.usedBalance);
+      // setAvailableBalance(
+      //   Math.floor(response.data.exchangeBalance) - response.data.usedBalance
+      // );
       setType(0);
 
       setUserAccounts(response.data.userExchangeAccounts);
-      setCurrentUserAccount(response.data.userExchangeAccounts[0]);
+      // setCurrentUserAccount(
+      //   response.data.userExchangeAccounts.find((x) => !x.isBusy).id
+      // );
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,6 +92,21 @@ export default function ModalFollowInfo(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [riskInput, investInput]);
 
+  useEffect(() => {
+    if (currentUserAccount.length < 1) return;
+
+    UserService.detailsByAccount(currentUserAccount).then((response) => {
+      setExchangeBalance(Math.floor(response.data.exchangeBalance));
+      setUsedBalance(response.data.usedBalance);
+      let availableBalance =
+        Math.floor(response.data.exchangeBalance) - response.data.usedBalance;
+      setAvailableBalance(availableBalance);
+      setInvestInput(availableBalance);
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUserAccount]);
+
   function onHide() {
     if (!props.isUpdate) {
       setRiskInput(1);
@@ -110,7 +127,7 @@ export default function ModalFollowInfo(props) {
         positionControl ? positionControlInput : null,
         stopLossControl ? stopLossInput : null,
         stopProfitControl ? stopProfitInput : null,
-        currentUserAccount.id
+        currentUserAccount
       ).then(() => {
         props.onUpdate();
       });
@@ -125,7 +142,7 @@ export default function ModalFollowInfo(props) {
         positionControl ? positionControlInput : null,
         stopLossControl ? stopLossInput : null,
         stopProfitControl ? stopProfitInput : null,
-        currentUserAccount.id
+        currentUserAccount
       ).then((response) => {
         navigate("/account/bot-management");
       });
@@ -228,8 +245,13 @@ export default function ModalFollowInfo(props) {
                   >
                     {userAccounts.map((item, index) => {
                       return (
-                        <option key={index} value={item.id}>
-                          {"Binance: " + item.name}
+                        <option
+                          key={index}
+                          value={item.id}
+                          disabled={item.isBusy}
+                        >
+                          {"Binance: " + item.name}{" "}
+                          {item.isBusy ? "[используется]" : ""}
                         </option>
                       );
                     })}
