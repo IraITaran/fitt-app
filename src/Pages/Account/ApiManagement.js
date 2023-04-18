@@ -79,7 +79,7 @@ export default function ApiManagement() {
                 type="button"
                 className="yellow-btn"
                 onClick={() => {
-                  if ((allowedAccounts = accounts.length))
+                  if (allowedAccounts === accounts.length)
                     setSubscriptionRestrictionModal(true);
                   else setApiKeyModal(true);
                 }}
