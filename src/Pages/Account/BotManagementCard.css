@@ -1,10 +1,17 @@
 .BotManagementCard {
   min-width: 580px;
-  height: 262px;
+  height: 315px;
   padding: 25px 30px;
   background-color: #ffffff;
   border: 1px solid #ffffff;
   margin: 10px;
+}
+
+.BotManagementCard .bot-type {
+  color: #10b866;
+  border: 1px solid #10b866;
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
 .BotManagementCard .user-account-icon {

@@ -123,6 +123,12 @@ export default function BotManagementCard(props) {
   return (
     <div className="BotManagementCard">
       <div className="row">
+        <div className="mb-4">
+          {props.data.type === 0 && <span className="bot-type">Copy</span>}
+          {props.data.type === 1 && <span className="bot-type">Open</span>}
+          {props.data.type === 2 && <span className="bot-type">Notify</span>}
+          <span></span>
+        </div>
         <div className="col">
           <div className="d-flex">
             <img

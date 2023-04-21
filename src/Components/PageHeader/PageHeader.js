@@ -79,18 +79,24 @@ export default function PageHeader() {
             <img src={FittLogoHeader} alt="fitt" className="fitt-logo"></img>
           </Link>
           {switchToList && (
-            <div className="ms-4 m-auto" onClick={() => setSwitchToList(false)}>
+            <div
+              className="list-table-icon"
+              onClick={() => setSwitchToList(false)}
+            >
               <img className="header-list-icon" src={ListIcon} alt="list"></img>
             </div>
           )}
           {!switchToList && (
-            <div className="ms-4 m-auto" onClick={() => setSwitchToList(true)}>
+            <div
+              className="list-table-icon"
+              onClick={() => setSwitchToList(true)}
+            >
               <img src={TableIcon} alt="table"></img>
             </div>
           )}
 
           <nav>
-            <ul className="d-flex">
+            <ul className="d-flex p-0">
               <li>
                 <Link to="/">Список портфелей</Link>
               </li>
@@ -129,7 +135,7 @@ export default function PageHeader() {
           )}
           {isAuthenticated && (
             <>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center header-right-container">
                 {userAccounts.length > 0 && (
                   <div className="drop-container">
                     {" "}

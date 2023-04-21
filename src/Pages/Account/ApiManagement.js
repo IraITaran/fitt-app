@@ -137,6 +137,7 @@ export default function ApiManagement() {
                   <p className="apikey-value">
                     {item.key}
                     <span
+                      className={currentCopied === index ? "copy-grey" : ""}
                       onClick={() => {
                         copyKey(item.key, index);
                       }}
@@ -189,6 +190,7 @@ export default function ApiManagement() {
               Название
               <input
                 type="text"
+                maxLength="10"
                 className="w-100 apikey-input"
                 onChange={(e) => setName(e.target.value)}
               ></input>
@@ -197,6 +199,7 @@ export default function ApiManagement() {
               API-ключ
               <input
                 type="text"
+                maxLength="100"
                 className="w-100 apikey-input"
                 onChange={(e) => setApiKey(e.target.value)}
               ></input>
@@ -205,6 +208,7 @@ export default function ApiManagement() {
               Секрет
               <input
                 type="text"
+                maxLength="100"
                 className="w-100 apikey-input"
                 onChange={(e) => setApiSecret(e.target.value)}
               ></input>
@@ -275,8 +279,9 @@ export default function ApiManagement() {
         </Modal.Header>
         <Modal.Body>
           <h4 className="approve-text">
-            Активная подписка не позволяет Вам иметь больше {allowedAccounts}{" "}
-            активного аккаунта.
+            Активная подписка не позволяет Вам иметь больше {""}
+            {allowedAccounts === 1 ? "1 активного аккаунта" : ""}
+            {allowedAccounts === 2 ? "2 активных аккаунтов" : ""}.
           </h4>
           <button
             type="button"

@@ -91,6 +91,10 @@ class UserService {
       { headers: authHeader() }
     );
   }
+
+  positions() {
+    return axios.get(API_URL + "/positions", { headers: authHeader() });
+  }
 }
 
 export default new UserService();

@@ -10,6 +10,7 @@
 
 .PageHeader {
   margin-bottom: 90px;
+  min-width: 1200px;
 }
 
 .PageHeader .fitt-logo {
@@ -25,9 +26,8 @@
 }
 
 .header-left {
-  margin-left: 24px;
-
   margin-right: auto;
+  min-width: 600px;
 }
 
 .header-list-icon {
@@ -42,9 +42,16 @@
   margin-right: 30px;
 }
 
-.header-left a,
+.header-left a {
+  margin: auto 0px auto 24px;
+}
+
+.header-left ul a {
+  margin-left: 24px;
+}
+
 .header-left nav {
-  margin: auto;
+  margin: auto 0px;
 }
 
 .header-left ul a {
@@ -78,6 +85,11 @@
 
 .header-right {
   margin-right: 24px;
+  min-width: 600px;
+}
+
+.header-right-container {
+  min-width: 600px;
 }
 
 .header-right ul a {
@@ -110,11 +122,14 @@
   -moz-appearance: none;
   appearance: none;
   width: 170px;
-  border-color: gray;
+  height: 40px;
+  border-radius: 8px;
+  padding-left: 15px;
+  border-color: #feeb61;
   background: url("../../images/arrow-down.png") no-repeat 147px 16px;
-  background-color: #f1f1f1;
+  background-color: #feeb61;
+  font-size: 15px;
   -moz-appearance: none;
-  padding-left: 10px;
 }
 
 .header-button {
@@ -174,4 +189,8 @@
 
 .selected-lang {
   font-size: 14px;
+}
+
+.list-table-icon {
+  margin: auto 0px auto 24px;
 }

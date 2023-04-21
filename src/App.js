@@ -15,6 +15,7 @@ import AdminRoutes from "./Pages/Admin/AdminRoutes";
 import MultistepFollow from "./Pages/MultistepFollow/MultistepFollow";
 import axios from "axios";
 import AuthService from "./Services/auth.service";
+import "./App.css";
 
 function App() {
   return (

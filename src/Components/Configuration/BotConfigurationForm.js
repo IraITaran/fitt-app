@@ -106,7 +106,7 @@ export default function BotConfigurationForm(props) {
         balance: investInput,
         coefficient: coefficientInput,
         risk: riskInput,
-        userExchangeAccountId: currentUserAccount.id,
+        userExchangeAccountId: currentUserAccount,
         positionControl: positionControl ? positionControlInput : null,
         stopLoss: stopLossControl ? stopLossInput : null,
         stopProfit: stopProfitControl ? stopProfitInput : null,

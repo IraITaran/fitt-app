@@ -18,6 +18,15 @@ export default function AccountWallet() {
     UserService.sessions().then((response) => {
       setSessions(response.data);
     });
+
+    UserService.positions().then((response) => {
+      console.log(JSON.parse(response.data));
+      try {
+        JSON.parse(response.data);
+      } catch (error) {
+        console.log("Error parsing JSON:", error, response.data);
+      }
+    });
   }, []);
 
   return (
@@ -94,21 +103,13 @@ export default function AccountWallet() {
         <div className="account-bg"></div>
       </div>
       <div className="user-statistics-container">
-        <table className="user-statistics-table">
+        <table className="user-statistics-table w-100">
           <thead>
             <tr>
-              <th>Тикер</th>
+              <th>Пара</th>
               <th>Сторона</th>
               <th>
-                В сделке
-                <img
-                  src={QuestionDarkIcon}
-                  alt="question-icon"
-                  className="ms-1"
-                />
-              </th>
-              <th>
-                Вход
+                Открыт
                 <img
                   src={QuestionDarkIcon}
                   alt="question-icon"
@@ -125,23 +126,7 @@ export default function AccountWallet() {
               </th>
               <th>Маржа $</th>
               <th>
-                Вход
-                <img
-                  src={QuestionDarkIcon}
-                  alt="question-icon"
-                  className="ms-1"
-                />
-              </th>
-              <th>
-                Выход
-                <img
-                  src={QuestionDarkIcon}
-                  alt="question-icon"
-                  className="ms-1"
-                />
-              </th>
-              <th>
-                Выход
+                Средства
                 <img
                   src={QuestionDarkIcon}
                   alt="question-icon"
@@ -156,7 +141,6 @@ export default function AccountWallet() {
                   className="ms-1"
                 />
               </th>
-              <th>Доход $</th>
               <th>
                 PNL
                 <img
@@ -165,16 +149,7 @@ export default function AccountWallet() {
                   className="ms-1"
                 />
               </th>
-              <th>Объем</th>
-              <th>
-                Макс. Объем
-                <img
-                  src={QuestionDarkIcon}
-                  alt="question-icon"
-                  className="ms-1"
-                />
-              </th>
-              <th className="text-center">Действие</th>
+              <th>Действие</th>
             </tr>
           </thead>
           <tbody>
@@ -183,15 +158,13 @@ export default function AccountWallet() {
               <td>LONG</td>
               <td>8c</td>
               <td>вт 11 апр 23 22:18:17</td>
-              <td>x25</td>
-              <td>$100,000.00</td>
-              <td>$333,000.00</td>
-              <td>вт 11 апр 23 22:19:16</td>
               <td>$999,000.00</td>
-              <td>81,01%</td>
-              <td>-81,03%</td>
-              <td>-$30.000</td>
-              <td>$999.00</td>
+              <td>
+                <span className={"circled-green"}>81,01%</span>
+              </td>
+              <td>
+                <span className="circled-red">-81,03%</span>
+              </td>
               <td>$1.076,00</td>
               <td>
                 <button className="statistic-table-btn">

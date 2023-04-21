@@ -151,3 +151,7 @@
 .approve-btn.ok-btn {
   margin-left: 0px;
 }
+
+.apikey-section .apikey-value .copy-grey {
+  background-color: #f1f1f1;
+}
