@@ -151,6 +151,8 @@ export default function BotManagementCard(props) {
           {props.data.type === 2 && <span className="bot-type">Notify</span>}
           {account && <span className="account-type">{account}</span>}
         </div>
+      </div>
+      <div className="row">
         <div className="col">
           <div className="d-flex">
             <img

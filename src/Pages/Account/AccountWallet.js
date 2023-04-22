@@ -9,6 +9,7 @@ import QuestionDarkIcon from "../../images/question-dark-icon.svg";
 export default function AccountWallet() {
   let [user, setUser] = useState({});
   let [sessions, setSessions] = useState([]);
+  let [positions, setPositions] = useState([]);
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
@@ -20,9 +21,12 @@ export default function AccountWallet() {
     });
 
     UserService.positions().then((response) => {
-      console.log(JSON.parse(response.data));
       try {
-        JSON.parse(response.data);
+        let parsedPositions = JSON.parse(
+          response.data.replace("CROSSED", '"CROSSED"')
+        );
+        console.log(parsedPositions);
+        setPositions(parsedPositions);
       } catch (error) {
         console.log("Error parsing JSON:", error, response.data);
       }
@@ -133,6 +137,8 @@ export default function AccountWallet() {
                   className="ms-1"
                 />
               </th>
+              <th>Цена входа</th>
+              <th>Текущая цена</th>
               <th>
                 ROI
                 <img
@@ -153,25 +159,88 @@ export default function AccountWallet() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>BTCUSDT</td>
-              <td>LONG</td>
-              <td>8c</td>
-              <td>вт 11 апр 23 22:18:17</td>
-              <td>$999,000.00</td>
-              <td>
-                <span className={"circled-green"}>81,01%</span>
-              </td>
-              <td>
-                <span className="circled-red">-81,03%</span>
-              </td>
-              <td>$1.076,00</td>
-              <td>
-                <button className="statistic-table-btn">
-                  Закрыть по рынку
-                </button>
-              </td>
-            </tr>
+            {positions.map((item, index) => {
+              return (
+                <tr key={index}>
+                  <td>{item.symbol}</td>
+                  <td>
+                    <span
+                      className={
+                        item.positionAmt < 0 ? "circled-red" : "circled-green"
+                      }
+                    >
+                      {item.positionAmt < 0 ? "SHORT" : "LONG"}
+                    </span>
+                  </td>
+                  <td>
+                    {new Date(item.updateTime).toLocaleDateString()}
+                    <br />
+                    {new Date(item.updateTime).toLocaleTimeString()}
+                  </td>
+                  <td>x{item.leverage}</td>
+                  <td>
+                    {(item.markPrice * Math.abs(item.positionAmt)).toFixed(2)}$
+                  </td>
+                  <td>
+                    {(
+                      (item.markPrice * Math.abs(item.positionAmt)) /
+                      item.leverage
+                    ).toFixed(2)}
+                    $
+                  </td>
+                  <td>
+                    {item.entryPrice > 0.01
+                      ? item.entryPrice.toFixed(4)
+                      : item.entryPrice > 0.00001
+                      ? item.entryPrice.toFixed(8)
+                      : item.entryPrice.toFixed(2)}
+                    $
+                  </td>
+                  <td>
+                    {item.markPrice > 0.01
+                      ? item.markPrice.toFixed(4)
+                      : item.markPrice > 0.00001
+                      ? item.markPrice.toFixed(8)
+                      : item.markPrice.toFixed(2)}
+                    $
+                  </td>
+                  <td>
+                    <span
+                      className={
+                        item.unrealizedProfit < 0
+                          ? "circled-red"
+                          : "circled-green"
+                      }
+                    >
+                      {(
+                        item.unrealizedProfit /
+                        ((item.markPrice * Math.abs(item.positionAmt)) /
+                          item.leverage /
+                          100)
+                      ).toFixed(2)}
+                      %
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      className={
+                        item.unrealizedProfit < 0
+                          ? "circled-red"
+                          : "circled-green"
+                      }
+                    >
+                      {item.unrealizedProfit.toFixed(2)}$
+                    </span>
+                  </td>
+
+                  <td>
+                    <button className="statistic-table-btn">
+                      Закрыть по рынку
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

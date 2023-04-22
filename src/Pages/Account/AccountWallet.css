@@ -127,7 +127,8 @@
 }
 
 .user-statistics-table th {
-  padding: 42px 65px 42px 0px;
+  padding: 42px 0px;
+  text-align: center;
   font-size: 14px;
   color: #898d93;
   border-bottom: 1px solid #dde0e5;
@@ -139,9 +140,10 @@
 }
 
 .user-statistics-table td {
-  padding: 24px 65px 24px 0px;
+  padding: 24px 0px;
+  text-align: center;
   color: #202020;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 
