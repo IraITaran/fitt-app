@@ -14,6 +14,7 @@ export default function BotManagementCard(props) {
   let [allPositionChoiceAmount, setAllPositionChoiceAmount] = useState(0);
   let [availableBalance, setAvailableBalance] = useState(0);
   let [approveModal, setApproveModal] = useState(false);
+  let [onlyNotify, setOnlyNotify] = useState(false);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -43,6 +44,10 @@ export default function BotManagementCard(props) {
         setAllPositionChoiceAmount(totalAmount.toFixed(0));
       }
     );
+
+    if (props.data.type === 2) {
+      setOnlyNotify(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -80,59 +85,64 @@ export default function BotManagementCard(props) {
       <div className="bot-option-container">
         <h4 className="copy-header text-center mb-5">Настройки копирования</h4>
 
-        <div className="radio-buttons-wrapper">
-          <label>
-            <input
-              type="radio"
-              name="following-option"
-              value={0}
-              onChange={(e) => {
-                setRunOption(e.target.value);
-                setDisableRun(false);
-              }}
-              defaultChecked
-            />
-            Копировать только новые позиции
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="following-option"
-              value={1}
-              onChange={(e) => {
-                setRunOption(e.target.value);
-                setDisableRun(availableBalance < negativePNLChoiceAmount);
-              }}
-            />
-            Копировать позиции с отрицательным PNL-ROI{" "}
-            <span
-              className={
-                availableBalance > negativePNLChoiceAmount ? "green" : "red"
-              }
-            >
-              (общая сумма с учетом коефициента: {negativePNLChoiceAmount}$)
-            </span>
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="following-option"
-              value={2}
-              onChange={(e) => {
-                setRunOption(e.target.value);
-                setDisableRun(availableBalance < allPositionChoiceAmount);
-              }}
-            />
-            Копировать все открытые позиции{" "}
-            <span
-              className={
-                availableBalance > allPositionChoiceAmount ? "green" : "red"
-              }
-            >
-              (общая сумма с учетом коефициента: {allPositionChoiceAmount}$)
-            </span>
-          </label>
-        </div>
+        {!onlyNotify && (
+          <div className="radio-buttons-wrapper">
+            <label>
+              <input
+                type="radio"
+                name="following-option"
+                value={0}
+                onChange={(e) => {
+                  setRunOption(e.target.value);
+                  setDisableRun(false);
+                }}
+                defaultChecked
+                disabled={onlyNotify}
+              />
+              Копировать только новые позиции
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="following-option"
+                value={1}
+                onChange={(e) => {
+                  setRunOption(e.target.value);
+                  setDisableRun(availableBalance < negativePNLChoiceAmount);
+                }}
+                disabled={onlyNotify}
+              />
+              Копировать позиции с отрицательным PNL-ROI{" "}
+              <span
+                className={
+                  availableBalance > negativePNLChoiceAmount ? "green" : "red"
+                }
+              >
+                (общая сумма с учетом коефициента: {negativePNLChoiceAmount}$)
+              </span>
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="following-option"
+                value={2}
+                onChange={(e) => {
+                  setRunOption(e.target.value);
+                  setDisableRun(availableBalance < allPositionChoiceAmount);
+                }}
+                disabled={onlyNotify}
+              />
+              Копировать все открытые позиции{" "}
+              <span
+                className={
+                  availableBalance > allPositionChoiceAmount ? "green" : "red"
+                }
+              >
+                (общая сумма с учетом коефициента: {allPositionChoiceAmount}$)
+              </span>
+            </label>
+          </div>
+        )}
         <div className="text-center">
           <h5 className="mb-4">Открытые позиции трейдера</h5>
           <div className="table-container">

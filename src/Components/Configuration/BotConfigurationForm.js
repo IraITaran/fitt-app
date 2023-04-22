@@ -31,6 +31,8 @@ export default function BotConfigurationForm(props) {
   let [currentUserAccount, setCurrentUserAccount] = useState("");
   let [userAccounts, setUserAccounts] = useState([]);
 
+  let [onlyNotify, setOnlyNotify] = useState(false);
+
   useEffect(() => {
     props.nextEnabled(true);
     leaderboardService
@@ -38,7 +40,7 @@ export default function BotConfigurationForm(props) {
       .then((response) => setLeaderInfo(response.data.data));
 
     leaderboardService.getLeaderStatistic(props.leaderId).then((response) => {
-      setLeaderBalance(response["avgPnl"].toFixed(0));
+      setLeaderBalance(parseFloat(response["avgPnl"]).toFixed(0));
     });
 
     updateUserDetails();
@@ -56,9 +58,18 @@ export default function BotConfigurationForm(props) {
       setType(0);
 
       setUserAccounts(response.data.userExchangeAccounts);
-      setCurrentUserAccount(
-        response.data.userExchangeAccounts.find((x) => !x.isBusy).id
+
+      let freeUserAccount = response.data.userExchangeAccounts.find(
+        (x) => !x.isBusy
       );
+      if (freeUserAccount) {
+        setCurrentUserAccount(freeUserAccount.id);
+      } else {
+        setOnlyNotify(true);
+        setType(2);
+        setCurrentUserAccount("0");
+        props.nextEnabled(true);
+      }
     });
   }
 
@@ -93,6 +104,9 @@ export default function BotConfigurationForm(props) {
     }
   }
   useEffect(() => {
+    if (leaderBalance === 0) {
+      return;
+    }
     updateFinance();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leaderBalance]);
@@ -106,7 +120,8 @@ export default function BotConfigurationForm(props) {
         balance: investInput,
         coefficient: coefficientInput,
         risk: riskInput,
-        userExchangeAccountId: currentUserAccount,
+        userExchangeAccountId:
+          type === 2 ? userAccounts[0].id : currentUserAccount,
         positionControl: positionControl ? positionControlInput : null,
         stopLoss: stopLossControl ? stopLossInput : null,
         stopProfit: stopProfitControl ? stopProfitInput : null,
@@ -131,7 +146,7 @@ export default function BotConfigurationForm(props) {
   }, [riskInput, investInput]);
 
   useEffect(() => {
-    if (currentUserAccount.length < 1) return;
+    if (currentUserAccount.length < 2) return;
 
     UserService.detailsByAccount(currentUserAccount).then((response) => {
       setExchangeBalance(Math.floor(response.data.exchangeBalance));
@@ -194,6 +209,7 @@ export default function BotConfigurationForm(props) {
                     onChange={(e) => setType(0)}
                     className="radio"
                     checked={type === 0 ? true : false}
+                    disabled={onlyNotify}
                   />
                   Копирование трейдера 1 в 1
                 </label>
@@ -205,6 +221,7 @@ export default function BotConfigurationForm(props) {
                     onChange={(e) => setType(1)}
                     checked={type === 1 ? true : false}
                     className="radio"
+                    disabled={onlyNotify}
                   />
                   Только вход в сделку (long/short)
                 </label>
@@ -231,6 +248,9 @@ export default function BotConfigurationForm(props) {
                     setCurrentUserAccount(e.target.value);
                   }}
                 >
+                  <option value="0" defaultValue disabled hidden>
+                    Доступна только нотификация
+                  </option>
                   {userAccounts.map((item, index) => {
                     return (
                       <option
@@ -297,6 +317,7 @@ export default function BotConfigurationForm(props) {
                     <button
                       className="btn btn-outline-primary"
                       type="button"
+                      disabled={onlyNotify}
                       onClick={() => {
                         if (investInput <= availableBalance) {
                           setInvestInput(Number(investInput) - 1);
@@ -317,6 +338,7 @@ export default function BotConfigurationForm(props) {
                     <button
                       className="btn btn-outline-primary"
                       type="button"
+                      disabled={onlyNotify}
                       onClick={() => {
                         if (investInput < availableBalance) {
                           setInvestInput(Number(investInput) + 1);
@@ -341,6 +363,7 @@ export default function BotConfigurationForm(props) {
                   max={availableBalance}
                   step="1"
                   list="balance-option-list"
+                  disabled={onlyNotify}
                 />
                 <datalist id="balance-option-list">
                   <option>0</option>
@@ -367,6 +390,7 @@ export default function BotConfigurationForm(props) {
                   max="100"
                   step="1"
                   list="risk-option-list"
+                  disabled={onlyNotify}
                 />
                 <datalist id="risk-option-list">
                   <option>-10</option>
@@ -385,6 +409,7 @@ export default function BotConfigurationForm(props) {
                       <button
                         className="btn btn-outline-primary"
                         type="button"
+                        disabled={onlyNotify}
                         onClick={() => {
                           if (riskInput === 1) {
                             setRiskInput(-2);
@@ -409,6 +434,7 @@ export default function BotConfigurationForm(props) {
                       <button
                         className="btn btn-outline-primary"
                         type="button"
+                        disabled={onlyNotify}
                         onClick={() => {
                           if (riskInput === -2) {
                             setRiskInput(1);
@@ -437,7 +463,7 @@ export default function BotConfigurationForm(props) {
                     </div>
                   </>
                 )}
-                {coefficientInput < 0.0001 && (
+                {coefficientInput < 0.0001 && !onlyNotify && (
                   <p className="warn-labels">Коэффициент слишком низкий!</p>
                 )}
               </div>
@@ -450,6 +476,7 @@ export default function BotConfigurationForm(props) {
                     type="checkbox"
                     checked={positionControl}
                     onChange={() => setPositionControl(!positionControl)}
+                    disabled={onlyNotify}
                   />
                   <span className="slider round"></span>
                 </label>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./BotManagementCard.css";
 import UnknownIcon from "../../images/unknown-icon.png";
 import playBotIcon from "../../images/playbot-icon.svg";
@@ -11,6 +11,7 @@ import BotService from "../../Services/bot.service";
 import LeaderboardService from "../../Services/leaderboard.service";
 import { useNavigate } from "react-router-dom";
 import authService from "../../Services/auth.service";
+import ModalApprove from "../../Components/Modals/ModalApprove";
 
 export default function BotManagementCard(props) {
   let [modal, setModal] = useState(false);
@@ -24,6 +25,27 @@ export default function BotManagementCard(props) {
   let [availableBalance, setAvailableBalance] = useState(0);
   let [disableRun, setDisableRun] = useState(false);
   let navigate = useNavigate();
+  let [account, setAccount] = useState(null);
+
+  useEffect(() => {
+    getAccount();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function getAccount() {
+    let userAccounts =
+      authService.getCurrentUser().userDetails.userExchangeAccounts;
+
+    let botUserAccount = userAccounts.find(
+      (item) => item.id === props.data.userExchangeAccountId
+    );
+
+    if (props.data.type !== 2) {
+      let exchangeName =
+        botUserAccount.exchange === 1 ? "Binance: " : "Not Binance: ";
+      setAccount(exchangeName + botUserAccount.name);
+    }
+  }
 
   function showModal() {
     if (props.data.status === 1) {
@@ -127,7 +149,7 @@ export default function BotManagementCard(props) {
           {props.data.type === 0 && <span className="bot-type">Copy</span>}
           {props.data.type === 1 && <span className="bot-type">Open</span>}
           {props.data.type === 2 && <span className="bot-type">Notify</span>}
-          <span></span>
+          {account && <span className="account-type">{account}</span>}
         </div>
         <div className="col">
           <div className="d-flex">
@@ -356,67 +378,27 @@ export default function BotManagementCard(props) {
         </Modal.Body>
       </Modal>
 
-      <Modal
-        className="approve-modal"
+      <ModalApprove
         show={approveModal}
         onHide={() => setApproveModal(false)}
-      >
-        <Modal.Header closeButton>
-          <h4 className="approve-header">Удаление бота</h4>
-        </Modal.Header>
-        <Modal.Body>
-          <h4 className="approve-text">
-            Вы действительно хотите удалить бота?
-          </h4>
-          <button
-            type="button"
-            className="approve-btn delete mt-4"
-            onClick={deleteBot}
-          >
-            Удалить
-          </button>
-          <button
-            type="button"
-            className="approve-btn mt-4"
-            onClick={() => setApproveModal(false)}
-          >
-            Отмена
-          </button>
-        </Modal.Body>
-      </Modal>
+        title="Удаление бота"
+        bodyText="Вы действительно хотите удалить бота?"
+        onSubmit={deleteBot}
+        submitButtonText="Удалить"
+      />
 
-      <Modal
-        className="approve-modal"
+      <ModalApprove
         show={subscriptionModal}
         onHide={() => setSubscriptionModal(false)}
-      >
-        <Modal.Header closeButton>
-          <h4 className="approve-header">Оплата Подписки</h4>
-        </Modal.Header>
-        <Modal.Body>
-          <h4 className="approve-text">
-            У Вас нет активной подписки. Вы сможете запустить бота после оплаты
-            подписки.
-          </h4>
-          <button
-            type="button"
-            className="green approve-btn mt-4"
-            onClick={() => {
-              navigate("/tarrifs");
-              setSubscriptionModal(false);
-            }}
-          >
-            Выбрать подписку
-          </button>
-          <button
-            type="button"
-            className="approve-btn mt-4"
-            onClick={() => setSubscriptionModal(false)}
-          >
-            Отмена
-          </button>
-        </Modal.Body>
-      </Modal>
+        title="Оплата Подписки"
+        bodyText="У Вас нет активной подписки. Вы сможете запустить бота после оплаты
+            подписки."
+        onSubmit={() => {
+          navigate("/tarrifs");
+          setSubscriptionModal(false);
+        }}
+        submitButtonText="Выбрать подписку"
+      />
     </div>
   );
 }

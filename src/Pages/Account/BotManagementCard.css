@@ -12,6 +12,14 @@
   border: 1px solid #10b866;
   padding: 5px 10px;
   border-radius: 8px;
+  margin-right: 10px;
+}
+
+.BotManagementCard .account-type {
+  color: #f3ba2f;
+  border: 1px solid #f3ba2f;
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
 .BotManagementCard .user-account-icon {
@@ -129,30 +137,6 @@
 .run-bot-modal .insufient-funds-warning {
   color: red;
   text-align: center;
-}
-
-.approve-modal .modal-dialog {
-  top: 130px;
-  max-width: 400px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.approve-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 47%;
-  height: 40px;
-  margin: 5px;
-  color: #080808;
-}
-
-.approve-btn.delete {
-  border: 1px solid rgb(255, 68, 68);
-  background-color: rgb(255, 68, 68);
-  color: white;
-  font-weight: 500;
 }
 
 .table-container {
