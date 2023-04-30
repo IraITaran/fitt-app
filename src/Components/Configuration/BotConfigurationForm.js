@@ -35,6 +35,13 @@ export default function BotConfigurationForm(props) {
 
   useEffect(() => {
     props.nextEnabled(true);
+
+    updateLeaderDetails();
+    updateUserDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function updateLeaderDetails() {
     leaderboardService
       .getLeaderInfo(props.leaderId)
       .then((response) => setLeaderInfo(response.data.data));
@@ -42,32 +49,37 @@ export default function BotConfigurationForm(props) {
     leaderboardService.getLeaderStatistic(props.leaderId).then((response) => {
       setLeaderBalance(parseFloat(response["avgPnl"]).toFixed(0));
     });
-
-    updateUserDetails();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }
 
   function updateUserDetails() {
     UserService.details().then((response) => {
       setExchangeBalance(Math.floor(response.data.exchangeBalance));
-      setUsedBalance(response.data.usedBalance);
-      setAvailableBalance(
-        Math.floor(response.data.exchangeBalance) - response.data.usedBalance
-      );
-      setType(0);
+      //setUsedBalance(response.data.usedBalance);
+      // setAvailableBalance(
+      //   Math.floor(response.data.exchangeBalance) - response.data.usedBalance
+      //);
 
       setUserAccounts(response.data.userExchangeAccounts);
 
-      let freeUserAccount = response.data.userExchangeAccounts.find(
-        (x) => !x.isBusy
-      );
-      if (freeUserAccount) {
-        setCurrentUserAccount(freeUserAccount.id);
+      if (!props.isUpdate) {
+        let freeUserAccount = response.data.userExchangeAccounts.find(
+          (x) => !x.isBusy
+        );
+        if (freeUserAccount) {
+          setCurrentUserAccount(freeUserAccount.id);
+        } else {
+          setOnlyNotify(true);
+          setType(2);
+          setCurrentUserAccount("0");
+          props.nextEnabled(true);
+        }
       } else {
-        setOnlyNotify(true);
-        setType(2);
-        setCurrentUserAccount("0");
-        props.nextEnabled(true);
+        let currentUserAccount = response.data.userExchangeAccounts.find(
+          (x) => x.id === props.data.userExchangeAccountId
+        );
+        if (currentUserAccount) {
+          setCurrentUserAccount(currentUserAccount.id);
+        }
       }
     });
   }
@@ -80,7 +92,7 @@ export default function BotConfigurationForm(props) {
     }
   }
 
-  function updateFinance() {
+  function updateConfigurationForm() {
     let availableBalance = exchangeBalance - usedBalance;
     setAvailableBalance(availableBalance);
     updateCoefficient();
@@ -91,28 +103,34 @@ export default function BotConfigurationForm(props) {
       setRiskInput(props.data.risk);
       setCoefficientInput(props.data.coefficient);
       setPositionControlInput(
-        props.data.positionControl ? props.data.positionControl : 10
+        props.data.positionControl ? props.data.positionControl : 80
       );
       setStopProfitInput(props.data.stopProfit ? props.data.stopProfit : 30);
       setStopLossInput(props.data.stopLoss ? props.data.stopLoss : 30);
       setPositionControl(props.data.positionControl != null);
       setStopLossControl(props.data.stopLoss != null);
       setStopProfitControl(props.data.stopProfit != null);
+
+      if (props.data.type === 2) {
+        setOnlyNotify(true);
+      }
     } else {
+      setType(0);
       setInvestInput(availableBalance);
     }
   }
+
   useEffect(() => {
     if (leaderBalance === 0) {
       return;
     }
-    updateFinance();
+    updateConfigurationForm();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [leaderBalance]);
 
   useEffect(() => {
     if (props.botSaveEvent) {
-      props.updateBotConfiguration({
+      let botConfiguration = {
         leaderId: props.leaderId,
         nickName: leaderInfo.nickName,
         type,
@@ -124,7 +142,13 @@ export default function BotConfigurationForm(props) {
         positionControl: positionControl ? positionControlInput : null,
         stopLoss: stopLossControl ? stopLossInput : null,
         stopProfit: stopProfitControl ? stopProfitInput : null,
-      });
+      };
+
+      if (props.isUpdate) {
+        botConfiguration["id"] = props.data.id;
+      }
+
+      props.updateBotConfiguration(botConfiguration);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.botSaveEvent]);
@@ -154,8 +178,16 @@ export default function BotConfigurationForm(props) {
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance;
       setAvailableBalance(availableBalance);
 
-      if (!onlyNotify) {
+      if (!onlyNotify && !props.isUpdate) {
         setInvestInput(availableBalance);
+      }
+
+      if (props.isUpdate) {
+        if (props.data.balance > availableBalance) {
+          setInvestInput(availableBalance);
+        } else {
+          setInvestInput(props.data.balance);
+        }
       }
     });
 
@@ -164,8 +196,8 @@ export default function BotConfigurationForm(props) {
 
   return (
     <div className="BotConfigurationForm">
-      <div className="botconfig-container">
-        <h3>Настройка бота</h3>
+      <div className={props.isUpdate ? "" : "botconfig-container"}>
+        {!props.isUpdate && <h3>Настройка бота</h3>}
         <div className="d-flex">
           <div className="botconfig-container-left">
             <div className="section-header">За кем следить</div>
@@ -269,7 +301,10 @@ export default function BotConfigurationForm(props) {
                     type="radio"
                     name="mode"
                     value={2}
-                    onChange={(e) => setType(2)}
+                    onChange={(e) => {
+                      setType(2);
+                      setPositionControl(false);
+                    }}
                     className="radio"
                     checked={type === 2 ? true : false}
                   />
@@ -346,7 +381,7 @@ export default function BotConfigurationForm(props) {
                     <button
                       className="btn btn-outline-primary"
                       type="button"
-                      disabled={onlyNotify}
+                      disabled={onlyNotify || type === 2}
                       onClick={() => {
                         if (investInput <= availableBalance) {
                           setInvestInput(Number(investInput) - 1);
@@ -367,7 +402,7 @@ export default function BotConfigurationForm(props) {
                     <button
                       className="btn btn-outline-primary"
                       type="button"
-                      disabled={onlyNotify}
+                      disabled={onlyNotify || type === 2}
                       onClick={() => {
                         if (investInput < availableBalance) {
                           setInvestInput(Number(investInput) + 1);
@@ -395,7 +430,7 @@ export default function BotConfigurationForm(props) {
                   max={availableBalance}
                   step="1"
                   list="balance-option-list"
-                  disabled={onlyNotify}
+                  disabled={onlyNotify || type === 2}
                 />
                 <datalist id="balance-option-list">
                   <option>0</option>
@@ -420,7 +455,7 @@ export default function BotConfigurationForm(props) {
                   max="100"
                   step="1"
                   list="risk-option-list"
-                  disabled={onlyNotify}
+                  disabled={onlyNotify || type === 2}
                 />
                 <datalist id="risk-option-list">
                   <option>-10</option>
@@ -439,7 +474,7 @@ export default function BotConfigurationForm(props) {
                       <button
                         className="btn btn-outline-primary"
                         type="button"
-                        disabled={onlyNotify}
+                        disabled={onlyNotify || type === 2}
                         onClick={() => {
                           if (riskInput === 1) {
                             setRiskInput(-2);
@@ -464,7 +499,7 @@ export default function BotConfigurationForm(props) {
                       <button
                         className="btn btn-outline-primary"
                         type="button"
-                        disabled={onlyNotify}
+                        disabled={onlyNotify || type === 2}
                         onClick={() => {
                           if (riskInput === -2) {
                             setRiskInput(1);
@@ -481,7 +516,7 @@ export default function BotConfigurationForm(props) {
                   </div>
                 </div>
               </div>
-              <div className="risk-ratio d-flex justify-content-between align-items-center">
+              <div className="risk-cooeficient-container d-flex justify-content-between align-items-center">
                 {coefficientInput > 0.0001 && (
                   <>
                     <p className="labels">Коэффициент: </p>
@@ -493,7 +528,7 @@ export default function BotConfigurationForm(props) {
                     </div>
                   </>
                 )}
-                {coefficientInput < 0.0001 && !onlyNotify && (
+                {coefficientInput < 0.0001 && (!onlyNotify || type !== 2) && (
                   <p className="warn-labels">Коэффициент слишком низкий!</p>
                 )}
               </div>
@@ -532,7 +567,7 @@ export default function BotConfigurationForm(props) {
                     type="checkbox"
                     checked={positionControl}
                     onChange={() => setPositionControl(!positionControl)}
-                    disabled={onlyNotify}
+                    disabled={onlyNotify || type === 2}
                   />
                   <span className="slider round"></span>
                 </label>
@@ -552,6 +587,7 @@ export default function BotConfigurationForm(props) {
                       max="100"
                       step="1"
                       list="position-option-list"
+                      disabled={onlyNotify || type === 2}
                     />
                     <datalist id="position-option-list">
                       <option>0</option>
@@ -572,6 +608,7 @@ export default function BotConfigurationForm(props) {
                           <button
                             className="btn btn-outline-primary"
                             type="button"
+                            disabled={onlyNotify || type === 2}
                             onClick={() => {
                               if (positionControlInput < 100) {
                                 setPositionControlInput(
@@ -594,6 +631,7 @@ export default function BotConfigurationForm(props) {
                           <button
                             className="btn btn-outline-primary"
                             type="button"
+                            disabled={onlyNotify || type === 2}
                             onClick={() => {
                               if (positionControlInput < 100) {
                                 setPositionControlInput(

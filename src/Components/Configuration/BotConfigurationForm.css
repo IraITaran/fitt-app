@@ -123,6 +123,11 @@
   margin-top: 38px;
 }
 
+.risk .risk-cooeficient-container {
+  margin-top: 20px;
+  min-height: 30px;
+}
+
 .BotConfigurationForm .plus-minus-labels,
 .BotConfigurationForm .labels,
 .BotConfigurationForm .warn-labels {

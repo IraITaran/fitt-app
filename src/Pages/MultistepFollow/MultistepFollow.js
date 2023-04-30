@@ -126,6 +126,7 @@ export default function MultistepFollow() {
             updateBotConfiguration={updateBotConfiguration}
             botSaveEvent={botSaveEvent}
             nextEnabled={enableNext}
+            isUpdate={false}
           />
         );
 

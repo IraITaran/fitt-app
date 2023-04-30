@@ -123,7 +123,7 @@ export default function LeaderBoard() {
               <option value="ALL">За все время</option>
             </select>
           </div>
-          <div className="col">
+          <div className="col search-container">
             <input
               type="search"
               placeholder="Поиск портфеля/лид трейдера"
