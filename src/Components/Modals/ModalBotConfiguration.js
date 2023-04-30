@@ -6,7 +6,7 @@ import DollarIcon from "../../images/dollar-icon.svg";
 import LockIcon from "../../images/lock-icon.svg";
 import BotService from "../../Services/bot.service";
 import UserService from "../../Services/user.service";
-import "./ModalFollowInfo.css";
+import "./ModalBotConfiguration.css";
 import { useNavigate } from "react-router-dom";
 
 export default function ModalFollowInfo(props) {

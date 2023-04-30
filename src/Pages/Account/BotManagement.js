@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./AccountWallet.css";
 import BotService from "../../Services/bot.service";
 import BotManagementCard from "./BotManagementCard";
-import ModalFollowInfo from "../../Components/ModalFollowInfo/ModalFollowInfo";
+import ModalBotConfiguration from "../../Components/Modals/ModalBotConfiguration";
 import "./BotManagement.css";
 
 export default function BotManagement() {
@@ -45,7 +45,7 @@ export default function BotManagement() {
         })}
       </div>
       {showFollowModal && (
-        <ModalFollowInfo
+        <ModalBotConfiguration
           show={showFollowModal}
           data={currentBot}
           leaderBalance={

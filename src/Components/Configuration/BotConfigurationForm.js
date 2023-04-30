@@ -44,7 +44,6 @@ export default function BotConfigurationForm(props) {
     });
 
     updateUserDetails();
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -154,7 +153,10 @@ export default function BotConfigurationForm(props) {
       let availableBalance =
         Math.floor(response.data.exchangeBalance) - response.data.usedBalance;
       setAvailableBalance(availableBalance);
-      setInvestInput(availableBalance);
+
+      if (!onlyNotify) {
+        setInvestInput(availableBalance);
+      }
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -163,9 +165,11 @@ export default function BotConfigurationForm(props) {
   return (
     <div className="BotConfigurationForm">
       <div className="botconfig-container">
-        <p className="section-header">За кем следим</p>
+        <h3>Настройка бота</h3>
         <div className="d-flex">
-          <div className="modal-follow-left">
+          <div className="botconfig-container-left">
+            <div className="section-header">За кем следить</div>
+
             <div className="d-flex leadername-section">
               <img
                 src={
@@ -185,6 +189,34 @@ export default function BotConfigurationForm(props) {
                 <p className="leader-type">USD-M</p>
               </div>
             </div>
+            <div className="account-choice">
+              <div className="section-header">Выбор аккаунта:</div>
+              <label className="w-100">
+                <select
+                  className="w-100 apikey-input"
+                  value={currentUserAccount}
+                  onChange={(e) => {
+                    setCurrentUserAccount(e.target.value);
+                  }}
+                >
+                  <option value="0" defaultValue disabled hidden>
+                    Доступна только нотификация
+                  </option>
+                  {userAccounts.map((item, index) => {
+                    return (
+                      <option
+                        key={index}
+                        value={item.id}
+                        disabled={item.isBusy}
+                      >
+                        {"Binance: " + item.name}{" "}
+                        {item.isBusy ? "[используется]" : ""}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            </div>
             <div className="mode-selection">
               <div className="section-header">
                 Выбор режима
@@ -195,7 +227,14 @@ export default function BotConfigurationForm(props) {
                     className="more-info-icon"
                   ></img>
                   <span className="tooltiptext">
-                    Выбор режима влияет процесс уведомления
+                    Бот может работать в разных режимах: <br />
+                    <br />- Копировать
+                    (открывать/увеличивать/уменьшать/закрывать) позиции
+                    трейдера; <br />
+                    <br />- Только открывать позиции трейдера, далее вам
+                    необходимо следить за позициями самостоятельно; <br />
+                    <br />- Только уведомлять о позициях трейдера в одном из
+                    каналов уведомлений.
                   </span>
                 </div>
               </div>
@@ -238,44 +277,26 @@ export default function BotConfigurationForm(props) {
                 </label>
               </div>
             </div>
-            <div className="account-choice">
-              <div className="section-header">Выбор аккаунта:</div>
-              <label className="w-100">
-                <select
-                  className="w-100 apikey-input"
-                  value={currentUserAccount}
-                  onChange={(e) => {
-                    setCurrentUserAccount(e.target.value);
-                  }}
-                >
-                  <option value="0" defaultValue disabled hidden>
-                    Доступна только нотификация
-                  </option>
-                  {userAccounts.map((item, index) => {
-                    return (
-                      <option
-                        key={index}
-                        value={item.id}
-                        disabled={item.isBusy}
-                      >
-                        {"Binance: " + item.name}{" "}
-                        {item.isBusy ? "[используется]" : ""}
-                      </option>
-                    );
-                  })}
-                </select>
-              </label>
-            </div>
+
             <div className="account-state">
               <p className="section-header">
                 Состояние счёта
-                <img
-                  src={MoreInfoIcon}
-                  alt="more-info"
-                  className="more-info-icon"
-                ></img>
+                <div className="tooltip2">
+                  <img
+                    src={MoreInfoIcon}
+                    alt="more-info"
+                    className="more-info-icon"
+                  ></img>
+                  <span className="tooltiptext">
+                    Баланс = Сумма средств доступная на вашем Futures кошельке.
+                    <br />
+                    <br />
+                    Используется = Сумма средств зарезервированная другими
+                    ботами.
+                  </span>
+                </div>
               </p>
-              <div className="d-flex justify-content-between align-items-center mb-3">
+              <div className="d-flex justify-content-between align-items-center">
                 <p className="account-indicator">
                   <img
                     src={DollarIcon}
@@ -302,14 +323,22 @@ export default function BotConfigurationForm(props) {
                 </div>
               </div>
             </div>
+          </div>
+          <div className="botconfig-container-right">
             <div className="investment">
               <p className="section-header">
                 Сумма инвестиции
-                <img
-                  src={MoreInfoIcon}
-                  alt="more-info"
-                  className="more-info-icon"
-                ></img>
+                <div className="tooltip2">
+                  <img
+                    src={MoreInfoIcon}
+                    alt="more-info"
+                    className="more-info-icon"
+                  ></img>
+                  <span className="tooltiptext">
+                    Выберите сумму средств которой бот будет оперировать. Бот не
+                    сможет открыть позиций больше чем указаная сумма.
+                  </span>
+                </div>
               </p>
               <div>
                 <div className="input-group">
@@ -352,7 +381,10 @@ export default function BotConfigurationForm(props) {
               </div>
               <div className="range-slider grad">
                 <span id="output" className="range-value">
-                  {Math.round(investInput / (exchangeBalance / 100))}%
+                  {isNaN(Math.round(investInput / (exchangeBalance / 100)))
+                    ? "0"
+                    : Math.round(investInput / (exchangeBalance / 100))}
+                  %
                 </span>
                 <input
                   className="range-inputs"
@@ -374,8 +406,6 @@ export default function BotConfigurationForm(props) {
                 </datalist>
               </div>
             </div>
-          </div>
-          <div className="modal-follow-right">
             <div className="risk">
               <p className="section-header">Риск</p>
               <div className="range-slider grad">
@@ -470,7 +500,33 @@ export default function BotConfigurationForm(props) {
             </div>
             <div className="transaction-control">
               <div className="d-flex justify-content-between">
-                <p className="section-header">Контроль сделки</p>
+                <div className="section-header">
+                  Контроль сделки
+                  <div className="tooltip2">
+                    <img
+                      src={MoreInfoIcon}
+                      alt="more-info"
+                      className="more-info-icon"
+                    ></img>
+                    <span className="tooltiptext">
+                      Контроль сделки конфигурирует, на какой процент от
+                      основной суммы инвестиции бот сможет открывать позиции.
+                      Контроль нужен для того, чтобы бот не смог открыть позиции
+                      на всю сумму и, при малейшем отрицательном PNL, портфель
+                      ликвидируется. Вы так же можете сами контролировать сумму,
+                      доступную на вашем аккаунте и устанавливать бюджет бота в
+                      размере, меньшем, чем сумма на вашем аккаунте. В таком
+                      случае контроль сделки может быть установлен на 100%.
+                      <br />
+                      <br />
+                      По умолчанию, бот устанавливает контроль сделки на 80%.
+                      <br />
+                      <br />
+                      Пример: Контроль сделки - 80%, сумма - 100$. Бот будет
+                      копировать позиции только на 80$.
+                    </span>
+                  </div>
+                </div>
                 <label className="switch">
                   <input
                     type="checkbox"

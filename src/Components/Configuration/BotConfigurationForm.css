@@ -14,13 +14,13 @@
 
 .BotConfigurationForm .section-header {
   font-size: 20px;
-  font-weight: 400;
+  font-weight: 600;
   margin-bottom: 20px;
   line-height: 23px;
 }
 
 .BotConfigurationForm .leadername-section {
-  margin-bottom: 32px;
+  margin: 30px 0px 70px 0px;
 }
 
 .BotConfigurationForm .more-info-icon {
@@ -31,7 +31,14 @@
 
 .BotConfigurationForm .mode-selection,
 .BotConfigurationForm .account-choice {
-  margin-bottom: 32px;
+  margin-bottom: 45px;
+}
+
+.BotConfigurationForm .botconfig-container-left,
+.BotConfigurationForm .botconfig-container-right {
+  margin-top: 30px;
+  width: 50%;
+  margin-right: 40px;
 }
 
 .account-choice select {
@@ -42,7 +49,7 @@
   border-radius: 8px;
   padding-left: 15px;
   border: 1px solid #f1f1f1;
-  background: url("../../images/arrow-down.png") no-repeat 424px 16px;
+  background: url("../../images/arrow-down.png") no-repeat 410px 16px;
   background-color: #f1f1f1;
   -moz-appearance: none;
 }
@@ -297,18 +304,18 @@ p.green-text {
 
 .tooltip2 .tooltiptext {
   visibility: hidden;
-  min-width: 200px;
+  min-width: 400px;
   background-color: white;
   border: 1px solid #000000;
   font-size: 14px;
   color: black;
-  text-align: center;
+  text-align: left;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 10px;
 
   /* Position the tooltip */
   position: absolute;
-  z-index: 1;
+  z-index: 100;
 }
 
 .tooltip2:hover .tooltiptext {

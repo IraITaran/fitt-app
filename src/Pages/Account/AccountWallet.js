@@ -190,10 +190,10 @@ export default function AccountWallet() {
                   </td>
                   <td>
                     {item.entryPrice > 0.01
-                      ? item.entryPrice.toFixed(4)
+                      ? item.entryPrice.toFixed(2)
                       : item.entryPrice > 0.00001
                       ? item.entryPrice.toFixed(8)
-                      : item.entryPrice.toFixed(2)}
+                      : item.entryPrice.toFixed(4)}
                     $
                   </td>
                   <td>
