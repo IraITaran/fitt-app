@@ -64,9 +64,9 @@ export default function Signup() {
     e.preventDefault();
     if (handleValidation()) {
       AuthService.signup(email, password).then((response) => {
-        if(!response.data.success)
+        if(!response.success)
         {
-          alert(response.data.error);
+          alert(response.error);
         } else {
         navigate("/confirm-email");
         }
