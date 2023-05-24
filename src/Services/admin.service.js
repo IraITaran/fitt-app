@@ -1,10 +1,10 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const UserAPI_URL = "https://fitt.ink/admin/user";
-const BotAPI_URL = "https://fitt.ink/admin/bot";
-const LeaderAPI_URL = "https://fitt.ink/admin/leader";
-const PaymentAPI_URL = "https://fitt.ink/admin/payment";
+const UserAPI_URL = "https://fitt.mom/admin/user";
+const BotAPI_URL = "https://fitt.mom/admin/bot";
+const LeaderAPI_URL = "https://fitt.mom/admin/leader";
+const PaymentAPI_URL = "https://fitt.mom/admin/payment";
 
 class AdminService {
   getAllUsers() {

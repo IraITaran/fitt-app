@@ -244,7 +244,7 @@ export default function Payment() {
               <input
                 type="hidden"
                 name="ipn_url"
-                value="https://fitt.ink/api/payment/ipn"
+                value="https://fitt.mom/api/payment/ipn"
               />
               <input
                 type="image"

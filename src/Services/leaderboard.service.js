@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://fitt.ink/api/leaderboard";
+const API_URL = "https://fitt.mom/api/leaderboard";
 
 class LeaderBoardService {
   getLeaderInfo(leaderId) {
