@@ -115,14 +115,7 @@ export default function PageHeader() {
         <div className="header-right d-flex">
           {!isAuthenticated && (
             <ul className="d-flex">
-              <li>
-                <Link to="login">Вход</Link>
-              </li>
-              <li className="d-flex align-items-baseline highlight">
-                <img src={GiftIcon} alt="gift-icon" className="gift-icon"></img>
-                <Link to="signup">Регистрация</Link>
-              </li>
-              <li className="d-flex ">
+               <li className="d-flex ">
                 {" "}
                 <img
                   src={LanguageIcon}
@@ -131,6 +124,14 @@ export default function PageHeader() {
                 ></img>
                 <span className="selected-lang">Русский</span>
               </li>
+              <li>
+                <Link to="login">Вход</Link>
+              </li>
+              <li className="d-flex align-items-baseline highlight">
+                <img src={GiftIcon} alt="gift-icon" className="gift-icon"></img>
+                <Link to="signup">Регистрация</Link>
+              </li>
+             
             </ul>
           )}
           {isAuthenticated && (
