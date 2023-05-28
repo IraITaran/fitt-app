@@ -47,6 +47,7 @@ class AuthService {
             callback(response.data);
           });
         }
+        return response;
       })
       .catch((error) => {
         alert(error);

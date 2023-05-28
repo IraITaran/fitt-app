@@ -46,7 +46,7 @@ export default function PageHeader() {
   }
 
   useEffect(() => {
-    if (currentUserAccount === "") return;
+    if (!currentUserAccount || currentUserAccount === "") {return;}
     UserService.changeAccount(currentUserAccount).then((response) => {
       if (response.data.success) {
         loadHeader();
