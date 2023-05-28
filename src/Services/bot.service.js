@@ -81,7 +81,7 @@ class BotService {
   }
 
   saveAndRun(botConfiguration, runOption) {
-    console.log(botConfiguration);
+
     return axios.post(
       API_URL + "/saveAndRun/" + runOption,
       {

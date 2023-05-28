@@ -11,14 +11,65 @@ export default function Payment() {
   let [invoice, setInvoice] = useState("");
   let [isCardPayment, setIsCardPayment] = useState(false);
   let [isButton, setIsButton] = useState(false);
-
+  let [period, setPeriod] = useState(1);
+  let [nextPayment, setNextPayment] = useState("");
+  let [subscriptionPrice, setSubscriptionPrice] = useState(null);
+  let [checked, setChecked] = useState(false);
   let { subscriptionType } = useParams();
 
   useEffect(() => {
     paymentService.getInvoice().then((response) => {
       setInvoice(response.data);
     });
+
+    let starterPrices = {};
+    starterPrices["1"] = 50;
+    starterPrices["3"] = 100;
+    starterPrices["12"] = 400;
+
+    let traderPrices = {};
+    traderPrices["1"] = 100;
+    traderPrices["3"] = 200;
+    traderPrices["12"] = 500;
+
+    let proPrices ={};
+    proPrices["1"] = 150;
+    proPrices["3"] = 300;
+    proPrices["12"] = 600;
+
+    let subPrices ={};
+
+    subPrices["1"] = starterPrices;
+    subPrices["2"] = traderPrices;
+    subPrices["3"] = proPrices;
+    setSubscriptionPrice(subPrices);
   }, []);
+
+  useEffect(() => {
+
+    let date = new Date();
+    let newDate = "";
+    var options = {
+      weekday: "short",
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric"
+  };
+
+     if(period === 1)
+     {
+       newDate = (new Date(date.setMonth(date.getMonth()+1))).toLocaleDateString('ru-RU',options)
+     
+     } else if(period === 2)
+     {
+      newDate = (new Date(date.setMonth(date.getMonth()+3))).toLocaleDateString('ru-RU',options)
+     } else if(period === 3)
+     {
+      newDate = (new Date(date.setMonth(date.getMonth()+12))).toLocaleDateString('ru-RU',options)
+     }
+
+     setNextPayment(newDate)
+  }, [period]);
 
   return (
     <div className="Payment container-fluid">
@@ -158,11 +209,12 @@ export default function Payment() {
               <label className="d-flex justify-content-between align-items-center">
                 <span className="period">1 месяц</span>
                 <div className="input-right-section">
-                  <span className="period-price">75$</span>
+                  <span className="period-price">{subscriptionPrice ? subscriptionPrice[subscriptionType.toString()]["1"] : ""}$</span>
                   <input
                     type="radio"
                     name="payment-period"
-                    value="month-75$"
+                    value={1}
+                    onChange={(e) => setPeriod(1)}
                     className="radio"
                     defaultChecked
                   />
@@ -176,11 +228,12 @@ export default function Payment() {
                   <span className="economy">Экономия $25 </span>
                 </div>
                 <div className="input-right-section">
-                  <span className="period-price">210$</span>
+                  <span className="period-price">{subscriptionPrice ? subscriptionPrice[subscriptionType.toString()]["3"]:""}$</span>
                   <input
                     type="radio"
                     name="payment-period"
-                    value="3months-210$"
+                    value={3}
+                    onChange={(e) => setPeriod(3)}
                     className="radio"
                   />
                 </div>
@@ -194,11 +247,12 @@ export default function Payment() {
                   <span className="economy">Экономия $150 </span>
                 </div>
                 <div className="input-right-section">
-                  <span className="period-price">$750</span>
+                  <span className="period-price">{subscriptionPrice ? subscriptionPrice[subscriptionType.toString()]["12"]: ""}$</span>
                   <input
                     type="radio"
                     name="payment-period"
-                    value="1year-750$"
+                    value={12}
+                    onChange={(e) => setPeriod(12)}
                     className="radio"
                   />
                 </div>
@@ -206,7 +260,10 @@ export default function Payment() {
             </div>
           </div>
           <label className="payment-agreement">
-            <input type="checkbox" />Я прочитал(-а) и принимаю
+            <input type="checkbox" 
+             checked={checked}
+             onChange={() => setChecked(!checked)}
+            />Я прочитал(-а) и принимаю
             <a href="/">
               {" "}
               Соглашение об обслуживании, Заявление о конфиденциальности
@@ -217,7 +274,7 @@ export default function Payment() {
               isCardPayment || isButton ? "hidden-form" : "text-center"
             }
           >
-            <form action="https://www.coinpayments.net/index.php" method="post">
+            <form action="https://www.coinpayments.net/index.php" method="post" >
               <input type="hidden" name="cmd" value="_pay_simple" />
               <input type="hidden" name="reset" value="1" />
               <input
@@ -232,21 +289,22 @@ export default function Payment() {
                 value="Starter Subscription for Fitt platform"
               />
               <input type="hidden" name="currency" value="USDT.BEP20" />
-              <input type="hidden" name="amountf" value="10.00000000" />
+              <input type="hidden" name="amountf" value={subscriptionPrice ? subscriptionPrice[subscriptionType.toString()][period.toString()]: ""} />
               <input type="hidden" name="invoice" value={invoice} />
-
+              <input type="hidden" name="period" value={period} />
+              
               <input type="hidden" name="want_shipping" value="0" />
-              <input
+              <input 
                 type="hidden"
                 name="success_url"
                 value="https://gregarious-crostata-7ee7b5.netlify.app/#"
               />
-              <input
+              <input 
                 type="hidden"
                 name="ipn_url"
                 value="https://fitt.mom/api/payment/ipn"
               />
-              <input
+              <input disabled = {!checked}
                 type="image"
                 src="https://www.coinpayments.net/images/pub/buynow-grey.png"
                 alt="Купить используя CoinPayments.net"
@@ -270,13 +328,23 @@ export default function Payment() {
             {subscriptionType === "3" && (
               <p className="option-name">Для экспертов</p>
             )}
-            <p className="option-period">1 месяц</p>
-            <p className="next-payment">Следующий платёж: 30 ноября 2022</p>
+            {period === "1" && (
+              <p className="option-period">1 месяц</p>
+            )}
+            {period === "3" && (
+              <p className="option-name">3 месяца</p>
+            )}
+            {period === "12" && (
+              <p className="option-name">1 год</p>
+            )}
+            
+            <p className="next-payment">Следующий платёж: {nextPayment}</p>
             <hr className="m-0" />
             {subscriptionType === "1" && (
               <ul>
                 <li>
-                  <img src={OptionListIcon} alt="list - icon" />1 Аккаунт в
+                  <img src={OptionListIcon} alt="list - icon" />
+                  1 Аккаунт в
                   управлении
                 </li>
                 <li>
@@ -284,7 +352,7 @@ export default function Payment() {
                   До 1000 бюджет
                 </li>
                 <li>
-                  <img src={OptionListIcon} alt="list - icon" />1 бот для
+                  <img src={OptionListIcon} alt="list - icon" />3 бот для
                   сигналов
                 </li>
                 <li>
@@ -304,7 +372,7 @@ export default function Payment() {
                   До 5000 бюджет
                 </li>
                 <li>
-                  <img src={OptionListIcon} alt="list - icon" />3 бота для
+                  <img src={OptionListIcon} alt="list - icon" />10 бота для
                   сигналов
                 </li>
                 <li>
@@ -324,7 +392,7 @@ export default function Payment() {
                   Неограниченный бюджет
                 </li>
                 <li>
-                  <img src={OptionListIcon} alt="list - icon" />5 ботов для
+                  <img src={OptionListIcon} alt="list - icon" />20 ботов для
                   сигналов
                 </li>
                 <li>
@@ -336,9 +404,9 @@ export default function Payment() {
             <hr className="m-0" />
             <div className="d-flex justify-content-between align-items-center tarrif-total-price-container">
               <span>Всего:</span>
-              {subscriptionType === "1" && <span>$50</span>}
-              {subscriptionType === "2" && <span>$100</span>}
-              {subscriptionType === "3" && <span>$150</span>}
+              {subscriptionPrice && <span>$ {subscriptionPrice[subscriptionType.toString()][period.toString()]}</span>}
+           
+
             </div>
           </div>
         </div>

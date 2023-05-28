@@ -72,11 +72,16 @@ export default function BotManagementCard(props) {
 
     BotService.saveAndRun(props.data, runOption)
       .then((response) => {
-        authService.updateUserDetails();
-        navigate("/account/bot-management");
+        if(response.data.success)
+        {
+          authService.updateUserDetails();
+          navigate("/account/bot-management");
+        } else {
+          alert(response.data.error);
+        }
       })
       .catch((error) => {
-        alert(error.response.data);
+        alert(error.response.error);
       });
   }
 

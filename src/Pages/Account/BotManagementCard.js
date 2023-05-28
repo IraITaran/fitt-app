@@ -42,7 +42,7 @@ export default function BotManagementCard(props) {
 
     if (props.data.type !== 2) {
       let exchangeName =
-        botUserAccount.exchange === 0 ? "Binance: " : "Not Binance: ";
+        botUserAccount.exchange === 1 ? "Binance: " : "Not Binance: ";
       setAccount(exchangeName + botUserAccount.name);
     }
   }
@@ -263,7 +263,7 @@ export default function BotManagementCard(props) {
           <h4 className="copy-header">Настройки копирования</h4>
         </Modal.Header>
         <Modal.Body>
-          <div className="radio-buttons-wrapper">
+          { props.data.type !== 2 &&  <div className="radio-buttons-wrapper">
             <label>
               <input
                 type="radio"
@@ -313,6 +313,7 @@ export default function BotManagementCard(props) {
               </span>
             </label>
           </div>
+          } 
           <div className="text-center">
             <h5>Открытые позиции трейдера</h5>
             <div className="table-container">

@@ -32,7 +32,7 @@ export default function TarrifPlans() {
               До 1000 бюджет
             </li>
             <li>
-              <img src={OptionListIcon} alt="list - icon" />1 бот для сигналов
+              <img src={OptionListIcon} alt="list - icon" />3 бот для сигналов
             </li>
             <li>
               <img src={OptionListIcon} alt="list - icon" />
@@ -64,7 +64,7 @@ export default function TarrifPlans() {
               До 5000 бюджет на аккаунт
             </li>
             <li>
-              <img src={OptionListLightIcon} alt="list - icon" />3 бота для
+              <img src={OptionListLightIcon} alt="list - icon" />10 бота для
               сигналов
             </li>
             <li>
@@ -94,7 +94,7 @@ export default function TarrifPlans() {
               Неограниченный бюджет
             </li>
             <li>
-              <img src={OptionListIcon} alt="list - icon" />5 ботов для сигналов
+              <img src={OptionListIcon} alt="list - icon" />20 ботов для сигналов
             </li>
             <li>
               <img src={OptionListIcon} alt="list - icon" />

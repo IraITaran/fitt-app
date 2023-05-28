@@ -42,7 +42,7 @@ export default function ApiManagement() {
   }
 
   function createApiKey() {
-    UserService.updateApiKey(name, apiKey, apiSecret, 0).then((response) => {
+    UserService.updateApiKey(name, apiKey, apiSecret, 1).then((response) => {
       if (response.data.success) {
         AuthService.updateUserDetails();
         setApiKeyModal(false);
