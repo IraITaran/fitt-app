@@ -5,11 +5,15 @@ import MoreInfoIcon from "../../images/more-info-icon.svg";
 import UserService from "../../Services/user.service";
 import AuthService from "../../Services/auth.service";
 import QuestionDarkIcon from "../../images/question-dark-icon.svg";
+import ModalApprove from "../../Components/Modals/ModalApprove";
 
 export default function AccountWallet() {
   let [user, setUser] = useState({});
   let [sessions, setSessions] = useState([]);
   let [positions, setPositions] = useState([]);
+  let [approveModal, setApproveModal] = useState(false);
+  let [currentPosition, setCurrentPosition] = useState(null);
+  
 
   useEffect(() => {
     let user = AuthService.getCurrentUser();
@@ -20,20 +24,40 @@ export default function AccountWallet() {
       setSessions(response.data);
     });
 
+   updatePositions();
+  }, []);
+
+  function updatePositions()
+  {
     UserService.positions().then((response) => {
       try {
+        var rawJson = response.data.replace(new RegExp("CROSSED", "g"), '"CROSSED"');
         let parsedPositions = JSON.parse(
-          response.data.replace("CROSSED", '"CROSSED"')
+          rawJson
         );
-        console.log(parsedPositions);
         setPositions(parsedPositions);
       } catch (error) {
         console.log("Error parsing JSON:", error, response.data);
       }
     });
-  }, []);
+  }
+
+  function closePosition()
+  {
+     UserService.closePosition(currentPosition.symbol).then((response)=>{
+      if(response.data.success)
+      {
+        updatePositions();
+      } else {
+        alert(response.data.error);
+      }
+     });
+
+     setApproveModal(false);
+  }
 
   return (
+    <>
     <div className="AccountWallet">
       <div className="user-info-container">
         <div className="d-flex">
@@ -234,7 +258,7 @@ export default function AccountWallet() {
                   </td>
 
                   <td>
-                    <button className="statistic-table-btn">
+                    <button className="statistic-table-btn" onClick={()=>{setApproveModal(true); setCurrentPosition(item)}}>
                       Закрыть по рынку
                     </button>
                   </td>
@@ -245,5 +269,13 @@ export default function AccountWallet() {
         </table>
       </div>
     </div>
+     <ModalApprove
+     show={approveModal}
+     onHide={() => setApproveModal(false)}
+     title="Закрытие позиции"
+     bodyText={"Вы действительно хотите закрыть позицию " + currentPosition?.symbol + " ?"}
+     onSubmit={closePosition}
+     submitButtonText="Закрыть"
+   /></>
   );
 }

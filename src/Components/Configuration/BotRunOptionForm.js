@@ -143,6 +143,9 @@ export default function BotManagementCard(props) {
             </label>
           </div>
         )}
+        { availableBalance < allPositionChoiceAmount && 
+          <span class = "red">Если сумма под контролем бота меньше чем открытые позиции трейдера, рекомендуем уменьшить коэфициент вернувшись на предыдущий пункт конфигурации</span>
+        }
         <div className="text-center">
           <h5 className="mb-4">Открытые позиции трейдера</h5>
           <div className="table-container">
@@ -198,7 +201,7 @@ export default function BotManagementCard(props) {
           </div>
         )}
         <div className="bot-options-button-container d-flex">
-          <button type="button" className="start-btn mt-4 " onClick={save}>
+          <button type="button" className="save-btn mt-4 " onClick={save}>
             Сохранить
           </button>
           <button

@@ -144,6 +144,7 @@
 
 .header-balance-container {
   margin-left: 33px;
+  min-width: 300px;
 }
 
 .header-balance-container .header-balance-amount {

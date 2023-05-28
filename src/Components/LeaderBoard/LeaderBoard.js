@@ -25,6 +25,7 @@ export default function LeaderBoard() {
   let [periodChoice, setPeriodChoice] = useState("DAILY");
   let [keyword, setKeyword] = useState("");
   let [exchangeChoice, setExchangeChoice] = useState("Binance");
+  let [apiKeyName, setApiKeyName] = useState("");
   let [apiKey, setApiKey] = useState("");
   let [apiSecret, setApiSecret] = useState("");
   // eslint-disable-next-line
@@ -85,7 +86,7 @@ export default function LeaderBoard() {
   }
 
   function updateApiKey() {
-    UserService.updateApiKey(apiKey, apiSecret).then((response) => {
+    UserService.updateApiKey(apiKeyName, apiKey, apiSecret, 1).then((response) => {
       AuthService.updateUserDetails();
       setApiKeyModal(false);
     });
@@ -174,6 +175,14 @@ export default function LeaderBoard() {
               >
                 <option value="binance">Binance</option>
               </select>
+            </label>
+            <label className="w-100">
+              Название
+              <input
+                type="text"
+                className="w-100 apikey-input"
+                onChange={(e) => setApiKeyName(e.target.value)}
+              ></input>
             </label>
             <label className="w-100">
               API-ключ

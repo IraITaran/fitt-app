@@ -95,6 +95,10 @@ class UserService {
   positions() {
     return axios.get(API_URL + "/positions", { headers: authHeader() });
   }
+
+  closePosition(symbol) {
+    return axios.put(API_URL + "/exchange/close-position/" + symbol, {}, { headers: authHeader() });
+  }
 }
 
 export default new UserService();

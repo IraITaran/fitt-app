@@ -42,7 +42,7 @@ export default function BotManagementCard(props) {
 
     if (props.data.type !== 2) {
       let exchangeName =
-        botUserAccount.exchange === 1 ? "Binance: " : "Not Binance: ";
+        botUserAccount.exchange === 0 ? "Binance: " : "Not Binance: ";
       setAccount(exchangeName + botUserAccount.name);
     }
   }

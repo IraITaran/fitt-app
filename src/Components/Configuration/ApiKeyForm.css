@@ -1,7 +1,7 @@
 .ApiKeyForm {
   padding: 48px;
   width: 700px;
-  height: 600px;
+  height: 700px;
   margin: 0 auto;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .apikey-inputs-container .apikey-input {
-  height: 40px;
+  height: 50px;
   background-color: #ffffff;
   border-radius: 8px;
   border: 1px solid #dde0e5;

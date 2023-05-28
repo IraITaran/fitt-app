@@ -5,6 +5,7 @@ import "./ApiKeyForm.css";
 
 export default function ApiKeyForm(props) {
   let [exchangeChoice, setExchangeChoice] = useState("Binance");
+  let [apiKeyName, setApiKeyName] = useState("");
   let [apiKey, setApiKey] = useState("");
   let [apiSecret, setApiSecret] = useState("");
   let [showError, setShowError] = useState(false);
@@ -16,7 +17,7 @@ export default function ApiKeyForm(props) {
   }, []);
 
   function updateApiKey() {
-    UserService.updateApiKey(apiKey, apiSecret).then((response) => {
+    UserService.updateApiKey(apiKeyName, apiKey, apiSecret, 0).then((response) => {
       if (response.data.success) {
         AuthService.updateUserDetails();
         props.nextEnabled(true);
@@ -46,7 +47,15 @@ export default function ApiKeyForm(props) {
             </select>
           </label>
           <label className="w-100">
-            API-ключ
+          Название
+            <input
+              type="text"
+              className="w-100 apikey-input"
+              onChange={(e) => setApiKeyName(e.target.value)}
+            ></input>
+          </label>
+          <label className="w-100">
+          API-ключ
             <input
               type="text"
               className="w-100 apikey-input"
@@ -66,7 +75,7 @@ export default function ApiKeyForm(props) {
         {!isSaved && (
           <p className={`apikey-description ${showError ? "red" : ""}`}>
             При генерации API ключа необходимо разрешить доступ к USDT Futures,
-            а также добавить IP-адрес <b>13.229.50.26</b> в список разрешенных
+            а также добавить IP-адрес <b>139.99.121.36</b> в список разрешенных
             IP-адресов. <br />
             <a href="/">Подробнее...</a>
           </p>
