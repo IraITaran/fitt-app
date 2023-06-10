@@ -9,6 +9,16 @@ class ReferralService {
       headers: authHeader(),
     });
   }
+
+  changeRefId(newCode) {
+    return axios.put(
+      API_URL,
+      { refCode: newCode },
+      {
+        headers: authHeader(),
+      }
+    );
+  }
 }
 
 export default new ReferralService();

@@ -6,19 +6,64 @@ import MoreInfoIcon from "../../images/more-info-icon.svg";
 import referralService from "../../Services/referral.service";
 import UnknownIcon from "../../images/unknown-icon.png";
 import userService from "../../Services/user.service";
+import Modal from "react-bootstrap/Modal";
+import authService from "../../Services/auth.service";
 
 export default function ReferralProgram() {
   let [referrals, setReferrals] = useState([]);
   let [bonusData, setBonusData] = useState({});
   let [loading, setLoading] = useState(true);
   let [currentBonusPeriod, setCurrentBonusPeriod] = useState("all");
+  let [referralIdModal, setReferralIdModal] = useState(false);
+  let [newReferralId, setNewReferralId] = useState();
+  let [refferalId, setReferralId] = useState("");
+
+  const handleValidation = (event) => {
+    let formIsValid = true;
+
+    if (!newReferralId.match(/^(?=.*[A-Za-z])(?=.*\d){5,10}$/)) {
+      formIsValid = false;
+      alert(
+        "Ref code need to contains only Latin characters and numbers and have length from 5 to 10 symbols"
+      );
+
+      return false;
+    }
+
+    return formIsValid;
+  };
+
   useEffect(() => {
     changeBonusPeriod("all");
+
+    updateReferralCode();
 
     referralService.getAll().then((response) => {
       setReferrals(response.data);
     });
   }, []);
+
+  function updateReferralCode() {
+    let user = authService.getCurrentUser();
+    if (user) {
+      setReferralId(user.userDetails.referralCode);
+    }
+  }
+
+  function changeReferralCode() {
+    if (handleValidation()) {
+      referralService.changeRefId(newReferralId).then((response) => {
+        if (response.data.success) {
+          authService.updateUserDetails();
+          setTimeout(() => {
+            updateReferralCode();
+          }, 1000);
+        } else {
+          alert(response.data.error);
+        }
+      });
+    }
+  }
 
   function changeBonusPeriod(period) {
     let from = new Date();
@@ -50,6 +95,10 @@ export default function ReferralProgram() {
     });
   }
 
+  function copyKey(newId) {
+    navigator.clipboard.writeText(newId);
+  }
+
   return (
     <div className="ReferralProgram">
       <div className="d-flex justify-content-between referral-header-container">
@@ -68,8 +117,48 @@ export default function ReferralProgram() {
         <div className="referral-header-right">
           <div className="d-flex justify-content-between">
             <p className="m-0">Реферальный ID по умолчанию</p>
-            <a href="/">Изменить</a>
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                setReferralIdModal(true);
+              }}
+            >
+              Изменить
+            </a>
           </div>
+          <Modal
+            show={referralIdModal}
+            onHide={() => setReferralIdModal(false)}
+          >
+            <Modal.Body className="apikeyModal">
+              <h4 className="apikey-header">Изменение Referral ID</h4>
+              <div className="apikey-inputs-container">
+                <label className="w-100">
+                  Новый Referral ID
+                  <input
+                    type="text"
+                    className="w-100 apikey-input"
+                    maxLength="10"
+                    minLength="5"
+                    onChange={(e) => setNewReferralId(e.target.value)}
+                  ></input>
+                </label>
+              </div>
+              <div className="text-center">
+                <button
+                  type="button"
+                  className="save-btn mt-4"
+                  onClick={() => {
+                    changeReferralCode();
+                    setReferralIdModal(false);
+                  }}
+                >
+                  Сохранить новый ID
+                </button>
+              </div>
+            </Modal.Body>
+          </Modal>
           <div className="referral-benefit-section text-center">
             <p className="m-0">Вы получите</p>
             <p className="m-0">20%</p>
@@ -78,11 +167,14 @@ export default function ReferralProgram() {
           <div className="d-flex justify-content-between referral-id-section">
             <p className="m-0">Referral ID</p>
             <p className="m-0">
-              YUPEERTZ
+              {refferalId}
               <img
                 src={ReferralInfoIcon}
                 alt="referral-info-icon"
                 className="referral-info-icon"
+                onClick={() => {
+                  copyKey(newReferralId);
+                }}
               ></img>
             </p>
           </div>

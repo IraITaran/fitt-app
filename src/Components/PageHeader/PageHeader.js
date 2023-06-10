@@ -46,7 +46,9 @@ export default function PageHeader() {
   }
 
   useEffect(() => {
-    if (!currentUserAccount || currentUserAccount === "") {return;}
+    if (!currentUserAccount || currentUserAccount === "") {
+      return;
+    }
     UserService.changeAccount(currentUserAccount).then((response) => {
       if (response.data.success) {
         loadHeader();
@@ -101,7 +103,7 @@ export default function PageHeader() {
                 <Link to="/">Список портфелей</Link>
               </li>
               <li>
-                <a href="/">Торговля</a>
+                <Link to="/account/wallet">Торговля</Link>
               </li>
               <li>
                 <Link to="about">О нас</Link>
@@ -115,7 +117,7 @@ export default function PageHeader() {
         <div className="header-right d-flex">
           {!isAuthenticated && (
             <ul className="d-flex">
-               <li className="d-flex ">
+              <li className="d-flex ">
                 {" "}
                 <img
                   src={LanguageIcon}
@@ -131,7 +133,6 @@ export default function PageHeader() {
                 <img src={GiftIcon} alt="gift-icon" className="gift-icon"></img>
                 <Link to="signup">Регистрация</Link>
               </li>
-             
             </ul>
           )}
           {isAuthenticated && (

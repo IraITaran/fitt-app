@@ -49,7 +49,7 @@ export default function Sidebar() {
         <ul className="sidebar-list">
           <li className="sidebar-option">
             <img src={PurseIcon} alt="purse-icon"></img>
-            <Link to="/account/wallet">Кошелёк</Link>
+            <Link to="/account/wallet">Торговля</Link>
           </li>
           <li className="sidebar-option">
             <img src={SidebarLockIcon} alt="lock-icon"></img>

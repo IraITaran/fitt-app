@@ -161,7 +161,7 @@ export default function ApiManagement() {
                 className="not-found-icon"
               ></img>
               <p>
-                Для ваших субаккаунтов
+                Для ваших аккаунтов
                 <br /> еще не создано ключей API.
               </p>
             </div>
