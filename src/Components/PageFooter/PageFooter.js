@@ -4,7 +4,7 @@ import TwitterIcon from "../../images/twitter-icon.svg";
 import FacebookIcon from "../../images/facebook-icon.svg";
 import TelegramIcon from "../../images/telegram-icon.svg";
 import RedditIcon from "../../images/reddit-icon.svg";
-import FittLogoFooter from "../../images/fitt-logo-footer.svg";
+import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
 
 export default function PageFooter() {
@@ -72,7 +72,7 @@ export default function PageFooter() {
         </div>
         <div className="fitt-info-container">
           <div className="d-flex">
-            <img src={FittLogoFooter} alt="fitt" className="fitt-logo"></img>
+            <img src={FittLogoHeader} alt="fitt" className="fitt-logo"></img>
             <div className="ms-4">
               <p className="binance-powered">Powered by</p>
               {<img src={BinanceLogoFooter} alt="binance-logo"></img>}{" "}

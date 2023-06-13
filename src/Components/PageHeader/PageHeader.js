@@ -20,6 +20,8 @@ export default function PageHeader() {
   let [switchToList, setSwitchToList] = useState(false);
   let [currentUserAccount, setCurrentUserAccount] = useState("");
   let [userAccounts, setUserAccounts] = useState([]);
+  let [showNav, setShowNav] = useState(false);
+  const [isActive, setActive] = useState(false);
 
   useEffect(() => {
     loadHeader();
@@ -98,7 +100,7 @@ export default function PageHeader() {
           )}
 
           <nav>
-            <ul className="d-flex p-0">
+            <ul className="d-flex p-0 left-nav-list">
               <li>
                 <Link to="/">Список портфелей</Link>
               </li>
@@ -116,7 +118,7 @@ export default function PageHeader() {
         </div>
         <div className="header-right d-flex">
           {!isAuthenticated && (
-            <ul className="d-flex">
+            <ul className="d-flex header-right-main-list">
               <li className="d-flex ">
                 {" "}
                 <img
@@ -158,14 +160,82 @@ export default function PageHeader() {
                     </select>
                   </div>
                 )}
-                <div>
+                <div className="account-dropdown-container">
                   <Link to="/account/wallet">
                     <img
                       src={UserHeaderIcon}
                       alt="user-icon"
                       className="user-header-icon"
+                      onClick={(e) => {
+                        setShowNav(true);
+                        e.preventDefault();
+                      }}
                     />
                   </Link>
+
+                  {showNav && (
+                    <nav className="nav-dropdown">
+                      <ul className="nav-dropdown-list">
+                        <li
+                          className={isActive ? "active" : null}
+                          onClick={() => {
+                            setShowNav(false);
+                            setActive(!isActive);
+                          }}
+                        >
+                          <Link to="/account/wallet">Торговля</Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/account/security">
+                            Аккаунт и безопасность
+                          </Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/">Центр поддержки</Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/account/notifications">Уведомления</Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/account/referral-program">
+                            Реферальная программа
+                          </Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/account/api-management">
+                            Управление API
+                          </Link>
+                        </li>
+                        <li
+                          onClick={() => {
+                            setShowNav(false);
+                          }}
+                        >
+                          <Link to="/account/bot-management">Мои боты</Link>
+                        </li>
+                      </ul>
+                    </nav>
+                  )}
                 </div>
                 <div>
                   <img
