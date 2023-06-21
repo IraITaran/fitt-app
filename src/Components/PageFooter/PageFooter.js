@@ -6,6 +6,7 @@ import TelegramIcon from "../../images/telegram-icon.svg";
 import RedditIcon from "../../images/reddit-icon.svg";
 import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
+import { Link } from "react-router-dom";
 
 export default function PageFooter() {
   return (
@@ -30,7 +31,7 @@ export default function PageFooter() {
           <ul className="support">
             <li className="list-header">Центр поддержки</li>
             <li>
-              <a href="/">Руководство для копи-трейдера</a>
+              <Link to="/questions/faq">Руководство для копи-трейдера</Link>
             </li>
             <li>
               <a href="/">Сигналы</a>
@@ -46,7 +47,13 @@ export default function PageFooter() {
             <li className="list-header">Сообщество</li>
             <li>
               <img src={TwitterIcon} alt="twitter-icon" className="me-2"></img>
-              <a href="/">Твиттер</a>
+              <a
+                href="https://twitter.com/fitt_ink"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Твиттер
+              </a>
             </li>
             <li>
               <img
@@ -54,7 +61,13 @@ export default function PageFooter() {
                 alt="facebook-icon"
                 className="me-2"
               ></img>
-              <a href="/">Фейсбук</a>
+              <a
+                href="https://www.instagram.com/fitt.ink/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Инстаграм
+              </a>
             </li>
             <li>
               <img
@@ -62,11 +75,19 @@ export default function PageFooter() {
                 alt="telegram-icon"
                 className="me-2"
               ></img>
-              <a href="/">Телеграм</a>
+              <a href="https://t.me/fittink" target="_blank" rel="noreferrer">
+                Телеграм
+              </a>
             </li>
             <li>
               <img src={RedditIcon} alt="reddit-icon" className="me-2"></img>
-              <a href="/">Реддит</a>
+              <a
+                href="https://www.reddit.com/user/Fitt_ink"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Реддит
+              </a>
             </li>
           </ul>
         </div>

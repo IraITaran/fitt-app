@@ -15,6 +15,8 @@ import AdminRoutes from "./Pages/Admin/AdminRoutes";
 import MultistepFollow from "./Pages/MultistepFollow/MultistepFollow";
 import axios from "axios";
 import AuthService from "./Services/auth.service";
+import QuestionsRoute from "./Pages/Questions/QuestionsRoute";
+
 import "./App.css";
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
             <Route path="/admin/*" element={<AdminRoutes />} />
             <Route path="/payment/:subscriptionType" element={<Payment />} />
             <Route path="/follow/:leaderId" element={<MultistepFollow />} />
+            <Route path="/questions/*" element={<QuestionsRoute />} />
           </Routes>
           <PageFooter />
         </div>
