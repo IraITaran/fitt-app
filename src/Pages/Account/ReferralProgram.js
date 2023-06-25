@@ -21,7 +21,7 @@ export default function ReferralProgram() {
   const handleValidation = (event) => {
     let formIsValid = true;
 
-    if (!newReferralId.match(/^(?=.*[A-Za-z])(?=.*\d){5,10}$/)) {
+    if (!newReferralId.match(/^[A-Za-z\d]{5,10}$/)) {
       formIsValid = false;
       alert(
         "Ref code need to contains only Latin characters and numbers and have length from 5 to 10 symbols"
