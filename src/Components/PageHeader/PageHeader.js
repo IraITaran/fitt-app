@@ -160,21 +160,33 @@ export default function PageHeader() {
                     </select>
                   </div>
                 )}
-                <div className="account-dropdown-container">
-                  <Link to="/account/wallet">
+                <div
+                  className="account-dropdown-container"
+                  onMouseOver={() => {
+                    setShowNav(true);
+                  }}
+                  onMouseOut={() => {
+                    setShowNav(false);
+                  }}
+                >
+                  <div>
                     <img
                       src={UserHeaderIcon}
                       alt="user-icon"
                       className="user-header-icon"
-                      onClick={(e) => {
-                        setShowNav(true);
-                        e.preventDefault();
-                      }}
                     />
-                  </Link>
+                  </div>
 
                   {showNav && (
-                    <nav className="nav-dropdown">
+                    <nav
+                      className="nav-dropdown"
+                      onMouseOver={() => {
+                        setShowNav(true);
+                      }}
+                      onMouseOut={() => {
+                        setShowNav(false);
+                      }}
+                    >
                       <ul className="nav-dropdown-list">
                         <li
                           className={isActive ? "active" : null}
