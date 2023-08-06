@@ -6,7 +6,7 @@ import TelegramIcon from "../../images/telegram-icon.svg";
 import RedditIcon from "../../images/reddit-icon.svg";
 import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
-import { Link } from "react-router-dom";
+import Confidential from "./Confidential";
 
 export default function PageFooter() {
   return (
@@ -25,7 +25,7 @@ export default function PageFooter() {
               <a href="/">Условия использования</a>
             </li>
             <li>
-              <a href="/">Конфиденциальность</a>
+              {/* <Link to="confidential">Конфиденциальность/</Link> */}
             </li>
           </ul>
           <ul className="support">
