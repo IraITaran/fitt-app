@@ -1,8 +1,9 @@
 import React from "react";
 
-export default function SignUpConsent() {
+export default function Conditions() {
   return (
-    <>
+    <div className="Conditions question-routes-container">
+      <h1>Условия использования</h1>
       <article>
         <p>
           Добро пожаловать на услуги Копирования торговли, принадлежащие и
@@ -198,7 +199,7 @@ export default function SignUpConsent() {
                 </p>
                 <p className="mb-0">
                   (vii) Вы не будете использовать информацию третьих лиц
-                  (например, имя, идентификационный номер, номер телефона, О
+                  (например, имя, идентификационный номер, номер телефона, адрес
                   электронной почты). Если предоставленная информация
                   недостоверна, незаконна или недействительна, Компания запретит
                   вам использование платформы FItt;
@@ -868,6 +869,6 @@ export default function SignUpConsent() {
           </li>
         </ol>
       </article>
-    </>
+    </div>
   );
 }

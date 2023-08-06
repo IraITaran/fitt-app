@@ -172,3 +172,21 @@
   padding: 5px 10px;
   border-radius: 8px;
 }
+
+.user-statistics-container .not-found-container {
+  margin: 54px auto 54px auto;
+  text-align: center;
+}
+
+.user-statistics-container .not-found-container .not-found-icon {
+  margin-bottom: 36px;
+  width: 157px;
+  height: 148px;
+}
+
+.user-statistics-container .not-found-container p {
+  color: #81858c;
+  font-size: 19px;
+  font-weight: 500;
+  margin: 0px;
+}

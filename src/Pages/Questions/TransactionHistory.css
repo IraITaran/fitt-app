@@ -1,0 +1,7 @@
+.transaction-link {
+  color: #ac9e34;
+}
+
+.TransactionHistory .inner-descrip-list li::before {
+  margin-left: -2em;
+}

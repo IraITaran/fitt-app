@@ -4,8 +4,9 @@ import TwitterIcon from "../../images/twitter-icon.svg";
 import FacebookIcon from "../../images/facebook-icon.svg";
 import TelegramIcon from "../../images/telegram-icon.svg";
 import RedditIcon from "../../images/reddit-icon.svg";
-import FittLogoFooter from "../../images/fitt-logo-footer.svg";
+import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
+import { Link } from "react-router-dom";
 
 export default function PageFooter() {
   return (
@@ -18,7 +19,7 @@ export default function PageFooter() {
               <a href="/">О нас</a>
             </li>
             <li>
-              <a href="/">Объявление</a>
+              <a href="/">Реферальная программа</a>
             </li>
             <li>
               <a href="/">Условия использования</a>
@@ -30,23 +31,29 @@ export default function PageFooter() {
           <ul className="support">
             <li className="list-header">Центр поддержки</li>
             <li>
-              <a href="/">Руководство для копи-трейдера</a>
+              <Link to="/questions/faq">Руководство для копи-трейдера</Link>
             </li>
             <li>
-              <a href="/">Руководство для лид-трейдера</a>
+              <a href="/">Сигналы</a>
             </li>
             <li>
-              <a href="/">Стать лид-трейдером</a>
+              <a href="/">Комиссии на платформе</a>
             </li>
             <li>
-              <a href="/">Центр поддержки</a>
+              <a href="/">FAQ</a>
             </li>
           </ul>
           <ul className="community">
             <li className="list-header">Сообщество</li>
             <li>
               <img src={TwitterIcon} alt="twitter-icon" className="me-2"></img>
-              <a href="/">Твиттер</a>
+              <a
+                href="https://twitter.com/fitt_ink"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Твиттер
+              </a>
             </li>
             <li>
               <img
@@ -54,7 +61,13 @@ export default function PageFooter() {
                 alt="facebook-icon"
                 className="me-2"
               ></img>
-              <a href="/">Фейсбук</a>
+              <a
+                href="https://www.instagram.com/fitt.ink/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Инстаграм
+              </a>
             </li>
             <li>
               <img
@@ -62,27 +75,38 @@ export default function PageFooter() {
                 alt="telegram-icon"
                 className="me-2"
               ></img>
-              <a href="/">Телеграм</a>
+              <a href="https://t.me/fittink" target="_blank" rel="noreferrer">
+                Телеграм
+              </a>
             </li>
             <li>
               <img src={RedditIcon} alt="reddit-icon" className="me-2"></img>
-              <a href="/">Реддит</a>
+              <a
+                href="https://www.reddit.com/user/Fitt_ink"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Реддит
+              </a>
             </li>
           </ul>
         </div>
         <div className="fitt-info-container">
           <div className="d-flex">
-            <img src={FittLogoFooter} alt="fitt" className="fitt-logo"></img>
+            <img src={FittLogoHeader} alt="fitt" className="fitt-logo"></img>
             <div className="ms-4">
               <p className="binance-powered">Powered by</p>
               {<img src={BinanceLogoFooter} alt="binance-logo"></img>}{" "}
             </div>
           </div>
           <p className="fitt-definition">
-            Fitt — это социальная платформа для передачи здорового торгового
-            опыта от опытных трейдеров к начинающим. Создайте крепкую связь
-            между профессиональным трейдером и новичком для достижение
-            поставленных результатов профита на рынке криптовалют.
+            FItt — это инновационная социальная платформа, предназначенная для
+            передачи ценного торгового опыта от опытных трейдеров к начинающим.
+            Наша цель - создать прочные связи между профессиональными трейдерами
+            и новичками, обеспечивая эффективное сотрудничество и обмен знаниями
+            для достижения оптимальных результатов на криптовалютном рынке.
+            Давайте вместе раскроем весь потенциал успешной торговли и увеличим
+            ваш профит в мире криптовалют!
           </p>
         </div>
       </div>

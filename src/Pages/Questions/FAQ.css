@@ -1,0 +1,37 @@
+.question-routes-container {
+  padding: 20px 20px;
+  color: #262626;
+  width: 50%;
+}
+
+.question-routes-container h1 {
+  margin-bottom: 30px;
+}
+
+.question-routes-container dt {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.question-routes-container dd {
+  font-size: 16px;
+}
+
+.inner-descrip-term {
+  font-size: 16px;
+}
+
+.inner-descrip-list {
+  list-style: none;
+}
+
+.inner-descrip-list li::before {
+  content: "•";
+  color: #feeb61;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  font-weight: bold;
+  font-size: 18px;
+}

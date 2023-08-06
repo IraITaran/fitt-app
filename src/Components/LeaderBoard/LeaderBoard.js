@@ -86,10 +86,12 @@ export default function LeaderBoard() {
   }
 
   function updateApiKey() {
-    UserService.updateApiKey(apiKeyName, apiKey, apiSecret, 1).then((response) => {
-      AuthService.updateUserDetails();
-      setApiKeyModal(false);
-    });
+    UserService.updateApiKey(apiKeyName, apiKey, apiSecret, 1).then(
+      (response) => {
+        AuthService.updateUserDetails();
+        setApiKeyModal(false);
+      }
+    );
   }
 
   return (
@@ -156,7 +158,7 @@ export default function LeaderBoard() {
           }
           onClick={moreClick}
         >
-          More
+          Еще
         </button>
         <BackgroundImages />
       </div>

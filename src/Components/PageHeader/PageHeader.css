@@ -22,6 +22,9 @@
 .PageHeader ul {
   list-style: none;
   margin: auto;
+}
+
+.left-nav-list {
   height: 40px;
 }
 
@@ -108,7 +111,7 @@
   border-radius: 4px;
 }
 
-.header-right ul li {
+.header-right .header-right li {
   margin-right: 32px;
 }
 
@@ -194,4 +197,36 @@
 
 .list-table-icon {
   margin: auto 0px auto 24px;
+}
+
+.account-dropdown-container {
+  position: relative;
+}
+
+.nav-dropdown {
+  position: absolute;
+  left: 7px;
+  min-width: 200px;
+}
+
+.nav-dropdown .nav-dropdown-list {
+  padding: 0px;
+  background-color: white;
+}
+
+.nav-dropdown-list li {
+  margin-right: 0px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.nav-dropdown-list .active {
+  background-color: lightgrey;
+}
+
+.nav-dropdown-list li:hover {
+  background-color: #f1f1f1;
+}
+
+.nav-dropdown-list li a {
+  font-size: 18px;
 }
