@@ -7,6 +7,7 @@ import RedditIcon from "../../images/reddit-icon.svg";
 import FittLogoHeader from "../../images/fitt-logo-header.svg";
 import BinanceLogoFooter from "../../images/binance-logo-footer.svg";
 import Confidential from "./Confidential";
+import { Link } from "react-router-dom";
 
 export default function PageFooter() {
   return (
