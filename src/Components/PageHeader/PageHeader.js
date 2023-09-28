@@ -185,7 +185,7 @@ export default function PageHeader() {
                       }}
                       onMouseOut={() => {
                         setShowNav(false);
-                      }}
+                      }} 
                     >
                       <ul className="nav-dropdown-list">
                         <li
