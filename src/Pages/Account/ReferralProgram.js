@@ -181,7 +181,7 @@ export default function ReferralProgram() {
           <div className="d-flex justify-content-between referral-link-section">
             <p className="m-0">Реферальная ссылка</p>
             <a href="/">
-              https://accounts.bi...
+              https://fitt.ink/#?rc={refferalId}
               <img
                 src={ReferralInfoIcon}
                 alt="referral-info-icon"
