@@ -1,0 +1,83 @@
+.KnowledgeBase {
+    position: relative;
+    padding: 40px 0;
+}
+
+.KnowledgeBase .swiper {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+}
+
+.KnowledgeBase .slide-link {
+    color: #252420;
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.KnowledgeBase .slide-link:hover {
+    opacity: 0.8;
+}
+
+.KnowledgeBase .slide-link img {
+    width: 100%;
+    height: auto;
+}
+
+.KnowledgeBase .slide-title {
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.KnowledgeBase .slide-text {
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #81858c;
+}
+
+.KnowledgeBase .swiper-button-prev,
+.KnowledgeBase .swiper-button-next {
+    width: 27.276px;
+    height: 27.276px;
+    top: 25px;
+    right: 0;
+    left: auto;
+    z-index: 1;
+    background: #feeb61;
+    border-radius: 50%;
+}
+
+.KnowledgeBase .swiper-button-prev {
+    right: 40px;
+}
+
+.KnowledgeBase .swiper-button-prev:after,
+.KnowledgeBase .swiper-button-next:after {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    font-size: 14px;
+    color: #fff;
+}
+
+.KnowledgeBase .swiper-button-prev.swiper-button-disabled,
+.KnowledgeBase .swiper-button-next.swiper-button-disabled {
+    background-color: transparent;
+}
+
+.KnowledgeBase .swiper-button-prev.swiper-button-disabled:after,
+.KnowledgeBase .swiper-button-next.swiper-button-disabled:after {
+    color: #000000;
+}
+
+.knowledgebase-title {
+    margin-bottom: 25px;
+    font-size: 22px;
+    font-weight: 600;
+    order: -1;
+}

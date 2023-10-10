@@ -1,28 +1,30 @@
 .main-flex-container {
-  gap: 16px;
-  margin: 0 auto;
-  justify-content: center;
-  max-width: 1300px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 0 auto;
+    justify-content: center;
+    max-width: 1300px;
 }
 
 .leaderboard-card-table th,
 .leaderboard-card-table td {
-  padding: 15px 40px;
+    padding: 15px 40px;
 }
 
 .card-all-data .follow-btn {
-  width: 108px;
+    width: 108px;
 }
 
 .close-btn {
-  font-size: 14px;
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  color: #080808;
-  padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #feeb61;
+    background-color: #feeb61;
+    border-radius: 4px;
+    color: #080808;
+    padding: 5px 10px;
 }
 
 .modal-content {
-  width: 110%;
+    width: 110%;
 }

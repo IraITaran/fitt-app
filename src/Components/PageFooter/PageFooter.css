@@ -1,68 +1,133 @@
 .PageFooter {
-  margin-top: 80px;
+    background: #1a2137;
+    color: #fff;
 }
 
-.footer-nav {
-  margin-left: 115px;
-  margin-right: 60px;
+.PageFooter.night-time {
+    background-color: #131018;
+}
+
+.footer-bg {
+    min-height: 306px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.PageFooter.day-time .footer-bg {
+    background-image: url("../../images/footer-top-mob.jpg");
+}
+
+.PageFooter.night-time .footer-bg {
+    background-image: url("../../images/footer-top-mob-night.jpg");
+}
+
+.footer-content-wrapper {
+    padding: 20px 34px;
+}
+
+.footer .footer-nav {
+    margin-left: 115px;
+    margin-right: 60px;
 }
 
 .footer-nav ul {
-  list-style: none;
-  margin-right: 85px;
-  padding: 0px;
+    list-style: none;
+    padding: 0px;
 }
 
 .footer-nav ul a {
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 16px;
-  color: #81858c;
-  white-space: nowrap;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 16px;
+    color: #fff;
+    font-weight: 300;
+    transition: all 0.3s;
+}
+
+.footer-nav ul a:hover {
+    opacity: 0.7;
 }
 
 .footer-nav ul li {
-  margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .footer-nav .list-header {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 23px;
-  margin-bottom: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    margin-bottom: 10px;
 }
 
-.fitt-info-container {
-  margin-right: 115px;
-  margin-bottom: 80px;
+.footer-nav .about-us,
+.footer-nav .community {
+    max-width: 50%;
+}
+
+.footer-nav .support {
+    order: 3;
+}
+
+.fitt-info-logo {
+    margin-bottom: 15px;
 }
 
 .fitt-info-container .fitt-logo {
-  width: 80px;
-  height: 80px;
-  border-radius: 8px;
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
 }
 
 .fitt-info-container .binance-powered {
-  font-size: 16px;
-  line-height: 32px;
-  color: #000000;
-  margin-bottom: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 5px;
 }
 
 .fitt-info-container .fitt-definition {
-  font-size: 14px;
-  line-height: 20px;
-  color: #000000;
-  font-weight: 300;
-  margin-top: 22px;
-  text-align: justify;
-  margin-bottom: 0px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    font-weight: 300;
+    text-align: justify;
 }
 
 .copyright {
-  text-align: center;
-  margin: 20px 0px;
-  font-size: 12px;
-  color: #81858c;
+    padding: 20px 0 0 0;
+    margin: 0;
+    text-align: center;
+    font-size: 12px;
+    color: #81858c;
+}
+
+@media (min-width: 768px) {
+    .footer-bg {
+        min-height: 284px;
+        background-image: url("../../images/footer-top-web.jpg");
+        background-position: bottom 0 center;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-bg {
+        min-height: 284px;
+        background-position: bottom 0 center;
+    }
+    .PageFooter.day-time .footer-bg {
+        background-image: url("../../images/footer-top-web.jpg");
+    }
+
+    .PageFooter.night-time .footer-bg {
+        background-image: url("../../images/footer-top-web-night.jpg");
+    }
+    .footer-nav {
+        max-width: 657px;
+    }
+    .footer-nav .support {
+        order: initial;
+    }
+    .fitt-info-container {
+        max-width: 468px;
+    }
 }

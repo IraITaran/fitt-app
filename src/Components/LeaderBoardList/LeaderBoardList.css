@@ -1,4 +1,8 @@
 table {
-  background: white;
-  border-radius: 8px;
+    background: white;
+    border-radius: 8px;
+}
+
+.leader-table-wrapper {
+    overflow-x: scroll;
 }

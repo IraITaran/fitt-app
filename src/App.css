@@ -1,3 +1,36 @@
-.App {
-  min-width: 1200px;
+.container {
+  max-width: 1288px;
+  padding: 0 34px;
+  margin: 0 auto;
+}
+
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url(../src/font/SFPRODISPLAYREGULAR.woff) format('woff'), url(../src/font/SFPRODISPLAYREGULAR.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url(../src/font/SFPRODISPLAYMEDIUM.woff) format('woff'), url(../src/font/SFPRODISPLAYMEDIUM.woff2) format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url(../src/font/SFPRODISPLAYBOLD.woff) format('woff'), url(../src/font/SFPRODISPLAYBOLD.woff2) format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  margin: 0;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f7f8fa;
 }

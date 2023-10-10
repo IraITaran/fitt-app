@@ -1,109 +1,131 @@
 .LeaderBoardCardItem {
-  min-width: 288px;
-  height: 252px;
-  border: 1px solid white;
-  border-radius: 4px;
-  background-color: white;
+    min-width: 288px;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    background-color: #fff;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.04);
+    transition: all 0.3s;
 }
 
 .LeaderBoardCardItem:hover {
-  transform: scale(1.05);
-  cursor: pointer;
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
-.leaderboard-container-item {
-  margin: 16px;
+.header-board {
+    padding: 16px;
+}
+
+.header-board > div {
+    flex-grow: 1;
 }
 
 .header-board .leader-icon {
-  float: left;
-  margin-right: 13px;
-  width: 56px;
-  height: 56px;
-  border-radius: 80px;
+    width: 56px;
+    height: 56px;
+    border-radius: 80px;
 }
 
 .header-board .leader-name {
-  font-size: 15px;
-  font-weight: 400;
-  margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
 }
 
 .header-board .leader-type {
-  font-size: 12px;
-  font-weight: 300;
-  color: #81858c;
-  margin: 0px;
+    font-size: 12px;
+    font-weight: 300;
+    color: #81858c;
+    margin: 0px;
 }
 
 .main-board {
-  margin-top: 35px;
-  display: flex;
+    padding: 10px 16px;
+    background: rgba(254, 235, 97, 0.1);
 }
 
 .roi {
-  margin-right: 50px;
+    margin-right: 50px;
+}
+
+tr .roi {
+    font-weight: 600;
+}
+
+.list-row.border-bottom > td > div {
+    display: flex;
 }
 
 .roi p:first-child {
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 4px;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #000;
 }
 
 .roi p:last-child {
-  font-size: 12px;
-  font-weight: 300;
-  color: #81858c;
-  margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #81858c;
+    margin: 0;
 }
 
 .pnl p:first-child {
-  font-size: 20px;
-  font-weight: 400;
-  margin-bottom: 4px;
-  color: #10b866;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #10b866;
 }
 
 .pnl p:last-child {
-  font-size: 12px;
-  font-weight: 300;
-  color: #81858c;
-  margin: 0;
+    font-size: 12px;
+    font-weight: 300;
+    color: #81858c;
+    margin: 0;
 }
 
 .circle {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #d5d7dc;
-  border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 0.5px solid rgba(129, 133, 140, 0.1);
+    border-radius: 50%;
+    box-shadow: 2px 2px 13px 0px rgba(220, 220, 220, 0.2),
+        1px -6px 10px 0px rgba(255, 255, 255, 0.8),
+        1px -5px 10px 0px rgba(220, 220, 220, 0.15),
+        -2px 5px 10px 0px rgba(220, 220, 220, 0.15),
+        -1px -1px 2px 0px rgba(220, 220, 220, 0.4) inset,
+        1px 1px 2px 0px rgba(255, 255, 255, 0.3) inset;
 }
 
 .star {
-  cursor: pointer;
-  position: relative;
-  top: 7px;
-  left: 11px;
-  color: #81858c;
-  width: 16px;
-  height: 16px;
+    cursor: pointer;
+    position: relative;
+    top: 7px;
+    left: 11px;
+    color: #81858c;
+    width: 16px;
+    height: 16px;
 }
 
 .footer-board {
-  display: flex;
-  margin-top: 35px;
+    padding: 10px 16px;
+}
+
+td .follow-btn {
+    margin-left: 27px;
 }
 
 .follow-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 208px;
-  height: 40px;
-  margin-left: 8px;
-  color: #080808;
+    background-color: #feeb61;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    min-width: 130px;
+    min-height: 40px;
+    color: #000000;
+    margin-left: 10px;
 }
 
 span.highlight {
-  background-color: orange;
+    background-color: orange;
 }

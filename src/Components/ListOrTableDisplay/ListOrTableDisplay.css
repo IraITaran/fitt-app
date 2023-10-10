@@ -1,0 +1,13 @@
+.ListOrTableDisplay {
+    margin-left: auto;
+}
+
+.ListOrTableDisplay > div {
+    cursor: pointer;
+}
+
+@media (min-width: 992px) {
+    .ListOrTableDisplay {
+        margin-top: 25px;
+    }
+}
