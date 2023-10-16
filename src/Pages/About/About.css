@@ -1,194 +1,501 @@
 .About {
-  color: #262626;
+    color: #262626;
 }
 
 .about-header-container {
-  margin: 0px 175px;
+    margin: 0px 175px;
 }
 
 .about-header-container .main-left {
-  margin-top: 160px;
+    margin-top: 160px;
 }
 
 .about-header-container .main-right {
-  margin-top: 85px;
+    margin-top: 85px;
 }
 
-.about-header-container .main-right img {
-  width: 464px;
-  height: 440px;
+.about-info {
+    text-align: center;
 }
 
-.about-header-container .main-left p {
-  font-size: 72px;
-  line-height: 85px;
-  font-weight: 300px;
-  margin-bottom: 30px;
+.about-info p {
+    font-size: 72px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 24px;
 }
 
-.about-header-container .main-left span {
-  font-size: 18px;
-  line-height: 32px;
+.about-info span {
+    font-size: 18px;
+    max-width: 575px;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.9;
 }
 
 .about-header-container .main-left .binance-logo {
-  margin-left: 16px;
+    margin-left: 16px;
+}
+
+.about-main-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 580px;
+    background: url(../../images/about-bg-l.jpg) no-repeat left top / contain,
+        url(../../images/about-bg-r.jpg) no-repeat right top / contain;
+    background-color: #fff;
+}
+
+.about-info {
+    text-align: center;
+}
+
+.about-info p {
+    font-size: 72px;
+    line-height: 1.2;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+.about-info span {
+    font-size: 18px;
+    max-width: 575px;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.9;
+}
+
+.about-info .binance-logo {
+    margin-left: 16px;
 }
 
 .about-header-container .bg-about-main {
-  background-image: url("../../images/bg-about-header.svg");
-  width: 900px;
-  height: 525px;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 90px;
-  left: 274px;
-  z-index: -1;
-  opacity: 0.99;
+    background-image: url("../../images/bg-about-header.svg");
+    width: 900px;
+    height: 525px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 90px;
+    left: 274px;
+    z-index: -1;
+    opacity: 0.99;
 }
 
 .About .about-main-container {
-  padding: 80px 175px 80px 175px;
-  background-color: #f5f5f585;
-  width: 100%;
+    background-color: #f5f5f585;
+    width: 100%;
+    padding: 60px 0 60px 0;
+    background-color: #fafafa;
+    width: 100%;
+}
+
+.advantages-main-grid {
+    grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
+    grid-gap: 60px;
+}
+
+.advantages-main-grid {
+    grid-template-columns: repeat(auto-fit, minmax(365px, 1fr));
+    grid-gap: 60px;
 }
 
 .about-main-container .advantages-container {
-  margin-bottom: 80px;
+    margin-bottom: 80px;
 }
 
 .about-main-container .advantages-container h2,
 .flow-trading-container h2 {
-  font-size: 32px;
-  font-weight: 400;
-  margin-bottom: 40px;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 40px;
 }
 
-.about-main-container .advantages-container img {
-  margin-bottom: 32px;
+.advantages-section img {
+    margin-bottom: 32px;
+    max-height: 200px;
+    display: block;
+    max-width: 100%;
 }
 
-.advantages-container .advantages-section p:first-of-type {
-  font-size: 20px;
-  margin-bottom: 12px;
+.advantages-section p:first-of-type {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.about-main-container .flow-trading-container {
+    display: none !important;
 }
 
 .advantages-container .advantages-section p:last-of-type {
-  font-size: 16px;
-  margin-bottom: 0px;
+    font-size: 16px;
+    margin-bottom: 0px;
 }
 
 .flow-trading-container .yellow-btn {
-  padding: 11px 32px;
-  font-size: 14px;
-  font-weight: 400;
+    padding: 11px 32px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.flow-trading-grid {
+    margin-top: 60px;
+    grid-template-columns: 1fr 592px;
+    grid-gap: 60px 112px;
+    align-items: center;
+}
+
+.flow-trading-grid h2 {
+    margin-bottom: 32px;
+}
+
+.flow-trading-grid .yellow-btn {
+    padding: 12px 34px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
 }
 
 .flow-left-section {
-  padding-top: 75px;
+    padding-top: 75px;
+}
+
+.about-main-container h2,
+.flow-trading-grid h2 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.advantages-section img {
+    margin-bottom: 32px;
+    max-height: 200px;
+    display: block;
+    max-width: 100%;
+}
+
+.advantages-section p:first-of-type {
+    font-size: 20px;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.advantages-section p:last-of-type {
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+.flow-trading-grid {
+    margin-top: 60px;
+    grid-template-columns: 1fr 592px;
+    grid-gap: 60px 112px;
+    align-items: center;
+}
+
+.flow-trading-grid h2 {
+    margin-bottom: 32px;
+}
+
+.flow-trading-grid .yellow-btn {
+    padding: 12px 34px;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
 }
 
 .flow-left-section ul {
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
-  width: 69%;
+    padding: 0px;
+    margin: 0px;
+    width: 69%;
+    list-style: none;
 }
 
 .flow-left-section ul li {
-  margin-bottom: 32px;
-  display: flex;
-  align-items: flex-start;
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-start;
 }
 
 .flow-left-section ul img {
-  margin-right: 16px;
+    margin-right: 16px;
 }
 
 .flow-right-section {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 40px 80px 40px 80px;
-  position: relative;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.04);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
 }
 
 .flow-right-section .bg-flow-fitt {
-  background-image: url("../../images/bg-flow-fitt.svg");
-  width: 80px;
-  height: 80px;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 250px;
-  left: 35px;
-  opacity: 0.99;
+    background-image: url("../../images/bg-flow-fitt.svg");
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 250px;
+    left: 35px;
+    opacity: 0.99;
 }
 
 .flow-right-section .bg-flow-rhombus {
-  background-image: url("../../images/bg-flow-rhombus.svg");
-  width: 146px;
-  height: 146px;
-  background-repeat: no-repeat;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  opacity: 0.99;
+    background-image: url("../../images/bg-flow-rhombus.svg");
+    width: 146px;
+    height: 146px;
+    background-repeat: no-repeat;
+    opacity: 0.99;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.04);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.flow-right-section .bg-flow-fitt {
+    background-image: url("../../images/bg-flow-fitt.svg");
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 250px;
+    left: 40px;
+    opacity: 0.99;
+}
+
+.flow-right-section .bg-flow-rhombus {
+    background-image: url("../../images/bg-flow-rhombus.svg");
+    width: 190px;
+    height: 210px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 5px;
+    right: 0;
+    opacity: 0.99;
 }
 
 .flow-right-section ul {
-  list-style: none;
-  margin: 0px;
+    list-style: none;
+    margin: 0px;
 }
 
 .flow-right-section ul li {
-  padding: 24px;
-  border-radius: 8px;
-  margin-bottom: 28px;
-  width: 85%;
+    padding: 24px;
+    border-radius: 8px;
+    margin-bottom: 28px;
+    width: 348px;
+    font-weight: 600;
 }
 
 .flow-right-section ul li:last-child {
-  margin-bottom: 0px;
+    margin-bottom: 0px;
 }
 
 .flow-right-section ul .grey-item {
-  background-color: #f6f6f6;
+    background-color: #f6f6f6;
 }
 
 .flow-right-section ul .black-item {
-  background-color: #29261e;
-  color: #ffffff;
-  margin-left: auto;
+    background-color: #29261e;
+    color: #ffffff;
+    margin-left: auto;
 }
 
 .flow-right-section ul li span {
-  display: block;
-  margin-bottom: 30px;
+    display: block;
+    margin-bottom: 30px;
 }
 
 .about-footer {
-  background-color: #29261e;
-  color: #ffffff;
-  padding: 80px 0px;
+    position: relative;
+    padding: 90px 35px;
+    background-color: #29261e;
+    color: #ffffff;
+}
+
+.about-footer:before,
+.about-footer:after {
+    position: absolute;
+    content: "";
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.about-footer:before {
+    top: 0;
+    right: 0;
+    width: 235px;
+    height: 105px;
+    background-image: url("../../images/about/decor-1.svg");
+}
+
+.about-footer:after {
+    bottom: 0;
+    left: 0;
+    width: 235px;
+    height: 123px;
+    background-image: url("../../images/about/decor-2.svg");
 }
 
 .about-footer p:first-of-type {
-  font-size: 32px;
-  margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .about-footer p:last-of-type {
-  font-size: 18px;
-  margin-bottom: 24px;
+    font-size: 18px;
+    margin-bottom: 25px;
 }
 
 .about-footer ul {
-  list-style: none;
-  padding: 0px;
-  display: flex;
-  justify-content: center;
-  margin: 0px;
+    list-style: none;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
 }
 
 .about-footer ul li {
-  margin-right: 20px;
+    margin: 0 10px;
+}
+
+.about-footer ul svg,
+.about-footer ul img {
+    width: 40px;
+    height: 40px;
+}
+
+@media (min-width: 992px) {
+    .about-footer:before {
+        height: 165px;
+        background-image: url("../../images/about/decor-3.svg");
+    }
+    .about-footer:after {
+        display: none;
+    }
+
+    .about-footer p:first-of-type {
+        margin-bottom: 25px;
+        font-size: 32px;
+    }
+
+    .about-footer ul li {
+        margin: 0 20px;
+    }
+
+    .about-footer ul svg,
+    .about-footer ul img {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .flow-trading-grid {
+        grid-template-columns: 1fr 492px;
+        grid-gap: 25px 60px;
+    }
+    .flow-right-section .bg-flow-rhombus {
+        right: -50px;
+    }
+    .flow-right-section .bg-flow-fitt {
+        left: 10px;
+    }
+}
+
+@media (max-width: 940px) {
+    .flow-right-section .bg-flow-rhombus {
+        right: 0;
+    }
+    .flow-right-section .bg-flow-fitt {
+        left: 40px;
+    }
+    .about-main-block {
+        height: 460px;
+        padding-top: 63px;
+        justify-content: flex-start;
+        background: url(../../images/about-monet.png) no-repeat -10px calc(
+                    100% - 17px
+                ) / 153px 146px,
+            url(../../images/about-bg-mob.jpg) no-repeat right top / auto 100%;
+    }
+    .about-info span {
+        font-size: 14px;
+    }
+    .about-info p {
+        font-size: 35px;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    .About .about-main-container {
+        padding: 35px 0;
+    }
+    .advantages-section p:last-of-type {
+        font-size: 14px;
+    }
+    .advantages-section p:first-of-type {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .advantages-main-grid {
+        grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+        grid-gap: 25px;
+    }
+    .advantages-section img {
+        margin-bottom: 20px;
+    }
+    .flow-trading-grid {
+        margin-top: 35px;
+        grid-template-columns: 1fr;
+    }
+    .flow-left-section ul li {
+        margin-bottom: 15px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    .about-main-container h2,
+    .flow-trading-grid h2 {
+        margin-bottom: 25px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 640px) {
+    .flow-right-section {
+        padding: 23px 34px;
+        width: calc(100% + 64px);
+        margin-left: -32px;
+    }
+    .flow-right-section ul li {
+        padding: 10px 20px;
+        background: #f6f6f6;
+        margin-bottom: 16px;
+        width: 217px;
+        font-size: 14px;
+    }
+    .flow-right-section ul {
+        padding: 0;
+    }
+    .flow-right-section ul li span {
+        margin-bottom: 3px;
+    }
+    .flow-right-section .bg-flow-fitt {
+        width: 47px;
+        height: 47px;
+        background-size: contain;
+        top: 144px;
+        left: auto;
+        right: 268px;
+    }
+    .flow-right-section .bg-flow-rhombus {
+        width: 118px;
+        height: 118px;
+    }
 }
