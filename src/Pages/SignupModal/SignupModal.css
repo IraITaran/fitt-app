@@ -1,0 +1,61 @@
+.modal-body .container{
+  padding: 0;
+}
+.modal-header {
+  padding-top: 50px;
+}
+.whithout-popup-header .modal-header {
+  padding: 40px 14px 0;
+}
+.whithout-popup-header .modal-header .btn-close {
+  padding: 14px;
+  transition: .25s ease;
+  z-index: 1;
+}
+.approve-header {
+  text-align: center;
+  width: 100%;
+  font-weight: 600;
+}
+.modal-content .modal-header {
+  border: 0;
+}
+.modal .base-form .content-container {
+  max-width: 100%;
+  padding: 0;
+}
+.modal .modal-dialog {
+  max-width: 540px;
+}
+.modal-body {
+  padding: 0 50px 40px;
+}
+.modal-body .Authorization {
+  padding: 0;
+}
+.modal-body .form-bottom p a {
+  display: none;
+}
+.modal-body .form-bottom .modal-toggle-link {
+  display: inline-block;
+}
+.modal-toggle-link {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.modal-toggle-link:hover {
+  text-decoration: none;
+}
+
+.btn-close {
+  position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+@media (max-width: 960px) {
+  .modal-body {
+    padding: 0 20px 40px;
+  }
+  
+}

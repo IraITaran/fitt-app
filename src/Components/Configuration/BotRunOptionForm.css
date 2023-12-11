@@ -1,169 +1,214 @@
 .BotRunOptionForm {
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
+    background-color: #ffffff;
 }
 
 .BotRunOptionForm .bot-option-container {
-  border: 1px solid #dde0e5;
-  border-radius: 4px;
-  padding: 20px 25px;
-
-  width: 70%;
-  margin: 30px auto;
+    padding: 30px 20px;
 }
 
 .BotRunOptionForm .user-account-icon {
-  width: 54px;
-  height: 54px;
-  margin-right: 13px;
-  margin-bottom: 30px;
+    width: 54px;
+    height: 54px;
+    margin-right: 13px;
+    margin-bottom: 30px;
 }
 
 .BotRunOptionForm .col:first-child {
-  min-width: 290px;
+    min-width: 290px;
 }
 
 .bot-option {
-  font-size: 16px;
-  color: #000000;
-  margin-bottom: 18px;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 18px;
 }
 
 .bot-option span {
-  color: #81858c;
+    color: #81858c;
 }
 
 .bot-option.green {
-  color: #10b866;
+    color: #10b866;
 }
 
 .bot-option.red {
-  color: #ff0000;
+    color: #ff0000;
 }
 
 .bot-button-container {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .bot-button-container div {
-  background-color: #feeb61;
-  border: 4px solid #f1df58;
-  border-radius: 50%;
-  margin-right: 15px;
-  padding: 8px 13px;
+    background-color: #feeb61;
+    border: 4px solid #f1df58;
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 8px 13px;
 }
 
 .bot-button-container div:hover {
-  background-color: #fef961;
+    background-color: #fef961;
 }
 
 .bot-button-container div:active,
 .bot-button-container div.disabled {
-  background-color: #fafafa;
-  border: 4px solid #dedede;
+    background-color: #fafafa;
+    border: 4px solid #dedede;
 }
 
 .bot-button-container .play-icon {
-  width: 14px;
-  height: 20px;
-  margin-left: 2px;
+    width: 14px;
+    height: 20px;
+    margin-left: 2px;
 }
 
 .bot-button-container .stop-icon,
 .bot-button-container .edit-icon,
 .bot-button-container .delete-icon,
 .bot-button-container .statistic-icon {
-  width: 15px;
-  height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
-.start-btn,
-.save-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 150px;
-  height: 40px;
-  margin: 0 auto;
-  color: #080808;
+.BotRunOptionForm .start-btn,
+.BotRunOptionForm .save-btn {
+    margin: 0;
+    width: 100%;
+    border: 1px solid #feeb61;
+    background-color: #feeb61;
+    border-radius: 4px;
+    height: 40px;
+    color: #080808;
 }
 
-.start-btn:disabled,
-.save-btn:disabled {
-  border: 1px solid lightgrey;
-  background-color: lightgrey;
+.BotRunOptionForm .save-btn {
+    margin-bottom: 15px;
 }
 
-.start-btn {
-  margin-left:10px;
+.BotRunOptionForm .start-btn:disabled,
+.BotRunOptionForm .save-btn:disabled {
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
 }
 
 .copy-header,
 .approve-header {
-  margin: 0;
-  color: #262626;
-  font-size: 20px;
+    margin: 0 0 15px 0;
+    color: #262626;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .bot-option-container h5 {
-  margin-top: 30px;
+    margin-top: 30px;
+}
+
+.BotRunOptionForm .table-title {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #262626;
+    text-align: left;
 }
 
 .BotRunOptionForm .table-container {
-  height: auto;
+    height: auto;
+    overflow-y: auto;
+}
+
+.BotRunOptionForm .table-container table {
+    margin-bottom: 25px;
+    width: 1140px;
+}
+
+.BotRunOptionForm .table-empty-bg {
+    margin-bottom: 25px;
+    min-height: 111px;
+    background: url("../../images/empty-table-bg.svg") no-repeat center;
+    background-size: contain;
 }
 
 .bot-option-container th,
 .bot-option-container td,
 .bot-option-container tr .direction {
-  width: 0;
-  padding: 10px 0px;
-  font-size: 14px !important;
+    width: 0;
+    padding: 10px 0px;
+    font-size: 14px !important;
 }
 
 .bot-option-container .insufient-funds-warning {
-  padding-top: 20px;
-  color: red;
-  text-align: center;
+    padding-top: 20px;
+    color: red;
+    text-align: center;
 }
 
 .approve-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 47%;
-  height: 40px;
-  margin: 5px;
-  color: #080808;
+    border: 1px solid #feeb61;
+    background-color: #feeb61;
+    border-radius: 4px;
+    width: 47%;
+    height: 40px;
+    margin: 5px;
+    color: #080808;
+  font-weight: 600;
 }
 
 .approve-btn.delete {
-  border: 1px solid rgb(255, 68, 68);
-  background-color: rgb(255, 68, 68);
-  color: white;
-  font-weight: 500;
+    border: 1px solid rgb(255, 68, 68);
+    background-color: rgb(255, 68, 68);
+    color: white;
+    font-weight: 500;
 }
 
 .radio-buttons-wrapper {
-  width: 900px;
-  margin: 10px 30px;
+    margin-bottom: 25px;
+}
+
+.radio-buttons-wrapper label {
+    display: flex;
+    cursor: pointer;
+}
+
+.radio-buttons-wrapper input[type="radio"] {
+    min-width: 24px;
+    height: 24px;
+    accent-color: #262626;
+    margin-top: -1px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.radio-buttons-wrapper p {
+    margin: 0;
+}
+
+.radio-buttons-wrapper label + label {
+    margin-top: 15px;
 }
 
 .radio-buttons-wrapper span.green {
-  color: #10b866;
+    color: #10b866;
 }
 
 .radio-buttons-wrapper span.red {
-  color: #ff0000;
-}
-
-.bot-options-button-container {
-  width: 30%;
-  margin: 0 auto;
+    color: #ff0000;
 }
 
 .approve-btn.green {
-  color: white;
-  background-color: #10b866;
-  border: 1px solid #10b866;
+    color: white;
+    background-color: #10b866;
+    border: 1px solid #10b866;
+}
+
+@media (min-width: 768px) {
+    .BotRunOptionForm .start-btn,
+    .BotRunOptionForm .save-btn {
+        max-width: 208px;
+        margin: 0 10px;
+    }
+
+    .BotRunOptionForm .table-empty-bg {
+        margin: 56px 0;
+    }
 }

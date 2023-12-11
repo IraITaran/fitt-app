@@ -1,0 +1,335 @@
+
+.PayForm .container {
+  max-width: 1040px;
+}
+.PayForm .form-title {
+  font-size: 30px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.PayForm .form-sub-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.PayForm form {
+  display: flex;
+}
+.PayForm form > div {
+  flex: 1;
+}
+.PayForm .left-form-item {
+  margin-right: 60px;
+  
+}
+.PayForm .left-form-item .form-field-block {
+  margin-bottom: 10px;
+}
+.PayForm .left-form-item .form-field-block:last-child {
+  margin-bottom: 0;
+}
+.PayForm .form-group {
+  margin-bottom: 15px;
+}
+
+.form-group-row-multiple,
+.form-group-row {
+  display: flex;
+}
+
+.form-group-row-multiple > div:first-child {
+  flex: 1;
+  margin-right: 20px;
+}
+.form-group-row-multiple > div:nth-child(2) {
+  width: 90px;
+  margin-right: 20px;
+}
+.form-group-row-multiple > div:last-child {
+  width: 125px;
+}
+
+.form-group-row > div {
+  flex: 1;
+}
+.form-group-row > div:first-child {
+  margin-right: 20px;
+}
+
+.right-form-item .form-step-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 5px;
+}
+.right-form-item .form-step-header .title {
+  font-size: 20px;
+  font-weight: 600;
+}
+.right-form-item .form-step-header .description {
+  font-size: 14px;
+  color: #81858C;
+}
+.form-field-tariff {
+  margin-bottom: 20px;
+  padding: 24px 22px;
+  border-radius: 4px;
+  background: #FFF;
+  box-shadow: 0px 0px 40px 0px rgba(0, 0, 0, 0.04);
+}
+.form-field-tariff .count-tariff {
+  color: #81858C;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+.form-field-tariff .form-description {
+  color: #81858C;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.form-field-tariff .ckeckbox-field .switch{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  color: #81858C;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.switch input {
+  margin: 0;
+}
+
+.form-field-tariff .checkbox-label {
+  cursor: pointer;
+  margin-left: 45px;
+}
+
+.form-field-tariff .ckeckbox-field .switch .slider {
+  width: 35px;
+  margin-right: 10px;
+}
+
+.form-field-tariff ul {
+  list-style: none;
+  padding: 15px 0;
+  margin: 0;
+  border-top: 1px solid #DCDFE4;
+  border-bottom: 1px solid #DCDFE4;
+  margin-top: 15px;
+}
+.form-field-tariff li {
+  margin-bottom: 15px;
+  display: block;
+  font-size: 14px;
+}
+.form-field-tariff li img {
+  margin-right: 10px;
+}
+.form-field-tariff li:last-child {
+  margin-bottom: 0;
+}
+
+.form-field-tariff .form-step-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 20px;
+  color: #81858C;
+}
+.form-field-tariff .form-step-footer .cost-count {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 38px;
+  color: #262626;
+}
+
+.mode-inputs label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 15px;
+  border-radius: 4px;
+  border: 1px solid #DDE0E5;
+  margin-bottom: 16px;
+  font-weight: 500;
+  color: #000;
+}
+
+.mode-inputs .radio-wrapper {
+  display: flex;
+  align-items: center;
+}
+.mode-inputs .radio-wrapper .cost-count {
+  margin-right: 14px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mode-inputs .radio-wrapper  input {
+    width: 24px;
+    height: 24px;
+    accent-color: #262626;
+    cursor: pointer;
+}
+
+.radio-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-info-description {
+  margin-top: 4px;
+  display: block;
+  color: #81858C;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.PayForm .form-group.form-check {
+  margin-top: 16px;
+  margin-bottom: 25px;
+}
+.PayForm .form-group.form-check a {
+  color: #0085FF;
+}
+.PayForm .form-group.form-check a:hover {
+  text-decoration: none;
+}
+
+.PayForm .pay-btn {
+  padding: 14px 0px;
+}
+
+/* Payment Tabs */
+
+.payment-tab-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 15px;
+  border-radius: 4px;
+  border: 1px solid #DDE0E5;
+  background: #FFF;
+  margin-bottom: 15px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.payment-radio-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 1px solid #262626;
+  background: #fff;
+  position: relative;
+} 
+.payment-radio-btn:after {
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: #000;
+  border-radius: 50%;
+  margin: auto;
+  opacity: 0;
+  transition: .25s ease;
+}
+.payment-tab-btn.is-active .payment-radio-btn:after {
+  opacity: 1;
+}
+.payment-tab-inner {
+  display: flex;
+  align-items: center;
+}
+.payment-tab-inner img {
+  display: block;
+  margin-right: 10px;
+}
+.form-group .label-required {
+  position: relative;
+  display: inline-block;
+  width: auto;
+}
+.form-group .label-required:after {
+  content: '*';
+  font-size: 12px;
+  color: #F00;
+  font-weight: 500;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 2px;
+}
+
+.base-form input:placeholder {
+  color: #81858C;
+}
+
+
+@media (max-width: 860px) {
+  .PayForm form {
+    flex-direction: column;
+  }
+  .PayForm .left-form-item {
+    margin-right: 0;
+  }
+  .PayForm .form-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .PayForm .form-sub-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  .PayForm .left-form-item .form-field-block {
+    margin-bottom: 5px;
+  }
+  .form-group-row-multiple, .form-group-row {
+    flex-direction: column;
+  }
+  .form-group-row > div:first-child {
+    margin-right: 0;
+  }
+  .form-group-row-multiple > div:first-child {
+    margin-right: 0;
+  }
+  .form-group-row-multiple > div:nth-child(2) {
+    width: 100%;
+    margin-right: 0;
+  }
+  .form-group-row-multiple > div:last-child {
+    width: 100%;
+  }
+  .tab-content .form-group-row {
+    flex-direction: row;
+  }
+  .tab-content .form-group-row > div:first-child {
+    margin-right: 10px;
+  }
+  .right-form-item .form-step-header .title {
+    font-size: 16px;
+  }
+  .form-field-tariff .form-step-footer {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  .form-field-tariff .form-step-footer .cost-count {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}

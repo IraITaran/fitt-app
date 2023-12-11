@@ -11,164 +11,164 @@ import { useNavigate } from "react-router-dom";
 import "./MultistepFollow.css";
 
 export default function MultistepFollow() {
-  let [currentStep, setCurrentStep] = useState(0);
-  let [stepCount, setStepCount] = useState(0);
-  let [botConfiguration, setBotConfiguration] = useState(null);
-  let [botConfigurationStep, setBotConfigurationStep] = useState(0);
-  let [botSaveEvent, setBotSaveEvent] = useState(false);
-  let [isNextClicked, setIsNextClicked] = useState(false);
-  let [isNextEnabled, setIsNextEnabled] = useState(true);
-  let [componentList, setComponentList] = useState([]);
+    let [currentStep, setCurrentStep] = useState(0);
+    let [stepCount, setStepCount] = useState(0);
+    let [botConfiguration, setBotConfiguration] = useState(null);
+    let [botConfigurationStep, setBotConfigurationStep] = useState(0);
+    let [botSaveEvent, setBotSaveEvent] = useState(false);
+    let [isNextClicked, setIsNextClicked] = useState(false);
+    let [isNextEnabled, setIsNextEnabled] = useState(true);
+    let [componentList, setComponentList] = useState([]);
 
-  let { leaderId } = useParams();
-  let navigate = useNavigate();
+    let { leaderId } = useParams();
+    let navigate = useNavigate();
 
-  useEffect(() => {
-    let user = authService.getCurrentUser();
-    if (!user) {
-      navigate("/login");
-      return;
-    }
-    let userStatus = user.userDetails.status;
+    useEffect(() => {
+        let user = authService.getCurrentUser();
+        if (!user) {
+            navigate("/login");
+            return;
+        }
+        let userStatus = user.userDetails.status;
 
-    let list = [];
-    switch (userStatus) {
-      case 0:
-        list.push("EmailCheck");
-        list.push("ApiKeyForm");
-        list.push("BotConfigurationForm");
-        list.push("BotRunOptionForm");
-        setComponentList(list);
+        let list = [];
+        switch (userStatus) {
+            case 0:
+                list.push("EmailCheck");
+                list.push("ApiKeyForm");
+                list.push("BotConfigurationForm");
+                list.push("BotRunOptionForm");
+                setComponentList(list);
 
-        setBotConfigurationStep(2);
-        setStepCount(list.length);
-        break;
-      case 1:
-        list.push("ApiKeyForm");
-        list.push("BotConfigurationForm");
-        list.push("BotRunOptionForm");
-        setComponentList(list);
+                setBotConfigurationStep(2);
+                setStepCount(list.length);
+                break;
+            case 1:
+                list.push("ApiKeyForm");
+                list.push("BotConfigurationForm");
+                list.push("BotRunOptionForm");
+                setComponentList(list);
 
-        setBotConfigurationStep(1);
-        setStepCount(list.length);
-        break;
-      case 2:
-        list.push("BotConfigurationForm");
-        list.push("BotRunOptionForm");
-        setComponentList(list);
+                setBotConfigurationStep(1);
+                setStepCount(list.length);
+                break;
+            case 2:
+                list.push("BotConfigurationForm");
+                list.push("BotRunOptionForm");
+                setComponentList(list);
 
-        setBotConfigurationStep(0);
-        setStepCount(list.length);
-        break;
-      default:
-        break;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+                setBotConfigurationStep(0);
+                setStepCount(list.length);
+                break;
+            default:
+                break;
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-  function updateBotConfiguration(newBotConfiguration) {
-    setBotConfiguration(newBotConfiguration);
+    function updateBotConfiguration(newBotConfiguration) {
+        setBotConfiguration(newBotConfiguration);
 
-    setBotSaveEvent(false);
-    if (isNextClicked) {
-      setCurrentStep(currentStep + 1);
-    } else {
-      setCurrentStep(currentStep - 1);
-    }
-  }
-
-  function onNext() {
-    if (currentStep === stepCount - 1) {
-      return;
+        setBotSaveEvent(false);
+        if (isNextClicked) {
+            setCurrentStep(currentStep + 1);
+        } else {
+            setCurrentStep(currentStep - 1);
+        }
     }
 
-    setIsNextClicked(true);
+    function onNext() {
+        if (currentStep === stepCount - 1) {
+            return;
+        }
 
-    if (currentStep === botConfigurationStep) {
-      setBotSaveEvent(true);
-      return;
+        setIsNextClicked(true);
+
+        if (currentStep === botConfigurationStep) {
+            setBotSaveEvent(true);
+            return;
+        }
+
+        setCurrentStep(currentStep + 1);
     }
 
-    setCurrentStep(currentStep + 1);
-  }
+    function onPrev() {
+        if (currentStep <= 0) return;
 
-  function onPrev() {
-    if (currentStep <= 0) return;
+        setIsNextClicked(false);
 
-    setIsNextClicked(false);
+        if (currentStep === botConfigurationStep) {
+            setBotSaveEvent(true);
+            return;
+        }
 
-    if (currentStep === botConfigurationStep) {
-      setBotSaveEvent(true);
-      return;
+        setCurrentStep(currentStep - 1);
     }
 
-    setCurrentStep(currentStep - 1);
-  }
-
-  function enableNext(isEnabled) {
-    setIsNextEnabled(isEnabled);
-  }
-
-  function currentStepComponentFunc() {
-    switch (componentList[currentStep]) {
-      case "EmailCheck":
-        return <ConfirmEmail nextEnabled={enableNext} />;
-
-      case "ApiKeyForm":
-        return <ApiKeyForm nextEnabled={enableNext} />;
-
-      case "BotConfigurationForm":
-        return (
-          <BotConfigurationForm
-            title="Step 2"
-            leaderId={leaderId}
-            data={botConfiguration}
-            updateBotConfiguration={updateBotConfiguration}
-            botSaveEvent={botSaveEvent}
-            nextEnabled={enableNext}
-            isUpdate={false}
-          />
-        );
-
-      case "BotRunOptionForm":
-        return (
-          <BotRunOptionForm
-            title="Step 3"
-            leaderId={leaderId}
-            data={botConfiguration}
-            nextEnabled={enableNext}
-          />
-        );
-      default:
-        break;
+    function enableNext(isEnabled) {
+        setIsNextEnabled(isEnabled);
     }
-  }
 
-  return (
-    <div className="multistep-container">
-      {currentStepComponentFunc()}
+    function currentStepComponentFunc() {
+        switch (componentList[currentStep]) {
+            case "EmailCheck":
+                return <ConfirmEmail nextEnabled={enableNext} />;
 
-      <div className="multistep-button-container">
-        {currentStep > 0 && (
-          <button
-            className="yellow-btn prev"
-            onClick={onPrev}
-            disabled={currentStep === 0}
-          >
-            Назад
-          </button>
-        )}
-        {currentStep !== stepCount - 1 && (
-          <button
-            className="yellow-btn next"
-            onClick={onNext}
-            disabled={currentStep === stepCount + 1 || !isNextEnabled}
-          >
-            Вперед
-          </button>
-        )}
-      </div>
-      <div>{botSaveEvent}</div>
-    </div>
-  );
+            case "ApiKeyForm":
+                return <ApiKeyForm nextEnabled={enableNext} />;
+
+            case "BotConfigurationForm":
+                return (
+                    <BotConfigurationForm
+                        title="Step 2"
+                        leaderId={leaderId}
+                        data={botConfiguration}
+                        updateBotConfiguration={updateBotConfiguration}
+                        botSaveEvent={botSaveEvent}
+                        nextEnabled={enableNext}
+                        isUpdate={false}
+                    />
+                );
+
+            case "BotRunOptionForm":
+                return (
+                    <BotRunOptionForm
+                        title="Step 3"
+                        leaderId={leaderId}
+                        data={botConfiguration}
+                        nextEnabled={enableNext}
+                    />
+                );
+            default:
+                break;
+        }
+    }
+
+    return (
+        <div className="multistep-container">
+            {currentStepComponentFunc()}
+
+            <div className="multistep-button-container d-flex justify-content-center">
+                {currentStep > 0 && (
+                    <button
+                        className="yellow-btn prev d-flex justify-content-center align-items-center"
+                        onClick={onPrev}
+                        disabled={currentStep === 0}>
+                        Назад
+                    </button>
+                )}
+                {currentStep !== stepCount - 1 && (
+                    <button
+                        className="yellow-btn next"
+                        onClick={onNext}
+                        disabled={
+                            currentStep === stepCount + 1 || !isNextEnabled
+                        }>
+                        Вперед
+                    </button>
+                )}
+            </div>
+            <div>{botSaveEvent}</div>
+        </div>
+    );
 }

@@ -1,14 +1,7 @@
-.ApiKeyForm {
-  padding: 48px;
-  width: 700px;
-  height: 700px;
-  margin: 0 auto;
-}
 
 .apikey-container {
-  border: 1px solid #dde0e5;
-  border-radius: 4px;
-  padding: 30px 25px;
+  max-width: 440px;
+  margin: auto;
 }
 
 .apikey-header {
@@ -40,26 +33,15 @@
 .apikey-description {
   color: #9a9a9a;
   font-size: 12px;
-  text-align: center;
-  line-height: 19px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .apikey-description a {
   text-decoration: none;
-  color: #9a9a9a;
+  color: #0085FF;
 }
-
-.save-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 207px;
-  height: 40px;
-  margin: 0 auto;
-  color: #080808;
-  padding: 24px, 32px, 24px, 32px;
-  font-size: 14px;
+.apikey-description a:hover {
+  text-decoration: underline;
 }
 
 .red {

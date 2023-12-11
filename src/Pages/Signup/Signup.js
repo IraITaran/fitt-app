@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import SignUpConsent from "./SignUpConsent";
 import Modal from "react-bootstrap/Modal";
 
-export default function Signup() {
+export default function Signup(props) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [email, setEmail] = useState("");
@@ -16,6 +16,16 @@ export default function Signup() {
   const [emailError, setemailError] = useState("");
   let navigate = useNavigate();
   let [consentModal, setConsentModal] = useState(false);
+
+  const { onToggleFormLink } = props;
+
+  const [activeTab, setActiveTab] = useState('email');
+  const handleTabClick = (activeTab) => setActiveTab(activeTab);
+
+  const tabs = [
+    { id: 1, label: 'email', content: 'Электронная почта' },
+    { id: 2, label: 'phone', content: 'Номер телефона' },
+  ];
 
   function handleCheckboxChange(e) {
     setServiceAgreement(e.target.checked);
@@ -75,89 +85,197 @@ export default function Signup() {
   };
 
   return (
-    <div className="Registration">
-      <div className="row d-flex justify-content-center">
-        <div className="col-md-4 content-container">
+    <div className="Registration base-form">
+      <div className="container">
+       
+        {/* <div className="popup-close-btn"></div> */}
           <h4 className="text-center">Создайте личный аккаунт</h4>
-          <form id="signupform" onSubmit={signupSubmit}>
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
+          <div className="authorization-tab-block">
+            <div className="authorization-tab-inner">
+          {tabs.map((tab) => (
+            <div
+              key={tab.id}
+              onClick={() => handleTabClick(tab.label)}
+              className={tab.label === activeTab ? 'authorization-tab-item is-active' : 'authorization-tab-item'}
+              data-tab={tab.label}
+            >
+              {tab.content}
+            </div>
+          ))}
+            </div>
+          </div>
+          {activeTab === 'email' && (
+            <form id="signupform" onSubmit={signupSubmit}>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control form-input"
+                  id="EmailInput"
+                  name="EmailInput"
+                  aria-describedby="emailHelp"
+                  placeholder="Enter email"
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+                <small id="emailHelp" className="text-danger form-text">
+                  {emailError}
+                </small>
+              </div>
+              <div className="form-group">
+                <label>Пароль</label>
+                <div className="form-field">
+                  <input
+                    type="password"
+                    className="form-control form-input"
+                    id="exampleInputPassword1"
+                    placeholder="Password"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                  <div className="password-icon"></div>
+                </div>
+                <small id="passworderror" className="text-danger form-text">
+                  {passwordError}
+                </small>
+              </div>
+              
+              <div className="form-group">
+                <label>Подтверждение пароля</label>
+                <div className="form-field">
+                  <input
+                    type="password"
+                    className="form-control form-input"
+                    id="exampleInputPassword"
+                    placeholder="Password"
+                    onChange={(event) => setPassword(event.target.value)}
+                  />
+                  <div className="password-icon"></div>
+                </div>
+                <small
+                  id="passwordconfirmerror"
+                  className="text-danger form-text"
+                >
+                  {passwordConfirmError}
+                </small>
+              </div>
+              <div className="form-group form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="exampleCheck1"
+                  onChange={handleCheckboxChange}
+                />
+                <label className="form-check-label conf-agreement">
+                  Я прочитал(-а) и принимаю{" "}
+                  <a
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setConsentModal(true);
+                    }}
+                  >
+                    Соглашение об обслуживании, Заявление о конфиденциальности
+                  </a>
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="btn login-btn w-100"
+                disabled={!serviceAgreement}
+              >
+                Создать персональный аккаунт
+              </button>
+            </form>
+            )}
+            {activeTab === 'phone' && (
+              <form id="signupform" onSubmit={signupSubmit}>
+             <div className="field-row">
+              <label>Номер телефона</label>
+                <div className="form-group form-group-country">
+                <select className="form-control form-select">
+                      <option data-country="AT" value="43">(+38)</option>
+                      <option data-country="AT" value="43">(+43)</option>
+                </select>
+                
+              </div>
+              <div className="form-group form-group-phone">
+                <input
+                type="tel"
                 className="form-control form-input"
-                id="EmailInput"
-                name="EmailInput"
-                aria-describedby="emailHelp"
-                placeholder="Enter email"
+                id="PhoneInput"
+                name="PhoneInput"
+                aria-describedby="phoneHelp"
+                placeholder="Enter phone"
                 onChange={(event) => setEmail(event.target.value)}
               />
-              <small id="emailHelp" className="text-danger form-text">
-                {emailError}
-              </small>
-            </div>
-            <div className="form-group">
-              <label>Пароль</label>
-              <input
-                type="password"
-                className="form-control form-input"
-                id="exampleInputPassword1"
-                placeholder="Password"
-                onChange={(event) => setPassword(event.target.value)}
-              />
-              <small id="passworderror" className="text-danger form-text">
-                {passwordError}
-              </small>
-            </div>
-            <div className="form-group">
-              <label>Подтверждение пароля</label>
-              <input
-                type="password"
-                className="form-control form-input"
-                id="exampleInputPassword"
-                placeholder="Password"
-                onChange={(event) => setPasswordConfirm(event.target.value)}
-              />
-              <small
-                id="passwordconfirmerror"
-                className="text-danger form-text"
-              >
-                {passwordConfirmError}
-              </small>
-            </div>
-            <div className="form-group form-check">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                id="exampleCheck1"
-                onChange={handleCheckboxChange}
-              />
-              <label className="form-check-label conf-agreement">
-                Я прочитал(-а) и принимаю{" "}
-                <a
-                  href="/"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setConsentModal(true);
-                  }}
+                
+              </div>
+              </div>
+              <div className="form-group">
+                <label>Пароль</label>
+                <input
+                  type="password"
+                  className="form-control form-input"
+                  id="exampleInputPassword1"
+                  placeholder="Password"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+                <small id="passworderror" className="text-danger form-text">
+                  {passwordError}
+                </small>
+              </div>
+              <div className="form-group">
+                <label>Подтверждение пароля</label>
+                <input
+                  type="password"
+                  className="form-control form-input"
+                  id="exampleInputPassword"
+                  placeholder="Password"
+                  onChange={(event) => setPasswordConfirm(event.target.value)}
+                />
+                <small
+                  id="passwordconfirmerror"
+                  className="text-danger form-text"
                 >
-                  Соглашение об обслуживании, Заявление о конфиденциальности
-                </a>
-              </label>
+                  {passwordConfirmError}
+                </small>
+              </div>
+              <div className="form-group form-check">
+                <input
+                  type="checkbox"
+                  className="form-check-input"
+                  id="exampleCheck1"
+                  onChange={handleCheckboxChange}
+                />
+                <label className="form-check-label conf-agreement">
+                  Я прочитал(-а) и принимаю{" "}
+                  <a
+                    href="/"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setConsentModal(true);
+                    }}
+                  >
+                    Соглашение об обслуживании, Заявление о конфиденциальности
+                  </a>
+                </label>
+              </div>
+              <button
+                type="submit"
+                className="btn login-btn w-100"
+                disabled={!serviceAgreement}
+              >
+                Создать персональный аккаунт
+              </button>
+            </form>
+            )}
+            <div className="form-bottom text-center">
+              <p>
+                Уже зарегистрированы? <Link to="/login">Войти</Link>
+                <span className="modal-toggle-link" onClick={onToggleFormLink}>Войти</span>
+              </p>
             </div>
-            <button
-              type="submit"
-              className="btn login-btn w-100"
-              disabled={!serviceAgreement}
-            >
-              Создать персональный аккаунт
-            </button>
-          </form>
-          <div className="form-bottom text-center">
-            <p>
-              Уже зарегистрированы? <Link to="/login">Войти</Link>
-            </p>
-          </div>
-        </div>
+          
+        
       </div>
       <Modal
         className="consent-modal"

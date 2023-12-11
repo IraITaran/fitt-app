@@ -1,164 +1,216 @@
 .BotManagementCard {
-  min-width: 580px;
-  height: 315px;
-  padding: 25px 30px;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
-  margin: 10px;
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 4px;
 }
-
+.bot-management-card-info {
+    flex-direction: column;
+}
 .BotManagementCard .bot-type {
-  color: #10b866;
-  border: 1px solid #10b866;
-  padding: 5px 10px;
-  border-radius: 8px;
-  margin-right: 10px;
+    color: #10b866;
+    border: 1px solid #10b866;
+    padding: 5px 10px;
+    border-radius: 8px;
+    margin-right: 10px;
 }
 
 .BotManagementCard .account-type {
-  color: #f3ba2f;
-  border: 1px solid #f3ba2f;
-  padding: 5px 10px;
-  border-radius: 8px;
+    color: #f3ba2f;
+    border: 1px solid #f3ba2f;
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.bot-management-card-header {
+    margin-bottom: 10px;
+}
+
+.card-header-buttons {
+    margin-left: auto;
+}
+
+.card-header-btn {
+    margin-left: 10px;
+    width: 35px;
+    height: 35px;
+    background-color: #feeb61;
+    background-image: url("../../images/signal.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40%;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.card-header-btn:last-child {
+    background-color: #f1f1f1;
+    background-image: url("../../images/warning.svg");
+    background-size: 100%;
 }
 
 .BotManagementCard .user-account-icon {
-  width: 54px;
-  height: 54px;
-  margin-right: 13px;
-  margin-bottom: 30px;
+    width: 54px;
+    height: 54px;
+    margin-right: 13px;
 }
 
 .BotManagementCard .col:first-child {
-  min-width: 290px;
+    min-width: 290px;
 }
 
-.bot-option {
-  font-size: 16px;
-  color: #000000;
-  margin-bottom: 18px;
+.card-info-column {
+    min-width: 50%;
 }
 
-.bot-option span {
-  color: #81858c;
+.BotManagementCard .bot-option {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.BotManagementCard .bot-option span {
+    display: inline-block;
+    margin-right: 4px;
+    color: #81858c;
+    font-weight: 400;
 }
 
 .bot-option.green {
-  color: #10b866;
+    color: #10b866;
 }
 
 .bot-option.red {
-  color: #ff0000;
+    color: #ff0000;
 }
 
-.bot-button-container {
-  margin-top: 5px;
+.BotManagementCard  .bot-button-container {
+    margin-top: 15px;
+}
+
+.card-info-column .bot-option {
+    margin-bottom: 10px;
+    /* padding-right: 30%; */
+    font-size: 15px;
 }
 
 .bot-button-container div {
-  background-color: #feeb61;
-  border: 4px solid #f1df58;
-  border-radius: 50%;
-  margin-right: 15px;
-  padding: 8px 13px;
+    background-color: #feeb61;
+    border: 4px solid #f1df58;
+    border-radius: 50%;
+    margin-right: 15px;
+    padding: 8px 13px;
+    cursor: pointer;
 }
 
 .bot-button-container div:hover {
-  background-color: #fef961;
+    background-color: #fef961;
 }
 
 .bot-button-container div:active,
 .bot-button-container div.disabled {
-  background-color: #fafafa;
-  border: 4px solid #dedede;
+    background-color: #fafafa;
+    border: 4px solid #dedede;
 }
 
 .bot-button-container .play-icon {
-  width: 14px;
-  height: 20px;
-  margin-left: 2px;
+    width: 14px;
+    height: 20px;
+    margin-left: 2px;
 }
 
 .bot-button-container .stop-icon,
 .bot-button-container .edit-icon,
 .bot-button-container .delete-icon,
 .bot-button-container .statistic-icon {
-  width: 15px;
-  height: 15px;
+    width: 15px;
+    height: 15px;
 }
 
 .start-btn {
-  border: 1px solid #feeb61;
-  background-color: #feeb61;
-  border-radius: 4px;
-  width: 150px;
-  height: 40px;
-  margin: 0 auto;
-  color: #080808;
+    border: 1px solid #feeb61;
+    background-color: #feeb61;
+    border-radius: 4px;
+    width: 150px;
+    height: 40px;
+    margin: 0 auto;
+    color: #080808;
 }
 
 .start-btn:disabled {
-  border: 1px solid lightgrey;
-  background-color: lightgrey;
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
 }
 
 .copy-header,
 .approve-header {
-  margin: 0;
-  color: #262626;
-  font-size: 20px;
+    margin: 0;
+    color: #262626;
+    font-size: 20px;
 }
 
 .approve-text {
-  margin: 20px;
-  text-align: center;
-  font-weight: 250;
-  font-size: 18px;
+    margin: 20px;
+    text-align: center;
+    font-weight: 250;
+    font-size: 18px;
 }
 
 .run-bot-modal .modal-content {
-  width: 900px;
-  right: 40%;
-  margin-top: 10%;
+    width: 900px;
+    right: 40%;
+    margin-top: 10%;
 }
 
 .run-bot-modal h5 {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .run-bot-modal th,
 .run-bot-modal td,
 .run-bot-modal tr .direction {
-  width: 0;
-  padding: 10px 40px;
-  font-size: 14px !important;
+    width: 0;
+    padding: 10px 40px;
+    font-size: 14px !important;
 }
 
 .run-bot-modal .insufient-funds-warning {
-  color: red;
-  text-align: center;
+    color: red;
+    text-align: center;
 }
 
 .table-container {
-  overflow-y: scroll;
-  height: 300px;
+    overflow-y: scroll;
+    height: 300px;
 }
-
-.radio-buttons-wrapper {
-  width: 900px;
-  margin: 10px 30px;
-}
-
 .radio-buttons-wrapper span.green {
-  color: #10b866;
+    color: #10b866;
 }
 
 .radio-buttons-wrapper span.red {
-  color: #ff0000;
+    color: #ff0000;
 }
 
 .approve-btn.green {
-  color: white;
-  background-color: #10b866;
-  border: 1px solid #10b866;
+    color: white;
+    background-color: #10b866;
+    border: 1px solid #10b866;
+}
+
+@media (min-width: 768px) {
+    .card-info-column .bot-option {
+        font-size: 17px;
+    }
+}
+@media (min-width: 1024px) {
+    .bot-management-card-info {
+        flex-direction: row;
+       
+    }
+    .card-info-column:first-child {
+        margin-right: 40px;
+    }
 }

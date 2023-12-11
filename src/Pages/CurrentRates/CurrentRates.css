@@ -1,0 +1,92 @@
+.current-rates-container .table-wrapper {
+  margin-bottom: 25px;
+}
+
+.current-rates-tabs {
+  overflow-x: auto;
+  margin-bottom: 15px;
+  margin-right: 34px;
+}
+.current-rates-inner {
+  display: flex;
+  align-items: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #DDE0E5;
+}
+.current-rates-tabs .tab-item.is-active{
+  color: #000;
+}
+.current-rates-tabs .tab-item.is-active:after{
+  background: #feeb61;
+}
+.current-rates-tabs .tab-item + .tab-item {
+  margin-left: 40px;
+}
+.current-rates-tabs .tab-item {
+  font-size: 14px;
+  font-weight: 600;
+  color: #81858C;
+  position: relative;
+  transition: .25s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.current-rates-tabs .tab-item:after {
+  content: '';
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  z-index: 1;
+  transition: .25s ease;
+}
+
+.current-rates-table {
+  min-width: 860px;
+}
+.current-rates-table tr {
+  height: 60px;
+  padding: 20px 10px;
+  border-bottom: 1px solid #dde0e5;
+  font-size: 14px;
+  font-weight: 600;
+}
+.current-rates-table tr:last-child {
+  border-bottom: 0;
+}
+.current-rates-table th {
+  padding: 0px 10px;
+  font-size: 14px;
+  color: #898d93;
+  border-bottom: 1px solid #dde0e5;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.current-rates-table td {
+  padding: 0 10px;
+  color: #202020;
+  font-size: 14px;
+  font-weight: 600;
+}
+.current-rates-table .table-color-gray {
+  color: #81858C;
+}
+.current-rates-table .table-color-red {
+  color: #F00;
+}
+.current-rates-table .table-color-green {
+  color: #47B64C;
+}
+
+
+@media (max-width: 940px) {
+  .current-rates-container.container {
+    padding-right: 0;
+  }
+  .current-rates-container .table-wrapper {
+    margin-bottom: -20px;
+  }
+  
+}

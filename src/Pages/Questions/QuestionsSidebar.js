@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import "./QuestionsSidebar.css";
+import React from 'react';
+import { NavLink } from 'react-router-dom'; // Import NavLink instead of Link
+import './QuestionsSidebar.css';
 
 export default function QuestionsSidebar() {
   return (
@@ -8,37 +8,35 @@ export default function QuestionsSidebar() {
       <div className="question-sidebar-header">
         <p>База знаний</p>
       </div>
-      <hr className="m-0" />
+
       <nav>
         <ul className="question-sidebar-list">
           <li className="sidebar-option">
-            <Link to="/questions/faq">FAQ</Link>
+            <NavLink to="/questions/faq">FAQ</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/fitt-meaning">Что такое FITT</Link>
+            <NavLink to="/questions/fitt-meaning">Что такое FITT</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/copytrader-guide">
-              Руководство для копи-трейдера
-            </Link>
+            <NavLink to="/questions/copytrader-guide">Руководство для копи-трейдера</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/signal-guide">Руководство по сигналам</Link>
+            <NavLink to="/questions/signal-guide">Руководство по сигналам</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/comission">Комиссии на платформе</Link>
+            <NavLink to="/questions/comission">Комиссии на платформе</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/referral">Реферальная программа</Link>
+            <NavLink to="/questions/referral">Реферальная программа</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/conditions">Условия использования</Link>
+            <NavLink to="/questions/conditions">Условия использования</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/confidentiality">Конфиденциальность</Link>
+            <NavLink to="/questions/confidentiality">Конфиденциальность</NavLink>
           </li>
           <li className="sidebar-option">
-            <Link to="/questions/transaction-history">История транзакции</Link>
+            <NavLink to="/questions/transaction-history">История транзакции</NavLink>
           </li>
         </ul>
       </nav>

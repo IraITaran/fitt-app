@@ -1,11 +1,11 @@
 .TarrifPlans {
   color: #262626;
-  padding: 0 115px;
   background-color: #f5f5f585;
   position: relative;
   z-index: 1;
-  padding-top: 25px;
+  /* padding-top: 25px; */
 }
+
 
 .TarrifPlans .bg-image-rhombus {
   background-image: url("../../images/bg-leaderboard-left.png");
@@ -36,17 +36,22 @@
 }
 
 .TarrifPlans h1 {
-  font-size: 72px;
-  font-weight: 400;
+  color: #262626;
+  text-align: center;
+  font-size: 55px;
+  font-weight: 600;
   line-height: 85px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
 }
 
 .TarrifPlans .choice {
-  margin-bottom: 32px;
-  font-size: 16px;
-  line-height: 32px;
-  font-weight: 400;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 2;
+}
+.TarrifPlans .tariff-select {
+  max-width: 150px;
+  margin: 35px auto 30px;
 }
 
 .duration-inputs {
@@ -62,8 +67,8 @@ input {
 }
 
 .option-card {
-  width: 384px;
-  height: 420px;
+  max-width: 384px;
+  width: 100%;
   border: 1px solid white;
   border-radius: 4px;
   background-color: white;
@@ -71,6 +76,7 @@ input {
   background-repeat: no-repeat;
   background-position: 90%;
   padding: 32px 24px;
+  font-weight: 600;
 }
 
 .option-card .option-name {
@@ -90,7 +96,7 @@ input {
 }
 
 .option-card ul {
-  margin-top: 32px;
+  margin: 32px 0 0;
   list-style: none;
   padding: 0px;
 }
@@ -115,12 +121,12 @@ input {
   width: 100%;
   padding: 10px 0px;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .option-dark-card {
-  width: 440px;
-  height: 515px;
+  max-width: 440px;
+  width: 100%;
   border: 1px solid #32312f;
   border-radius: 4px;
   background-color: #32312f;
@@ -129,6 +135,7 @@ input {
   background-position: 90%;
   padding: 32px 24px;
   color: #ffffff;
+  font-weight: 600;
 }
 
 .option-dark-card .option-name {
@@ -154,7 +161,7 @@ input {
 }
 
 .option-dark-card ul {
-  margin-top: 32px;
+  margin: 32px 0 0;
   list-style: none;
   padding: 0px;
 }
@@ -179,5 +186,93 @@ input {
   width: 100%;
   padding: 17px 0px;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1180px) {
+  /* .TarrifPlans {
+    padding: 35px 0 0;
+  } */
+  /* .tariff-plans-inner {
+    padding: 0 34px;
+  } */
+  .tarrifs-option-container {
+    flex-direction: column;
+   
+  }
+  .option-dark-card {
+    margin: 20px 0;
+  }
+  .option-dark-card .justify-content-between {
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .TarrifPlans {
+    overflow: hidden;
+  }
+  .TarrifPlans .tariff-select {
+    margin: 20px auto 25px;
+  }
+  .TarrifPlans h1 {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .TarrifPlans .choice {
+    font-size: 14px;
+  }
+  .option-dark-card {
+    height: auto;
+    padding: 28px 20px;
+    background-position: center center;
+    background-size: contain;
+  }
+  .option-dark-card,
+  .option-card {
+    max-width: 100%;
+  }
+  .option-dark-card .popular {
+    margin-bottom: 0;
+    font-size: 12px;
+    padding: 0px 12px;
+    line-height: 30px;
+    height: auto;
+  }
+  .option-dark-card .option-name {
+    font-size: 18px;
+    line-height: 21px;
+    margin-bottom: 10px;
+  }
+  .option-dark-card .option-price {
+    font-size: 16px;
+  }
+  .option-dark-card .option-price span {
+    font-size: 32px;
+  }
+  .option-dark-card ul li {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .option-dark-card ul li {
+    margin-bottom: 15px;
+  }
+  .option-dark-card ul img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+  }
+  .option-dark-card .tarrif-btn {
+    font-size: 14px;
+    padding: 12px 0px;
+    line-height: 1;
+  }
+  .option-card .option-name {
+    font-size: 18px;
+  }
+  .option-card ul li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
 }

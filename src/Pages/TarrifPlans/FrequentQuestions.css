@@ -104,7 +104,7 @@
         position: relative;
         z-index: 1;
     }
-    .questions-container:before {
+    /* .questions-container:before {
         position: absolute;
         content: "";
         left: 0;
@@ -114,5 +114,5 @@
         background-image: url("../../images/question-decor.svg");
         background-repeat: no-repeat;
         background-size: contain;
-    }
+    } */
 }

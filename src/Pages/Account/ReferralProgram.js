@@ -18,6 +18,15 @@ export default function ReferralProgram() {
   let [newReferralId, setNewReferralId] = useState();
   let [refferalId, setReferralId] = useState("");
 
+  const [activeTab, setActiveTab] = useState('open_order');
+  const handleTabClick = (activeTab) => setActiveTab(activeTab);
+
+  const tabs = [
+    { id: 1, label: 'open_order', content: 'Все аккаунты' },
+    { id: 2, label: 'history_order', content: 'Пункт меню' },
+    { id: 3, label: 'history_transaction', content: 'Пункт меню' },
+  ]
+
   const handleValidation = (event) => {
     let formIsValid = true;
 
@@ -101,14 +110,11 @@ export default function ReferralProgram() {
 
   return (
     <div className="ReferralProgram">
-      <div className="d-flex justify-content-between referral-header-container">
+      <div className="referral-header-container">
         <div className="referral-header-left">
-          <p>
-            Пригласите друзей. <br />
-            Зарабатывайте
-            <br /> криптовалюту
-            <br /> вместе.
-          </p>
+          <h2 className="main-title">
+              Пригласите друзей. Зарабатывайте криптовалюту вместе.
+          </h2>
           <p>
             Получите до 20% комиссии за каждого
             <br /> приведенного пользователя с активной подпиской.
@@ -160,10 +166,19 @@ export default function ReferralProgram() {
             </Modal.Body>
           </Modal>
           <div className="referral-benefit-section text-center">
-            <p className="m-0">Вы получите</p>
-            <p className="m-0">20%</p>
+           
+              <div className="referral-benefit-item">
+                <p className="title">Вы получите</p>
+                <p className="value">10%</p>
+              </div>
+              <div className="referral-benefit-item">
+                <p className="title">Друзья получат</p>
+                <p className="value">10%</p>
+              </div>
+            
+            
           </div>
-          <hr className="m-0" />
+         
           <div className="d-flex justify-content-between referral-id-section">
             <p className="m-0">Referral ID</p>
             <p className="m-0">
@@ -181,7 +196,7 @@ export default function ReferralProgram() {
           <div className="d-flex justify-content-between referral-link-section">
             <p className="m-0">Реферальная ссылка</p>
             <a href="/">
-              https://fitt.ink/#?rc={refferalId}
+              <span>https://fitt.ink/#?rc={refferalId}</span>
               <img
                 src={ReferralInfoIcon}
                 alt="referral-info-icon"
@@ -289,7 +304,7 @@ export default function ReferralProgram() {
           носят исключительно справочный характер.
           <br /> Приносим извинения за возможные неудобства.
         </p>
-        <div className="referral-table-container">
+        {/* <div className="referral-table-container">
           <h2>Рефералы</h2>
           <ul className="d-flex">
             <li>Все аккаунты</li>
@@ -333,16 +348,218 @@ export default function ReferralProgram() {
               })}
             </tbody>
           </table>
-        </div>
+        </div> */}
+
+
       </div>
-      <div className="text-center referral-footer">
+      <div className="referral-table-container container">
+          <div className="referral-tabs">
+            <div className="referral-inner">
+            {tabs.map((tab) => (
+              <div
+                key={tab.id}
+                onClick={() => handleTabClick(tab.label)}
+                className={tab.label === activeTab ? 'tab-item is-active' : 'tab-item'}
+                data-tab={tab.label}
+              >
+                {tab.content}
+              </div>
+            ))}
+            </div>
+          </div>
+          <div className="table-wrapper">
+            <table className="referral-table w-100">
+                <thead>
+                  <tr>
+                      <th>Общая информация</th>
+                      <th>User ID друга</th>
+                      <th>Заработано реферальных бонусов (BTC)</th>
+                      <th>Торговля началась</th>
+                      <th>Дата</th>
+                  </tr>
+                </thead>
+                {activeTab === 'open_order' && (
+                  <tbody>
+                    <tr>
+                        <td>
+                          <img
+                            src={UnknownIcon}
+                            alt="icon"
+                            className="leader-icon me-3"
+                          ></img>
+                          <div>
+                            <p className="leader-name">BTC Never Give Up</p>
+                            <p className="leader-type m-0">USDⓈ-M</p>
+                          </div>
+                        </td>
+                        <td>351594088</td>
+                        <td className="table-weight-bold">0</td>
+                        <td className="table-color-red">Нет</td>
+                        <td className="table-color-red">2021-03-14 02:00:00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <img
+                            src={UnknownIcon}
+                            alt="icon"
+                            className="leader-icon me-3"
+                          ></img>
+                          <div>
+                            <p className="leader-name">BTC Never Give Up</p>
+                            <p className="leader-type m-0">USDⓈ-M</p>
+                          </div>
+                        </td>
+                        <td>351594088</td>
+                        <td className="table-weight-bold">0</td>
+                        <td className="table-color-red">Нет</td>
+                        <td className="table-color-red">2021-03-14 02:00:00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <img
+                            src={UnknownIcon}
+                            alt="icon"
+                            className="leader-icon me-3"
+                          ></img>
+                          <div>
+                            <p className="leader-name">BTC Never Give Up</p>
+                            <p className="leader-type m-0">USDⓈ-M</p>
+                          </div>
+                        </td>
+                        <td>351594088</td>
+                        <td className="table-weight-bold">0</td>
+                        <td className="table-color-red">Нет</td>
+                        <td className="table-color-red">2021-03-14 02:00:00</td>
+                    </tr>
+                    <tr>
+                        <td>
+                          <img
+                            src={UnknownIcon}
+                            alt="icon"
+                            className="leader-icon me-3"
+                          ></img>
+                          <div>
+                            <p className="leader-name">BTC Never Give Up</p>
+                            <p className="leader-type m-0">USDⓈ-M</p>
+                          </div>
+                        </td>
+                        <td>351594088</td>
+                        <td className="table-weight-bold">0</td>
+                        <td className="table-color-red">Нет</td>
+                        <td className="table-color-red">2021-03-14 02:00:00</td>
+                    </tr>
+                  </tbody>
+                )}
+
+                {activeTab === 'history_order' && (
+                                   <tbody>
+                                   <tr>
+                                       <td>
+                                         <img
+                                           src={UnknownIcon}
+                                           alt="icon"
+                                           className="leader-icon me-3"
+                                         ></img>
+                                         <div>
+                                           <p className="leader-name">BTC Never Give Up</p>
+                                           <p className="leader-type m-0">USDⓈ-M</p>
+                                         </div>
+                                       </td>
+                                       <td>351594088</td>
+                                       <td className="table-weight-bold">0</td>
+                                       <td className="table-color-red">Нет</td>
+                                       <td className="table-color-red">2021-03-14 02:00:00</td>
+                                   </tr>
+                                   <tr>
+                                       <td>
+                                         <img
+                                           src={UnknownIcon}
+                                           alt="icon"
+                                           className="leader-icon me-3"
+                                         ></img>
+                                         <div>
+                                           <p className="leader-name">BTC Never Give Up</p>
+                                           <p className="leader-type m-0">USDⓈ-M</p>
+                                         </div>
+                                       </td>
+                                       <td>351594088</td>
+                                       <td className="table-weight-bold">0</td>
+                                       <td className="table-color-red">Нет</td>
+                                       <td className="table-color-red">2021-03-14 02:00:00</td>
+                                   </tr>
+                                  
+                                 </tbody>
+                )}
+
+                {activeTab === 'history_transaction' && (
+                                   <tbody>
+                                   <tr>
+                                       <td>
+                                         <img
+                                           src={UnknownIcon}
+                                           alt="icon"
+                                           className="leader-icon me-3"
+                                         ></img>
+                                         <div>
+                                           <p className="leader-name">BTC Never Give Up</p>
+                                           <p className="leader-type m-0">USDⓈ-M</p>
+                                         </div>
+                                       </td>
+                                       <td>351594088</td>
+                                       <td className="table-weight-bold">0</td>
+                                       <td className="table-color-red">Нет</td>
+                                       <td className="table-color-red">2021-03-14 02:00:00</td>
+                                   </tr>
+                                   <tr>
+                                       <td>
+                                         <img
+                                           src={UnknownIcon}
+                                           alt="icon"
+                                           className="leader-icon me-3"
+                                         ></img>
+                                         <div>
+                                           <p className="leader-name">BTC Never Give Up</p>
+                                           <p className="leader-type m-0">USDⓈ-M</p>
+                                         </div>
+                                       </td>
+                                       <td>351594088</td>
+                                       <td className="table-weight-bold">0</td>
+                                       <td className="table-color-red">Нет</td>
+                                       <td className="table-color-red">2021-03-14 02:00:00</td>
+                                   </tr>
+                                   <tr>
+                                       <td>
+                                         <img
+                                           src={UnknownIcon}
+                                           alt="icon"
+                                           className="leader-icon me-3"
+                                         ></img>
+                                         <div>
+                                           <p className="leader-name">BTC Never Give Up</p>
+                                           <p className="leader-type m-0">USDⓈ-M</p>
+                                         </div>
+                                       </td>
+                                       <td>351594088</td>
+                                       <td className="table-weight-bold">0</td>
+                                       <td className="table-color-red">Нет</td>
+                                       <td className="table-color-red">2021-03-14 02:00:00</td>
+                                   </tr>
+                                  
+                                 </tbody>
+                )}
+
+             
+            </table>
+          </div>
+        </div>
+      {/* <div className="text-center referral-footer">
         <p>Пригласите друзей. Зарабатывайте криптовалюту вместе.</p>
 
         <button className="yellow-btn referral-btn">
           <img src={ClipIcon} alt="clip-info" className="clip-icon"></img>
           Пригласить друзей
         </button>
-      </div>
+      </div> */}
     </div>
   );
 }

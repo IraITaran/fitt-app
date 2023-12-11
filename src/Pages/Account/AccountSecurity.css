@@ -1,14 +1,30 @@
 .AccountSecurity {
-  border-left: 1px solid #dcdfe4;
-  width: 100%;
+    border-left: 1px solid #dcdfe4;
+    width: 100%;
 }
 
 .AccountSecurity .user-info-container {
-  padding-bottom: 40px;
+    padding-bottom: 40px;
+    background-image: url("../../images/page-decor.png");
+    background-repeat: no-repeat;
+    background-position: right 10% center;
+}
+
+.security-image {
+    position: relative;
+    margin-right: 30px;
+    width: 100px;
+}
+
+.security-image-icon-small {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .AccountSecurity .user-account-icon {
-  margin-right: 42px;
+    width: 100%;
 }
 
 .security-username p:first-child,
@@ -16,10 +32,10 @@
 .security-password p:first-child,
 .security-phone p:first-child,
 .security-email p:first-child {
-  font-size: 17px;
-  font-weight: 500;
-  color: #81858c;
-  margin-bottom: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #81858c;
+    margin-bottom: 0;
 }
 
 .security-username p:last-child,
@@ -27,131 +43,196 @@
 .security-password p:last-child,
 .security-phone p:last-child,
 .security-email p:last-child {
-  font-size: 17px;
-  font-weight: 500;
-  color: #2e2e2e;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e2e2e;
+    margin-bottom: 0;
 }
 
-.security-username,
-.security-nickname,
-.security-password,
-.security-phone {
-  margin-right: 60px;
+.security-username {
+    margin-bottom: 15px;
+}
+
+.security-credentials {
+    display: none;
 }
 
 .security-buttons {
-  margin-top: 47px;
-  margin-bottom: 32px;
+    margin: 0 auto 30px auto;
+    max-width: 300px;
+    margin-top: 26px;
 }
 
 .security-footer h4 {
-  font-size: 25px;
-  color: #262626;
-  font-weight: 400;
-  margin-bottom: 30px;
+    font-size: 22px;
+    color: #262626;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.security-options-container div {
+    margin: 0 20px 20px 0;
 }
 
 .security-options-container img {
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
 }
 
 .security-options-container p {
-  color: #2e2e2e;
-  font-size: 16px;
-  font-weight: 500;
-  margin-right: 45px;
-  margin-bottom: 0px;
+    color: #2e2e2e;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 0px;
 }
 
 .security-main-container {
-  padding: 40px 51px 61px 44px;
+    padding: 20px 34px;
+    background: #fff;
 }
 
 .two-factor-auth h2,
 .devices-activity h2 {
-  font-size: 32px;
-  font-weight: 400;
-  color: #262626;
-  margin-bottom: 7px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #262626;
 }
 
 .devices-activity h2 {
-  margin-top: 40px;
+    margin-top: 40px;
 }
 
 .security-subheader {
-  font-size: 20px;
-  color: #262626;
-  margin-bottom: 10px;
-  white-space: nowrap;
-  margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #262626;
 }
 
 .security-description {
-  font-size: 16px;
-  color: #81858c;
-  font-weight: 500;
-  margin-bottom: 30px;
+    font-size: 15px;
+    color: #81858c;
+    font-weight: 400;
+    margin-bottom: 20px;
 }
 
 .auth-validation {
-  font-size: 18px;
-  font-weight: 500;
-  color: #2e2e2e;
-  margin: 57px 0px 0px 110px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.security-section-buttons {
+    gap: 22px;
+}
+
+.security-main-container .change-btn,
+.security-main-container .delete-btn {
+    padding: 0 25px;
+    min-height: 50px;
+    margin: 0;
 }
 
 .auth-validation img {
-  margin-right: 10px;
-  width: 24px;
-  height: 24px;
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
 }
 
 .security-main-container button {
-  padding: 14px 25px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #080808;
-  border: 1px solid #eaecef;
-  border-radius: 4px;
-  margin-top: 40px;
+    padding: 14px 25px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #080808;
+    border: 1px solid #eaecef;
+    border-radius: 4px;
+    margin-top: 40px;
 }
 
 .security-main-container .manage-btn {
-  margin-left: -19px;
-  margin-top: 40px;
+    margin: 0;
 }
 
 .security-section {
-  border-bottom: 1px solid #dcdfe4;
+    padding: 25px 0;
+    border-bottom: 1px solid #dcdfe4;
 }
 
 .turnoff-acc {
-  font-size: 16px;
-  color: #c49939;
-  font-weight: 500;
-  margin-left: 20px;
+    font-size: 16px;
+    color: #c49939;
+    font-weight: 500;
+    margin-left: 20px;
 }
 
 .session-container {
-  padding-top: 39px;
+    padding-top: 39px;
 }
 
 .session-container h2 {
-  font-size: 32px;
-  color: #262626;
-  font-weight: 400;
-  margin-top: 0px;
+    font-size: 32px;
+    color: #262626;
+    font-weight: 400;
+    margin-top: 0px;
 }
 
 .session-container table {
-  width: 100%;
-  margin: 0;
+    width: 100%;
+    margin: 0;
 }
 
 .session-container th,
 .session-container td {
-  padding: 10px 40px;
+    padding: 10px 40px;
+}
+
+@media (min-width: 768px) {
+    .security-buttons {
+        max-width: 100%;
+        margin: 35px 0;
+    }
+
+    .security-buttons button {
+        padding: 0 15px;
+        max-width: 247px;
+        flex-grow: 1;
+    }
+}
+
+@media (min-width: 992px) {
+    .security-username,
+    .security-nickname {
+        margin-right: 40px;
+        margin-bottom: 0;
+    }
+    .security-section-text {
+        margin-right: 40px;
+    }
+
+    .security-section-text {
+        width: 320px;
+    }
+
+    .security-credentials div {
+        margin-right: 40px;
+    }
+    .security-section-buttons {
+        min-width: 296px;
+        margin-left: auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .security-main-container .change-btn,
+    .security-main-container .delete-btn {
+        min-height: 44px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .AccountSecurity .container {
+        margin-left: 0;
+        max-width: 1220px;
+    }
 }

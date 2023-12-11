@@ -1,192 +1,286 @@
 .AccountWallet {
-  width: 100%;
-  border-left: 1px solid #dcdfe4;
+    width: 100%;
+    border-left: 1px solid #dcdfe4;
 }
 
 .user-info-container {
-  background-color: #fafafa;
-  padding: 34px 0px 30px 44px;
+    background-color: #fafafa;
+    padding: 20px 34px;
+    background-image: url("../../images/page-decor.png");
+    background-repeat: no-repeat;
+    background-position: right 10% center;
 }
 
 .user-info-container .user-account-icon {
-  width: 100px;
-  height: 100px;
-  margin-right: 37px;
+    width: 80px;
+    margin-right: 14px;
 }
 
 .user-info-container .wallet-username {
-  font-size: 20px;
-  font-weight: 700;
-  color: #2e2e2e;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2e2e2e;
 }
 
 .user-info-container .userId {
-  margin-right: 30px;
+    margin-bottom: 10px;
+}
+
+.last-login {
+    margin-bottom: 25px;
 }
 
 .user-info-container .userId p:first-child,
 .user-info-container .last-login p:first-child {
-  font-size: 16px;
-  color: #81858c;
-  font-weight: 500;
-  margin-bottom: 6px;
+    font-size: 16px;
+    color: #81858c;
+    font-weight: 500;
+    margin-bottom: 6px;
 }
 
 .user-info-container .userId p:last-child,
 .user-info-container .last-login p:last-child {
-  font-size: 16px;
-  color: #2e2e2e;
-  font-weight: 500;
-  margin-bottom: 0px;
+    font-size: 16px;
+    color: #2e2e2e;
+    font-weight: 600;
+    margin-bottom: 0px;
 }
 
 .user-info-container .user-info-footer {
-  margin-top: 55px;
+    display: none;
 }
 
 .user-info-footer .more-info-icon {
-  margin-left: 7px;
-  width: 16.67px;
-  height: 16.67px;
+    margin-left: 7px;
+    width: 16.67px;
+    height: 16.67px;
 }
 
-.user-info-footer .estimated-balance {
-  margin-right: 85px;
+/*.user-info-footer .estimated-balance {
+    margin-right: 85px;
+}*/
+
+.user-info-footer .estimated-balance > p,
+.user-info-footer .referrals > p {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    color: #262626;
+    margin-bottom: 8px;
 }
 
-.user-info-footer .estimated-balance p:first-child,
-.user-info-footer .referrals p:first-child {
-  font-size: 20px;
-  line-height: 23px;
-  color: #262626;
-  margin-bottom: 8px;
-}
-
-.user-info-footer .estimated-balance p:nth-child(2),
-.user-info-footer .referrals p:nth-child(2) {
-  font-size: 34px;
-  color: #000000;
-  font-weight: 500;
-  margin-bottom: 8px;
+.estimated-balance-amount p:first-child,
+.referrals-mount p:first-child {
+    font-size: 34px;
+    color: #000000;
+    font-weight: 500;
+    margin-bottom: 8px;
 }
 
 .user-info-footer .estimated-balance p:last-child,
 .user-info-footer .referrals p:last-child {
-  font-size: 16px;
-  color: #10b866;
-  font-weight: 500;
-  margin-bottom: 0px;
+    font-size: 16px;
+    color: #10b866;
+    font-weight: 500;
+    margin-bottom: 0px;
 }
 
 .user-info-container .wallet-buttons {
-  margin-top: 29px;
+    margin-top: 29px;
 }
 
 .grey-btn {
-  color: #080808;
-  background-color: #eaecef;
-  border-radius: 4px;
-  padding: 10px 25px;
-  border: 1px solid #eaecef;
-  font-size: 16px;
-  font-weight: 600;
-  margin-right: 20px;
+    min-height: 40px;
+    margin-bottom: 20px;
+    color: #080808;
+    background-color: #eaecef;
+    border-radius: 4px;
+    padding: 0 25px;
+    border: 1px solid #eaecef;
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .yellow-btn {
-  background-color: #feeb61;
-  border: 1px solid #feeb61;
-  margin-right: 20px;
-  border-radius: 4px;
-  padding: 10px 25px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #080808;
+    min-height: 40px;
+    margin-bottom: 20px;
+    background-color: #feeb61;
+    border: 1px solid #feeb61;
+    border-radius: 4px;
+    padding: 0 25px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #080808;
 }
 
 .user-info-container .account-bg {
-  background-image: url("../../images/wallet-bg-icon.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  position: absolute;
-  width: 650px;
-  height: 600px;
-  top: 35px;
-  right: 20px;
-  opacity: 0.99;
+    display: none;
+    background-image: url("../../images/wallet-bg-icon.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 650px;
+    height: 600px;
+    top: 35px;
+    right: 20px;
+    opacity: 0.99;
 }
 
 .user-statistics-container {
-  padding: 34px 44px 30px 44px;
-  background-color: #fafafa;
+    /*padding: 34px 44px 30px 44px;*/
+    background: #fff;
+}
+
+.user-statistics-table-container {
+    width: 100%;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.user-statistics-title {
+    padding: 20px 34px;
+}
+
+.user-statistics-title h3 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .user-statistics-container .user-statistics-table {
-  border-radius: 8px;
-  color: #ffffff;
+    min-width: 1040px;
+    border-radius: 8px;
+    border: 1px solid #dde0e5;
+    color: #ffffff;
+}
+
+.user-statistics-table tr {
+    height: 60px;
+    padding: 20px 10px;
+    border-bottom: 1px solid #dde0e5;
 }
 
 .user-statistics-table th {
-  padding: 42px 0px;
-  text-align: center;
-  font-size: 14px;
-  color: #898d93;
-  border-bottom: 1px solid #dde0e5;
-  white-space: nowrap;
+    padding: 0px 10px;
+    font-size: 14px;
+    color: #898d93;
+    border-bottom: 1px solid #dde0e5;
+    white-space: nowrap;
 }
 
-.user-statistics-table th:first-child {
-  padding-left: 18px;
-}
+/*.user-statistics-table th:first-child {
+    padding-left: 18px;
+}*/
 
 .user-statistics-table td {
-  padding: 24px 0px;
-  text-align: center;
-  color: #202020;
-  font-size: 14px;
-  font-weight: 500;
+    /*padding: 24px 0px;*/
+    /*text-align: center;*/
+    padding: 0 10px;
+    color: #202020;
+    font-size: 10px;
+    font-weight: 600;
 }
 
-.user-statistics-table td:first-child {
-  padding-left: 18px;
-}
+/*.user-statistics-table td:first-child {
+    padding-left: 18px;
+}*/
 
 .user-statistics-table .statistic-table-btn {
-  background-color: #feeb61;
-  padding: 8px 12px;
-  border-radius: 8px;
-  border: 1px solid #feeb61;
-  font-size: 12px;
+    max-width: 84px;
+    min-height: 44px;
+    background-color: #feeb61;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid #feeb61;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .user-statistics-table .circled-green {
-  color: #10b866;
-  border: 1px solid #10b866;
-  padding: 5px 10px;
-  border-radius: 8px;
+    color: #10b866;
+    border: 1px solid #10b866;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 .user-statistics-table .circled-red {
-  color: #fe616a;
-  border: 1px solid #fe616a;
-  padding: 5px 10px;
-  border-radius: 8px;
+    color: #fe616a;
+    border: 1px solid #fe616a;
+    padding: 5px 10px;
+    border-radius: 8px;
 }
 
 .user-statistics-container .not-found-container {
-  margin: 54px auto 54px auto;
-  text-align: center;
+    /*margin: 54px auto 54px auto;*/
+    display: none;
+    text-align: center;
 }
 
 .user-statistics-container .not-found-container .not-found-icon {
-  margin-bottom: 36px;
-  width: 157px;
-  height: 148px;
+    margin-bottom: 36px;
+    width: 157px;
+    height: 148px;
 }
 
 .user-statistics-container .not-found-container p {
-  color: #81858c;
-  font-size: 19px;
-  font-weight: 500;
-  margin: 0px;
+    color: #81858c;
+    font-size: 19px;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.user-statistics-container {
+    padding-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    .user-info-container .user-account-icon {
+        width: 100px;
+        height: 100px;
+        margin-right: 37px;
+    }
+    .user-info-container {
+        padding: 40px;
+    }
+    .user-info-container .userId {
+        margin-right: 40px;
+        margin-bottom: 0;
+    }
+    .estimated-balance {
+        margin-right: 120px;
+    }
+    .last-login {
+        margin-bottom: 0;
+    }
+    .wallet-wrapper {
+        margin-bottom: 40px;
+    }
+    .yellow-btn,
+    .grey-btn {
+        min-height: 35px;
+        margin-bottom: 0;
+        margin-right: 15px;
+    }
+
+    .user-statistics-container {
+        padding-left: 35px;
+        background: #fafafa;
+    }
+
+    .user-statistics-title h3 {
+        font-size: 32px;
+    }
+}
+
+@media screen and (min-width: 1500px) {
+    .user-statistics-container {
+        padding-bottom: 60px;
+    }
+    .user-statistics-container .container {
+        margin-left: 0;
+        max-width: 1220px;
+    }
 }

@@ -1,0 +1,119 @@
+
+.signup-steps .form-step-item {
+  padding: 35px 0;
+}
+.signup-steps .btn {
+  border: none;
+  background-color: #feeb61;
+  border-radius: 4px;
+  padding: 11px 0px;
+  font-weight: 600;
+  color: #080808;
+  transition: .25s ease;
+  width: 100%;
+  flex: 1;
+  font-size: 16px;
+  line-height: 1.126;
+  font-family: "SF Pro Display";
+}
+.signup-steps .btn:hover {
+  background: #fee52e;
+}
+.signup-steps .prev-btn {
+  flex: 1;
+  margin-right: 20px;
+  background: #EAECEF;
+  color: #81858C;
+  border: none;
+}
+.signup-steps .prev-btn:hover {
+  background: #e1e3e7;
+}
+.signup-steps .prev-btn span {
+  position: relative;
+  padding-left: 27px;
+}
+.signup-steps .prev-btn span:before{
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -0;
+  margin: auto;
+  width: 17px;
+  height: 12px;
+  background: url(../../images/btn-arrow-left.svg) no-repeat center top /cover;
+}
+.signup-steps .btns-block {
+  display: flex;
+  align-items: center;
+  max-width: 440px;
+  margin: auto;
+}
+.signup-steps .step-header-inner {
+  border-bottom: 1px solid #DDE0E5;
+}
+.signup-steps .step-footer-inner {
+  border-top: 1px solid #DDE0E5;
+  padding: 35px 0;
+}
+.signup-steps-tabs {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 0 0;
+  margin: 0;
+}
+.signup-steps-tabs li {
+  color: #81858C;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 25px 0 28px;
+  position: relative;
+  transition: .25s ease;
+}
+.signup-steps-tabs li.is-active:before {
+  opacity: 1;
+}
+.signup-steps-tabs li:before{
+  content: '';
+  height: 2px;
+  left: 0;
+  right: 0;
+  background: #FEEB61;
+  position: absolute;
+  bottom: 0;
+  opacity: 0;
+  transition: .25s ease;
+}
+.signup-steps-tabs li.is-active {
+  color: #262626;
+}
+
+@media (max-width: 960px) {
+  .signup-steps .form-step-item {
+    padding: 30px 0 20px;
+  }
+  .signup-steps .tariff-plans-inner {
+    padding: 0;
+  }
+  .signup-steps .step-header-inner {
+    display: none;
+  }
+}
+@media (max-width: 860px) {
+  .signup-steps .step-footer-inner {
+    padding: 20px 0 30px;
+  }
+  .signup-steps .btns-block {
+    flex-direction: column-reverse;
+    max-width: 100%;
+  }
+  .signup-steps .prev-btn {
+    margin: 15px 0 0 0;
+  }
+  .PayForm .pay-btn {
+    padding: 11px 0;
+  }
+}

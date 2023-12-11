@@ -30,14 +30,15 @@ export default function ApiKeyForm(props) {
   }
 
   return (
-    <div className="ApiKeyForm">
+    <div className="ApiKeyForm base-form">
+      <div className="container">
       <div className="apikey-container">
         <h4 className="apikey-header">Добавить новый API-ключ</h4>
         <div className="apikey-inputs-container">
           <label className="w-100">
             Биржа
             <select
-              className="w-100 apikey-input"
+              className="w-100 apikey-input form-select"
               value={exchangeChoice}
               onChange={(e) => {
                 setExchangeChoice(e.target.value);
@@ -89,11 +90,12 @@ export default function ApiKeyForm(props) {
         <div className="text-center">
           <button
             type="button"
-            className="save-btn mt-4"
+            className="btn save-btn mt-4"
             onClick={updateApiKey}
           >
             Сохранить новый ключ
           </button>
+        </div>
         </div>
       </div>
     </div>

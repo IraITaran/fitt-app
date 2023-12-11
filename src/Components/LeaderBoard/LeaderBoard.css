@@ -157,19 +157,6 @@ input[type="search"]:hover {
     margin-top: 8px;
 }
 
-.apikey-description {
-    color: #9a9a9a;
-    font-size: 12px;
-    text-align: center;
-    line-height: 19px;
-    margin-bottom: 0px;
-}
-
-.apikey-description a {
-    text-decoration: none;
-    color: #9a9a9a;
-}
-
 .save-btn {
     border: 1px solid #feeb61;
     background-color: #feeb61;

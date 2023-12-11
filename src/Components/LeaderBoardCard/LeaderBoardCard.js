@@ -40,8 +40,7 @@ export default function LeaderBoardTable(props) {
                     return (
                         <div
                             key={index}
-                            onClick={(e) => onCardClick(e, leader)}
-                        >
+                            onClick={(e) => onCardClick(e, leader)}>
                             <LeaderBoardCardItem
                                 data={leader}
                                 keyword={props.keyword}
@@ -53,8 +52,7 @@ export default function LeaderBoardTable(props) {
 
             <Modal
                 show={showStatisticModal}
-                onHide={() => setShowStatisticModal(false)}
-            >
+                onHide={() => setShowStatisticModal(false)}>
                 <Modal.Header closeButton>
                     <h5>Статистика трейдера</h5>
                 </Modal.Header>
@@ -70,8 +68,7 @@ export default function LeaderBoardTable(props) {
                                         : currentLeader.userPhotoUrl
                                 }
                                 alt="unknown-icon"
-                                className="leader-icon me-3"
-                            ></img>
+                                className="leader-icon me-3"></img>
                             <div>
                                 <h4 className="leader-name">
                                     {currentLeader.nickName}
@@ -87,8 +84,7 @@ export default function LeaderBoardTable(props) {
                             <Link to={"/follow/" + currentLeader.encryptedUid}>
                                 <button
                                     type="button"
-                                    className="follow-btn ms-2"
-                                >
+                                    className="follow-btn ms-2">
                                     Следить
                                 </button>
                             </Link>
@@ -112,8 +108,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.dailyRoi) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(allData.dailyRoi * 100).toFixed(
                                             2
                                         )}
@@ -124,8 +119,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.dailyPnl) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.dailyPnl
                                         ).toLocaleString(undefined, {
@@ -147,8 +141,7 @@ export default function LeaderBoardTable(props) {
                                                 0
                                                     ? "negative-value"
                                                     : "positive-value"
-                                            }
-                                        >
+                                            }>
                                             {Number(
                                                 allData.exactWeeklyRoi * 100
                                             ).toFixed(2)}
@@ -160,8 +153,7 @@ export default function LeaderBoardTable(props) {
                                                 0
                                                     ? "negative-value"
                                                     : "positive-value"
-                                            }
-                                        >
+                                            }>
                                             {Number(
                                                 allData.exactWeeklyPnl
                                             ).toLocaleString(undefined, {
@@ -182,8 +174,7 @@ export default function LeaderBoardTable(props) {
                                                 ) < 0
                                                     ? "negative-value"
                                                     : "positive-value"
-                                            }
-                                        >
+                                            }>
                                             {Number(
                                                 allData.exactMonthlyRoi * 100
                                             ).toFixed(2)}
@@ -196,8 +187,7 @@ export default function LeaderBoardTable(props) {
                                                 ) < 0
                                                     ? "negative-value"
                                                     : "positive-value"
-                                            }
-                                        >
+                                            }>
                                             {Number(
                                                 allData.exactMonthlyPnl
                                             ).toLocaleString(undefined, {
@@ -215,8 +205,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.exactYearlyRoi) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.exactYearlyRoi * 100
                                         ).toFixed(2)}
@@ -227,8 +216,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.exactYearlyPnl) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.exactYearlyPnl
                                         ).toLocaleString(undefined, {
@@ -246,8 +234,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.weeklyRoi) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.weeklyRoi * 100
                                         ).toFixed(2)}
@@ -258,8 +245,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.weeklyPnl) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.weeklyPnl
                                         ).toLocaleString(undefined, {
@@ -277,8 +263,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.monthlyRoi) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.monthlyRoi * 100
                                         ).toFixed(2)}
@@ -289,8 +274,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.monthlyPnl) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.monthlyPnl
                                         ).toLocaleString(undefined, {
@@ -308,8 +292,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.yearlyRoi) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.yearlyRoi * 100
                                         ).toFixed(2)}
@@ -320,8 +303,7 @@ export default function LeaderBoardTable(props) {
                                             Number(allData.yearlyPnl) < 0
                                                 ? "negative-value"
                                                 : "positive-value"
-                                        }
-                                    >
+                                        }>
                                         {Number(
                                             allData.yearlyPnl
                                         ).toLocaleString(undefined, {
@@ -338,8 +320,7 @@ export default function LeaderBoardTable(props) {
                                         Number(allData.allRoi) < 0
                                             ? "negative-value"
                                             : "positive-value"
-                                    }
-                                >
+                                    }>
                                     {Number(allData.allRoi * 100).toFixed(2)}%
                                 </td>
                                 <td
@@ -347,8 +328,7 @@ export default function LeaderBoardTable(props) {
                                         Number(allData.allPnl) < 0
                                             ? "negative-value"
                                             : "positive-value"
-                                    }
-                                >
+                                    }>
                                     {Number(allData.allPnl).toLocaleString(
                                         undefined,
                                         {
@@ -365,8 +345,7 @@ export default function LeaderBoardTable(props) {
                     <button
                         variant="secondary"
                         onClick={() => setShowStatisticModal(false)}
-                        className="close-btn"
-                    >
+                        className="close-btn">
                         Закрыть
                     </button>
                 </Modal.Footer>

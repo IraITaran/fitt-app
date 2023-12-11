@@ -1,21 +1,61 @@
+.QuestionsRoute .container {
+  display: flex;
+}
+.QuestionsRoute img {
+  display: block;
+  max-width: 100%;
+}
+.question-routes-container ol,
+.question-routes-container ul {
+  padding-left: 20px;
+}
+.question-routes-container article ol {
+  padding-left: 0;
+}
 .question-routes-container {
-  padding: 20px 20px;
+  padding: 35px;
   color: #262626;
-  width: 50%;
+  flex: 1;
+}
+.question-routes-container b {
+  color: #ac9e34;
+  font-weight: 600;
+}
+.question-routes-container p {
+  margin-bottom: 10px;
 }
 
 .question-routes-container h1 {
-  margin-bottom: 30px;
+  margin-bottom: 25px;
+  font-size: 32px;
+  font-weight: 600;
+}
+.question-routes-container ul {
+  list-style-type: disc;
+  padding-left: 2rem;
+}
+.question-routes-container .inner-descrip-list {
+  list-style: none;
+}
+.question-routes-container h2 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .question-routes-container dt {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
+  margin-top: 20px;
 }
 
 .question-routes-container dd {
   font-size: 16px;
+}
+.question-routes-container ul {
+  margin-bottom: 10px;
 }
 
 .inner-descrip-term {
@@ -27,11 +67,68 @@
 }
 
 .inner-descrip-list li::before {
-  content: "•";
+  content: '•';
   color: #feeb61;
   display: inline-block;
   width: 1em;
   margin-left: -1em;
   font-weight: bold;
   font-size: 18px;
+}
+
+@media (max-width: 992px) {
+  .QuestionsRoute .container {
+    display: block;
+  }
+  .QuestionsRoute .QuestionsSidebar {
+    width: 100%;
+    border: none;
+  }
+  .QuestionsRoute .question-sidebar-header p {
+    padding: 30px 0 15px;
+  }
+  .QuestionsRoute .QuestionsSidebar nav {
+    padding: 0;
+  }
+  .QuestionsRoute .question-sidebar-list {
+    display: flex;
+    overflow-x: auto;
+    width: calc(100% + 34px);
+    margin-bottom: 0;
+  }
+  .QuestionsRoute .question-sidebar-list li {
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+  .QuestionsRoute .question-sidebar-list li:last-child {
+    margin-right: 0;
+  }
+  .QuestionsRoute .question-sidebar-list li a {
+    padding: 8px 15px;
+    border-radius: 4px;
+    border: 1px solid #000;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .QuestionsRoute .question-sidebar-list li a.active {
+    background: #feeb61;
+    border-color: #feeb61;
+    border-left: 1px solid #feeb61;
+  }
+
+  .question-routes-container {
+    padding: 30px 0 20px 0;
+  }
+  .question-routes-container h1 {
+    font-size: 22px;
+  }
+  .question-routes-container h2 {
+    font-size: 18px;
+  }
+  .question-routes-container dt {
+    font-size: 18px;
+  }
+  .question-routes-container .signal-guide-header {
+    font-size: 18px;
+  }
 }
